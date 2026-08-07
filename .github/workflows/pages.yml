@@ -1,4 +1,7 @@
-name: Deploy naar GitHub Pages
+name: Publiceer naar gh-pages
+
+# GitHub Pages serveert de branch gh-pages. Deze workflow houdt die branch
+# gelijk aan de standaardbranch, zodat een push automatisch live gaat.
 
 on:
   push:
@@ -6,34 +9,29 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: gh-pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Pages configureren (en indien nodig inschakelen)
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Site uploaden
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deployen
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Site naar gh-pages duwen
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Workflowbestanden horen niet op de publicatiebranch: de
+          # GITHUB_TOKEN mag ze niet pushen.
+          git checkout --orphan gh-pages
+          git rm -r --cached .github --quiet
+          rm -rf .github
+          git add -A
+          git commit -q -m "Publiceer site vanaf ${GITHUB_SHA}"
+          git push -f origin gh-pages
