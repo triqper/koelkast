@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koelkasten vergelijken — visueel overzicht</title>
+<meta name="description" content="Visueel overzicht van zes inbouwkoelkasten en koel-vriescombinaties: prijs, energielabel, hoogte, geluidsniveau en unieke features.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧊</text></svg>">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="eyebrow">Keuzehulp · augustus 2026</p>
+    <h1>Welke koelkast wordt het?</h1>
+    <p class="lede">
+      Zes inbouwmodellen naast elkaar: vier volledige koelkasten van 178 cm en twee
+      koel-vriescombinaties van 190 cm. Klik op een kaart voor de beschrijving,
+      alle tekeningen en de volledige specificatielijst.
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="controls" aria-label="Filteren en sorteren">
+    <div class="filters" role="tablist" aria-label="Filter op type">
+      <button class="chip is-active" role="tab" aria-selected="true" data-filter="all">Alle <span class="chip-count">6</span></button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="koelkast">Volledig koelkast <span class="chip-count">4</span></button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="combi">Koelvries combi <span class="chip-count">2</span></button>
+    </div>
+    <label class="sort">
+      <span>Sorteer op</span>
+      <select id="sort">
+        <option value="default">Type &amp; merk</option>
+        <option value="price">Prijs (laag → hoog)</option>
+        <option value="noise">Geluidsniveau (stil → luid)</option>
+        <option value="energy">Energieverbruik (zuinig → onzuinig)</option>
+        <option value="height">Hoogte (laag → hoog)</option>
+      </select>
+    </label>
+  </section>
+
+  <div id="grid" class="grid"></div>
+
+  <section class="compare" aria-labelledby="compare-title">
+    <h2 id="compare-title">Alles op een rij</h2>
+    <div class="table-scroll">
+      <table id="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Model</th>
+            <th scope="col">Type</th>
+            <th scope="col">Prijs</th>
+            <th scope="col">Label</th>
+            <th scope="col">kWh/jr</th>
+            <th scope="col">Hoogte</th>
+            <th scope="col">Geluid</th>
+            <th scope="col">Inhoud</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="table-note">Groen gemarkeerd = beste waarde in die kolom.</p>
+  </section>
+
+  <section class="disclosure" aria-labelledby="bron-title">
+    <h2 id="bron-title">Over de gegevens en de afbeeldingen</h2>
+    <p>
+      <strong>Afbeeldingen.</strong> De omgeving waarin deze pagina is gebouwd heeft geen
+      toegang tot expert.nl of de websites van de fabrikanten — het uitgaande netwerk
+      blokkeert die domeinen. Er konden daarom geen productfoto's worden opgehaald.
+      In plaats daarvan bevat elke kaart een <em>schematische tekening op schaal</em>:
+      de verhouding tussen breedte en hoogte komt overeen met de werkelijke buitenmaten,
+      en de indeling van plateaus, lades en vriesvakken volgt de specificaties.
+      Voor de echte productfoto's kun je doorklikken naar Expert.nl.
+    </p>
+    <p>
+      <strong>Specificaties.</strong> Hoogte, energielabel, jaarverbruik, geluidsniveau en
+      inhoud komen uit de productinformatiebladen van de fabrikanten en uit de Nederlandse
+      witgoedhandel, verzameld in augustus 2026.
+    </p>
+    <p>
+      <strong>Prijzen zijn indicatief.</strong> Ze zijn niet van expert.nl afgelezen maar
+      gebaseerd op gangbare Nederlandse straatprijzen; per model staat de herkomst erbij.
+      Controleer de actuele prijs altijd via de knop <em>Bekijk op Expert.nl</em> op de kaart.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Gemaakt als keuzehulp · specificaties augustus 2026 · prijzen indicatief, geen aanbieding.</p>
+  </div>
+</footer>
+
+<!-- Detailvenster -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" data-close aria-label="Sluiten">&times;</button>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <div class="stage" id="stage"></div>
+        <div class="thumbs" id="thumbs" role="tablist" aria-label="Afbeeldingen"></div>
+      </div>
+      <div class="modal-info">
+        <p class="modal-eyebrow" id="modal-eyebrow"></p>
+        <h2 id="modal-title"></h2>
+        <p class="modal-tagline" id="modal-tagline"></p>
+        <div class="modal-keys" id="modal-keys"></div>
+        <p class="modal-desc" id="modal-desc"></p>
+        <h3>Unieke features</h3>
+        <ul class="feature-list" id="modal-features"></ul>
+        <h3>Alle specificaties</h3>
+        <table class="spec-table"><tbody id="modal-specs"></tbody></table>
+        <a class="btn-expert" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">
+          Bekijk op Expert.nl &rarr;
+        </a>
+        <p class="modal-fineprint" id="modal-fineprint"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/illustrations.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
