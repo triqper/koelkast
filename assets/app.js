@@ -40,10 +40,11 @@
       letter + '</span>';
   }
 
+  /* Alleen op specificaties, niet op prijs: de indicatieprijzen zijn niet
+     vergelijkbaar met de offerteprijzen. */
   function badgeFor(f) {
     if (f.noiseDb === BEST.noiseDb) return 'Stilst';
     if (f.energyKwh === BEST.energyKwh) return 'Zuinigst';
-    if (f.price === BEST.price) return 'Voordeligst';
     return null;
   }
 
@@ -80,8 +81,9 @@
           '<p class="card-series">' + f.series + '</p>' +
           '<p class="card-price">' +
             '<span class="price-value">' + euro.format(f.price) + '</span>' +
-            '<span class="price-note">' + f.priceNote + '</span>' +
+            sourceTag(f) +
           '</p>' +
+          '<p class="price-note">' + f.priceNote + '</p>' +
           '<div class="card-stats">' +
             stat('Label', energyPill(f.energy)) +
             stat('Hoogte', f.heightLabel) +
@@ -100,9 +102,27 @@
       '<span class="stat-value">' + value + '</span></div>';
   }
 
+  /* Maakt zichtbaar of een prijs uit de offerte komt of een schatting is. */
+  function sourceTag(f) {
+    const quoted = f.source === 'offerte';
+    return '<span class="src-tag' + (quoted ? ' is-quoted' : '') + '" title="' +
+      (quoted ? 'Prijs en specificaties uit de Expert-offerte en het AEG-datasheet'
+              : 'Indicatieve straatprijs, niet bij Expert gecontroleerd') + '">' +
+      (quoted ? 'offerte' : 'indicatie') + '</span>';
+  }
+
   function renderGrid() {
     const list = visibleFridges();
     grid.innerHTML = list.map(cardHtml).join('');
+  }
+
+  function renderCounts() {
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      const key = el.dataset.count;
+      el.textContent = key === 'all'
+        ? FRIDGES.length
+        : FRIDGES.filter(function (f) { return f.category === key; }).length;
+    });
   }
 
   /* ---------- vergelijktabel ---------- */
@@ -112,8 +132,7 @@
       return '<tr data-id="' + f.id + '">' +
         '<td class="row-model">' + f.brand + ' ' + f.model + '<small>' + f.series + '</small></td>' +
         '<td>' + (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') + '</td>' +
-        '<td class="num' + (f.price === BEST.price ? ' best' : '') + '">' +
-          euro.format(f.price) + '</td>' +
+        '<td class="num">' + euro.format(f.price) + ' ' + sourceTag(f) + '</td>' +
         '<td>' + energyPill(f.energy) + '</td>' +
         '<td class="num' + (f.energyKwh === BEST.energyKwh ? ' best' : '') + '">' +
           f.energyKwh + '</td>' +
@@ -131,7 +150,7 @@
     const f = FRIDGES.filter(function (x) { return x.id === id; })[0];
     if (!f) return;
     currentFridge = f;
-    currentView = 'front';
+    currentView = galleryItems(f)[0].id;
     lastFocused = document.activeElement;
 
     document.getElementById('modal-eyebrow').textContent = f.brand + ' · ' + f.series;
@@ -157,9 +176,21 @@
 
     const link = document.getElementById('modal-link');
     link.href = f.expertUrl;
-    document.getElementById('modal-fineprint').textContent =
-      'Prijsindicatie (' + f.priceNote + '). Schematische tekeningen op schaal — ' +
-      'productfoto’s staan op de Expert.nl-pagina.';
+
+    const photoLink = document.getElementById('modal-photo-link');
+    if (f.photoUrl) {
+      photoLink.href = f.photoUrl;
+      photoLink.textContent = f.photoLabel || 'Foto’s bij de fabrikant';
+      photoLink.hidden = false;
+    } else {
+      photoLink.hidden = true;
+    }
+
+    document.getElementById('modal-fineprint').textContent = f.source === 'offerte'
+      ? 'Prijs uit de Expert Twello-offerte 2601004099 (6 augustus 2026, incl. btw); ' +
+        'specificaties uit het AEG-datasheet. De tekeningen zijn schematisch, op schaal.'
+      : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd. ' +
+        'De tekeningen zijn schematisch, op schaal.';
 
     modal.querySelector('.modal-panel').style.setProperty('--accent', f.accent);
     renderThumbs();
@@ -170,16 +201,34 @@
     modal.querySelector('.modal-close').focus();
   }
 
+  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. */
+  function galleryItems(f) {
+    const photos = (f.photos || []).map(function (src, i) {
+      return { id: 'photo-' + i, label: 'Foto ' + (i + 1), src: src };
+    });
+    return photos.concat(VIEWS);
+  }
+
+  function renderItem(f, item) {
+    if (item.src) {
+      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
+        f.brand + ' ' + f.model + ' — ' + item.label + '">';
+    }
+    return renderView(f, item.id);
+  }
+
   function renderThumbs() {
-    thumbs.innerHTML = VIEWS.map(function (v) {
+    thumbs.innerHTML = galleryItems(currentFridge).map(function (v) {
       return '<button class="thumb' + (v.id === currentView ? ' is-active' : '') +
         '" data-view="' + v.id + '" role="tab" aria-selected="' + (v.id === currentView) + '">' +
-        renderView(currentFridge, v.id) + '<span>' + v.label + '</span></button>';
+        renderItem(currentFridge, v) + '<span>' + v.label + '</span></button>';
     }).join('');
   }
 
   function renderStage() {
-    stage.innerHTML = renderView(currentFridge, currentView);
+    const items = galleryItems(currentFridge);
+    const item = items.filter(function (v) { return v.id === currentView; })[0] || items[0];
+    stage.innerHTML = renderItem(currentFridge, item);
   }
 
   function setView(id) {
@@ -238,7 +287,7 @@
     if (modal.hidden) return;
     if (e.key === 'Escape') { closeModal(); return; }
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-      const ids = VIEWS.map(function (v) { return v.id; });
+      const ids = galleryItems(currentFridge).map(function (v) { return v.id; });
       const i = ids.indexOf(currentView);
       const next = e.key === 'ArrowRight'
         ? (i + 1) % ids.length
@@ -248,6 +297,7 @@
     }
   });
 
+  renderCounts();
   renderGrid();
   renderTable();
 })();

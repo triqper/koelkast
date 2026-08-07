@@ -15,9 +15,15 @@
     <p class="eyebrow">Keuzehulp · augustus 2026</p>
     <h1>Welke koelkast wordt het?</h1>
     <p class="lede">
-      Zes inbouwmodellen naast elkaar: vier volledige koelkasten van 178 cm en twee
-      koel-vriescombinaties van 190 cm. Klik op een kaart voor de beschrijving,
-      alle tekeningen en de volledige specificatielijst.
+      Zeven inbouwmodellen naast elkaar: vier volledige koelkasten en drie
+      koel-vriescombinaties. Klik op een kaart voor de beschrijving, alle
+      tekeningen en de volledige specificatielijst.
+    </p>
+    <p class="lede-note">
+      De vier AEG-modellen staan op de offerte van Expert Twello
+      (nr. 2601004099, 6 augustus 2026) — die prijzen en specificaties komen
+      rechtstreeks uit de offerte en de AEG-datasheets. Voor Siemens, Bosch en
+      Liebherr zijn de prijzen een indicatie.
     </p>
   </div>
 </header>
@@ -26,9 +32,9 @@
 
   <section class="controls" aria-label="Filteren en sorteren">
     <div class="filters" role="tablist" aria-label="Filter op type">
-      <button class="chip is-active" role="tab" aria-selected="true" data-filter="all">Alle <span class="chip-count">6</span></button>
-      <button class="chip" role="tab" aria-selected="false" data-filter="koelkast">Volledig koelkast <span class="chip-count">4</span></button>
-      <button class="chip" role="tab" aria-selected="false" data-filter="combi">Koelvries combi <span class="chip-count">2</span></button>
+      <button class="chip is-active" role="tab" aria-selected="true" data-filter="all">Alle <span class="chip-count" data-count="all"></span></button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="koelkast">Volledig koelkast <span class="chip-count" data-count="koelkast"></span></button>
+      <button class="chip" role="tab" aria-selected="false" data-filter="combi">Koelvries combi <span class="chip-count" data-count="combi"></span></button>
     </div>
     <label class="sort">
       <span>Sorteer op</span>
@@ -63,11 +69,62 @@
         <tbody></tbody>
       </table>
     </div>
-    <p class="table-note">Groen gemarkeerd = beste waarde in die kolom.</p>
+    <p class="table-note">
+      Groen gemarkeerd = beste waarde in die kolom. Prijzen met het label
+      <em>offerte</em> komen uit de Expert-offerte; <em>indicatie</em> is een schatting
+      en dus niet één-op-één met de offerteprijzen te vergelijken.
+    </p>
+  </section>
+
+  <section class="offerte" aria-labelledby="offerte-title">
+    <h2 id="offerte-title">De offerte van Expert Twello</h2>
+    <p class="offerte-meta">
+      Offerte 2601004099 · 6 augustus 2026 · geldig tot 20 augustus 2026 ·
+      verkoper Peter · alle bedragen inclusief btw
+    </p>
+    <div class="table-scroll">
+      <table class="offerte-table">
+        <thead>
+          <tr>
+            <th scope="col">Regel</th>
+            <th scope="col">Toelichting uit de offerte</th>
+            <th scope="col">Bedrag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>AEG NSC6M191ES</td><td>Nis 189,4 cm</td><td class="num">€ 1.069</td></tr>
+          <tr><td>AEG NSC7C191DS</td><td>Nis 189,4 cm · verwacht 14-08-2026</td><td class="num">€ 1.329</td></tr>
+          <tr><td>AEG TK6FS181DS</td><td>Grote inbouwkoeler nis 178 cm · deuren koppelen</td><td class="num">€ 1.049</td></tr>
+          <tr><td>AEG OSC7C181DS</td><td>Koel/vriescombinatie 178 cm · direct te plaatsen</td><td class="num">€ 1.099</td></tr>
+          <tr><td>Meerprijs plank</td><td>Oude plank verwijderen en nieuwe plaatsen</td><td class="num">€ 50</td></tr>
+          <tr><td>Installatie</td><td>Expert Thuis Installatie inbouw koelkast</td><td class="num">€ 149</td></tr>
+          <tr class="total"><td colspan="2">Totaal offerte inclusief btw</td><td class="num">€ 4.745</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="offerte-note">
+      <strong>Let op de nishoogte.</strong> De offerte vermeldt dat bij de modellen van
+      189,4 cm de huidige plank aan de bovenzijde verwijderd moet worden en een nieuwe
+      teruggeplaatst — vandaar de meerprijs van € 50. De modellen van 178 cm
+      (TK6FS181DS en OSC7C181DS) zijn direct te plaatsen.
+    </p>
   </section>
 
   <section class="disclosure" aria-labelledby="bron-title">
     <h2 id="bron-title">Over de gegevens en de afbeeldingen</h2>
+    <p>
+      <strong>De vier AEG-modellen zijn geverifieerd.</strong> Prijs, nishoogte en
+      levertijd komen uit de offerte van Expert Twello; energielabel, verbruik,
+      geluidsniveau, maten, inhoud en features komen rechtstreeks uit de
+      AEG-productdatasheets. Deze modellen dragen het label <em>offerte</em> bij de prijs.
+    </p>
+    <p>
+      <strong>Siemens, Bosch en Liebherr staan niet op de offerte.</strong> Voor die drie
+      zijn de specificaties afkomstig uit publieke productinformatie en is de prijs een
+      indicatieve straatprijs — niet bij Expert gecontroleerd. Ze dragen het label
+      <em>indicatie</em>. Vraag deze prijzen na bij Expert voordat je ze vergelijkt met de
+      offerteprijzen.
+    </p>
     <p>
       <strong>Afbeeldingen.</strong> De omgeving waarin deze pagina is gebouwd heeft geen
       toegang tot expert.nl of de websites van de fabrikanten — het uitgaande netwerk
@@ -75,17 +132,6 @@
       In plaats daarvan bevat elke kaart een <em>schematische tekening op schaal</em>:
       de verhouding tussen breedte en hoogte komt overeen met de werkelijke buitenmaten,
       en de indeling van plateaus, lades en vriesvakken volgt de specificaties.
-      Voor de echte productfoto's kun je doorklikken naar Expert.nl.
-    </p>
-    <p>
-      <strong>Specificaties.</strong> Hoogte, energielabel, jaarverbruik, geluidsniveau en
-      inhoud komen uit de productinformatiebladen van de fabrikanten en uit de Nederlandse
-      witgoedhandel, verzameld in augustus 2026.
-    </p>
-    <p>
-      <strong>Prijzen zijn indicatief.</strong> Ze zijn niet van expert.nl afgelezen maar
-      gebaseerd op gangbare Nederlandse straatprijzen; per model staat de herkomst erbij.
-      Controleer de actuele prijs altijd via de knop <em>Bekijk op Expert.nl</em> op de kaart.
     </p>
   </section>
 
@@ -117,9 +163,14 @@
         <ul class="feature-list" id="modal-features"></ul>
         <h3>Alle specificaties</h3>
         <table class="spec-table"><tbody id="modal-specs"></tbody></table>
-        <a class="btn-expert" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">
-          Bekijk op Expert.nl &rarr;
-        </a>
+        <div class="modal-actions">
+          <a class="btn-expert" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">
+            Bekijk op Expert.nl &rarr;
+          </a>
+          <a class="btn-photos" id="modal-photo-link" href="#" target="_blank" rel="noopener noreferrer">
+            Foto's bij de fabrikant &rarr;
+          </a>
+        </div>
         <p class="modal-fineprint" id="modal-fineprint"></p>
       </div>
     </div>

@@ -1,35 +1,72 @@
 # Koelkast-keuzehulp
 
-Visueel overzicht van zes inbouwmodellen: per koelkast een kaart met tekening,
+Visueel overzicht van zeven inbouwmodellen: per koelkast een kaart met tekening,
 prijs, energielabel, hoogte, geluidsniveau en unieke features. Klik op een kaart
-voor een korte beschrijving, alle tekeningen en de volledige specificatielijst.
+voor een korte beschrijving, alle afbeeldingen en de volledige specificatielijst.
 
 **Live:** https://triqper.github.io/koelkast/
 
 ## Modellen
 
-**Volledig koelkast (178 cm nis)**
+**Volledig koelkast**
 
-| Model | Label | Hoogte | Geluid | Bijzonder |
-|---|---|---|---|---|
-| Siemens KI81RNSE0 | E · 114 kWh | 177,5 cm | 35 dB | superCooling, 2 vershoudlades |
-| Bosch KIR81NSE0 | E · 114 kWh | 177,2 cm | 35 dB | 2 MultiBox-lades, autom. ontdooiing |
-| Liebherr IRBSd 5120 | D · 125 kWh | 177 cm | 33 dB | BioFresh 0 °C op telescooprails |
-| AEG TK6FS181DS | D · 91 kWh | 177,2 cm | 32 dB | CustomFlex®, stilst én zuinigst |
+| Model | Prijs | Label | Hoogte | Geluid | Bron |
+|---|---|---|---|---|---|
+| Siemens KI81RNSE0 | € 869 | E · 114 kWh | 177,5 cm | 35 dB | indicatie |
+| Bosch KIR81NSE0 | € 949 | E · 114 kWh | 177 cm | 35 dB | indicatie |
+| Liebherr IRBSd 5120 | € 1.649 | D · 125 kWh | 177 cm | 33 dB | indicatie |
+| AEG TK6FS181DS | € 1.049 | D · **91 kWh** | 177,2 cm | **32 dB** | offerte |
 
-**Koelvries combi (190 cm nis)**
+**Koelvries combi**
 
-| Model | Label | Hoogte | Geluid | Bijzonder |
-|---|---|---|---|---|
-| AEG NSC7C191DS | D · 172 kWh | 189,4 cm | 34 dB | NoFrost + AI CoolAssist, ExtraChill |
-| AEG NSC6M191ES | E · 215 kWh | 188,3 cm | 37 dB | TwinTech® No Frost, 2 circuits |
+| Model | Prijs | Label | Hoogte | Geluid | Bron |
+|---|---|---|---|---|---|
+| AEG NSC7C191DS | € 1.329 | D · 172 kWh | 188,4 cm | 34 dB | offerte |
+| AEG NSC6M191ES | € 1.069 | E · 215 kWh | 188,4 cm | 37 dB | offerte |
+| AEG OSC7C181DS | € 1.099 | D · 173 kWh | 177,2 cm | 34 dB | offerte |
+
+## Herkomst van de gegevens
+
+- **AEG (4 modellen) — geverifieerd.** Prijzen uit de offerte van Expert Twello
+  (nr. 2601004099, 6 augustus 2026, incl. btw). Specificaties rechtstreeks uit
+  de AEG-productdatasheets. Deze dragen het label *offerte*.
+- **Siemens, Bosch, Liebherr — niet geverifieerd.** Staan niet op de offerte;
+  specificaties uit publieke productinformatie, prijs is een indicatieve
+  straatprijs. Label *indicatie*. Niet één-op-één met de offerteprijzen te
+  vergelijken.
+
+## Afbeeldingen
+
+Er zijn geen productfoto's opgehaald: het uitgaande netwerk van de bouwomgeving
+blokkeert expert.nl, aeg.nl en bsh-group.com (403 policy denial). Elke kaart
+bevat daarom een schematische tekening **op schaal** — de verhouding
+breedte/hoogte volgt de werkelijke buitenmaten, de indeling van plateaus, lades
+en vriesvakken volgt de datasheet. Elk detailvenster linkt door naar de
+productpagina van de fabrikant voor de echte foto's.
+
+### Zelf foto's toevoegen
+
+1. Zet de bestanden in `assets/photos/`, bijvoorbeeld
+   `assets/photos/aeg-nsc7c191ds-1.jpg`.
+2. Vul in `assets/data.js` de `photos`-array van het model:
+
+   ```js
+   photos: [
+     'assets/photos/aeg-nsc7c191ds-1.jpg',
+     'assets/photos/aeg-nsc7c191ds-2.jpg'
+   ],
+   ```
+
+De foto's verschijnen dan vóór de tekeningen in de galerij; de tekeningen
+blijven als extra weergaven staan. Laat de array leeg om alleen tekeningen te
+tonen.
 
 ## Bestanden
 
 ```
 index.html                 pagina-opbouw
 assets/style.css           styling, licht + donker thema
-assets/data.js             de dataset (specs, features, beschrijvingen)
+assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
 assets/illustrations.js    SVG-tekeningen, op schaal per model
 assets/app.js              kaarten, filters, sortering, detailvenster
 ```
@@ -37,21 +74,8 @@ assets/app.js              kaarten, filters, sortering, detailvenster
 Geen build-stap, geen dependencies, geen externe requests — open `index.html`
 of serveer de map statisch.
 
-## Over de gegevens
+## Publiceren
 
-- **Afbeeldingen.** De omgeving waarin dit is gebouwd kan expert.nl en de sites
-  van de fabrikanten niet bereiken (uitgaand netwerk geblokkeerd), dus er zijn
-  geen productfoto's opgehaald. In plaats daarvan is elke kaart een schematische
-  tekening **op schaal**: de verhouding breedte/hoogte volgt de werkelijke
-  buitenmaten, en de indeling van plateaus, lades en vriesvakken volgt de
-  specificaties. Elke kaart linkt door naar Expert.nl voor de echte foto's.
-- **Specificaties** komen uit productinformatiebladen van de fabrikanten en uit
-  de Nederlandse witgoedhandel, verzameld in augustus 2026.
-- **Prijzen zijn indicatief** — gangbare Nederlandse straatprijzen, niet van
-  expert.nl afgelezen. Per model staat de herkomst vermeld.
-
-## Aanpassen
-
-Alle inhoud staat in `assets/data.js`. Een model toevoegen of een prijs
-bijwerken kan daar; de kaarten, de vergelijktabel en het detailvenster worden
-automatisch opnieuw opgebouwd.
+GitHub Pages serveert de branch `gh-pages`. De workflow
+`.github/workflows/pages.yml` synchroniseert die branch automatisch bij elke
+push naar de standaardbranch.

@@ -229,11 +229,29 @@ h1 {
 .card-price {
   margin: 14px 0 0;
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  gap: 9px;
 }
 .price-value { font-size: 27px; font-weight: 700; letter-spacing: -.02em; }
-.price-note { font-size: 12px; color: var(--ink-3); }
+.price-note { font-size: 12px; color: var(--ink-3); margin: 3px 0 0; }
+
+.src-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.src-tag.is-quoted {
+  background: var(--good-bg);
+  border-color: transparent;
+  color: var(--good);
+}
 
 .card-stats {
   display: grid;
@@ -332,6 +350,34 @@ td.best { color: var(--good); font-weight: 700; }
 .row-model { font-weight: 650; }
 .row-model small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; }
 .table-note { font-size: 13px; color: var(--ink-3); margin: 10px 2px 0; }
+
+.lede-note {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  font-size: 14px;
+  color: var(--ink-3);
+  padding-left: 14px;
+  border-left: 3px solid var(--good);
+}
+
+/* ---------- offerte ---------- */
+
+.offerte { margin-bottom: 48px; }
+.offerte-meta { margin: 0 0 14px; font-size: 13.5px; color: var(--ink-3); }
+.offerte-table { min-width: 620px; }
+.offerte-table tr.total td {
+  font-weight: 700;
+  border-top: 2px solid var(--line);
+  background: var(--surface-2);
+}
+.offerte-table tbody tr { cursor: default; }
+.offerte-note {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: var(--ink-2);
+  max-width: 78ch;
+}
+.offerte-note strong { color: var(--ink); }
 
 /* ---------- verantwoording ---------- */
 
@@ -491,17 +537,33 @@ td.best { color: var(--good); font-weight: 700; }
 .spec-table td { padding: 8px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
 .spec-table td:first-child { color: var(--ink-3); width: 44%; padding-right: 14px; }
 
-.btn-expert {
+.modal-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-expert, .btn-photos {
   display: inline-block;
   padding: 12px 20px;
   border-radius: 10px;
-  background: var(--ink);
-  color: var(--bg);
   font-weight: 650;
   font-size: 14.5px;
   text-decoration: none;
 }
+.btn-expert { background: var(--ink); color: var(--bg); }
+.btn-photos {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
 .btn-expert:hover { opacity: .88; }
+.btn-photos:hover { border-color: var(--ink-3); }
+.btn-photos[hidden] { display: none; }
+
+.fridge-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.stage .fridge-photo { height: min(52vh, 420px); }
+.thumb .fridge-photo { height: 62px; }
 .modal-fineprint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); }
 
 /* ---------- SVG-tekeningen ---------- */
