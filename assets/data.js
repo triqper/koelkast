@@ -120,7 +120,13 @@ const FRIDGES = [
       ['Verlichting', 'LED'],
       ['Montage', 'Sleepdeursysteem']
     ],
-    photos: [],
+    /* Eerste foto is de coverfoto op de kaart. */
+    photos: [
+      { src: 'assets/photos/bosch-kir81nse0-koelkast.jpg', label: 'Koelkast open' },
+      { src: 'assets/photos/bosch-kir81nse0-interieur.jpg', label: 'Interieur' },
+      { src: 'assets/photos/bosch-kir81nse0-multibox.jpg', label: 'MultiBox XXL' },
+      { src: 'assets/photos/bosch-kir81nse0-bediening.jpg', label: 'Bediening' }
+    ],
     photoUrl: 'https://www.bosch-home.nl/productlijst/KIR81NSE0',
     photoLabel: 'Foto’s op Bosch.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=KIR81NSE0'

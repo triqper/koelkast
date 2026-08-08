@@ -69,7 +69,7 @@
       '<button class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '" ' +
         'aria-label="Details van ' + f.brand + ' ' + f.model + '">' +
         '<div class="card-media">' +
-          renderView(f, 'front') +
+          coverHtml(f) +
           '<span class="badge-type">' +
             (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') +
           '</span>' +
@@ -92,9 +92,16 @@
           '<ul class="card-features">' +
             f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('') +
           '</ul>' +
-          '<p class="card-cta">Bekijk beschrijving &amp; alle tekeningen &rarr;</p>' +
+          '<p class="card-cta">Bekijk beschrijving &amp; ' +
+            (photoItems(f).length ? 'alle foto&rsquo;s' : 'alle tekeningen') + ' &rarr;</p>' +
         '</div>' +
       '</button>';
+  }
+
+  /* De eerste foto is de cover; zonder foto's blijft het vooraanzicht staan. */
+  function coverHtml(f) {
+    const cover = photoItems(f)[0];
+    return cover ? renderItem(f, cover) : renderView(f, 'front');
   }
 
   function stat(label, value) {
@@ -186,11 +193,14 @@
       photoLink.hidden = true;
     }
 
-    document.getElementById('modal-fineprint').textContent = f.source === 'offerte'
+    const beeldNoot = photoItems(f).length
+      ? ' Productfoto’s van de fabrikant; de tekeningen zijn schematisch, op schaal.'
+      : ' De tekeningen zijn schematisch, op schaal.';
+    document.getElementById('modal-fineprint').textContent = (f.source === 'offerte'
       ? 'Prijs uit de Expert Twello-offerte 2601004099 (6 augustus 2026, incl. btw); ' +
-        'specificaties uit het AEG-datasheet. De tekeningen zijn schematisch, op schaal.'
-      : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd. ' +
-        'De tekeningen zijn schematisch, op schaal.';
+        'specificaties uit het AEG-datasheet.'
+      : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd.') +
+      beeldNoot;
 
     modal.querySelector('.modal-panel').style.setProperty('--accent', f.accent);
     renderThumbs();
@@ -201,17 +211,27 @@
     modal.querySelector('.modal-close').focus();
   }
 
-  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. */
-  function galleryItems(f) {
-    const photos = (f.photos || []).map(function (src, i) {
-      return { id: 'photo-' + i, label: 'Foto ' + (i + 1), src: src };
+  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. Een item is
+     ofwel een pad, ofwel { src, label }. */
+  function photoItems(f) {
+    return (f.photos || []).map(function (p, i) {
+      const photo = typeof p === 'string' ? { src: p } : p;
+      return {
+        id: 'photo-' + i,
+        label: photo.label || 'Foto ' + (i + 1),
+        src: photo.src
+      };
     });
-    return photos.concat(VIEWS);
+  }
+
+  function galleryItems(f) {
+    return photoItems(f).concat(VIEWS);
   }
 
   function renderItem(f, item) {
     if (item.src) {
-      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
+      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" ' +
+        'data-fridge="' + f.id + '" alt="' +
         f.brand + ' ' + f.model + ' — ' + item.label + '">';
     }
     return renderView(f, item.id);
@@ -296,6 +316,15 @@
       e.preventDefault();
     }
   });
+
+  /* Ontbreekt een fotobestand, dan valt de plek terug op de tekening in plaats
+     van een gebroken afbeelding. Error-events bubbelen niet: capture-fase. */
+  document.addEventListener('error', function (e) {
+    const img = e.target;
+    if (!img.classList || !img.classList.contains('fridge-photo')) return;
+    const f = FRIDGES.filter(function (x) { return x.id === img.dataset.fridge; })[0];
+    if (f) img.outerHTML = renderView(f, 'front');
+  }, true);
 
   renderCounts();
   renderGrid();

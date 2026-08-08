@@ -187,6 +187,7 @@ h1 {
   justify-content: center;
 }
 .card-media .fridge-svg { height: 262px; width: 100%; }
+.card-media .fridge-photo { height: 262px; }
 
 .badge-type {
   position: absolute;
