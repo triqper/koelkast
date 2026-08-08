@@ -32,6 +32,29 @@
   ];
 
   let activeSort = 'default';
+
+  /* Notities per model, bewaard in de browser van de bezoeker. Staat
+     localStorage niet toe (privémodus, file://), dan werkt alles nog, maar
+     is het na het sluiten van het tabblad weg. */
+  const NOTES_KEY = 'koelkast-notities-v1';
+
+  function loadNotes() {
+    try {
+      return JSON.parse(localStorage.getItem(NOTES_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveNotes() {
+    try {
+      localStorage.setItem(NOTES_KEY, JSON.stringify(NOTES));
+    } catch (e) {
+      /* vol of geblokkeerd: de notities blijven in deze sessie staan */
+    }
+  }
+
+  const NOTES = loadNotes();
   let lastFocused = null;
   let lightboxOrigin = null;
   let currentFridge = null;
@@ -150,8 +173,84 @@
           '</ul>' +
           '<button type="button" class="card-open">' +
             'Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</button>' +
+          notesHtml(f.id) +
         '</div>' +
       '</article>';
+  }
+
+  /* ---------- eigen notities ---------- */
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function notesFor(id) {
+    const n = NOTES[id] || {};
+    return { pro: n.pro || [], con: n.con || [] };
+  }
+
+  function noteRow(kind, text, i) {
+    const pro = kind === 'pro';
+    return '<li class="note is-' + kind + '">' +
+      '<span class="note-mark" aria-hidden="true">' + (pro ? '+' : '&minus;') + '</span>' +
+      '<span class="sr-only">' + (pro ? 'Pluspunt' : 'Minpunt') + ': </span>' +
+      '<span class="note-text">' + esc(text) + '</span>' +
+      '<button type="button" class="note-del" data-kind="' + kind + '" data-i="' + i + '" ' +
+        'aria-label="Notitie verwijderen">&times;</button>' +
+    '</li>';
+  }
+
+  function noteListHtml(id) {
+    const n = notesFor(id);
+    const rows = n.pro.map(function (t, i) { return noteRow('pro', t, i); })
+      .concat(n.con.map(function (t, i) { return noteRow('con', t, i); }));
+    return rows.length ? rows.join('')
+      : '<li class="note-empty">Nog geen notities.</li>';
+  }
+
+  function notesHtml(id) {
+    return '<div class="card-notes" data-notes>' +
+      '<p class="notes-title">Mijn notities</p>' +
+      '<ul class="note-list" data-note-list>' + noteListHtml(id) + '</ul>' +
+      '<form class="note-form" data-kind="pro">' +
+        '<div class="note-kind" role="group" aria-label="Soort notitie">' +
+          '<button type="button" class="note-kind-btn is-on" data-kind="pro" ' +
+            'aria-pressed="true" aria-label="Pluspunt">+</button>' +
+          '<button type="button" class="note-kind-btn" data-kind="con" ' +
+            'aria-pressed="false" aria-label="Minpunt">&minus;</button>' +
+        '</div>' +
+        '<input type="text" class="note-input" maxlength="120" ' +
+          'placeholder="Wat valt je op?" aria-label="Nieuwe notitie">' +
+        '<button type="submit" class="note-add">Voeg toe</button>' +
+      '</form>' +
+    '</div>';
+  }
+
+  /* Werkt alleen de notitielijst van deze kaart bij, zodat de cursor in het
+     invoerveld blijft staan. */
+  function refreshNotes(card) {
+    card.querySelector('[data-note-list]').innerHTML = noteListHtml(card.dataset.id);
+  }
+
+  function addNote(card, kind, text) {
+    const id = card.dataset.id;
+    const n = notesFor(id);
+    n[kind] = n[kind].concat(text);
+    NOTES[id] = n;
+    saveNotes();
+    refreshNotes(card);
+  }
+
+  function removeNote(card, kind, index) {
+    const id = card.dataset.id;
+    const n = notesFor(id);
+    n[kind] = n[kind].filter(function (_, i) { return i !== index; });
+    if (!n.pro.length && !n.con.length) delete NOTES[id];
+    else NOTES[id] = n;
+    saveNotes();
+    refreshNotes(card);
   }
 
   /* Twee merken op één kaart: de schakelaar wisselt welk model getoond wordt. */
@@ -425,6 +524,17 @@
   sections.addEventListener('click', function (e) {
     const card = e.target.closest('.card');
     if (!card) return;
+
+    /* Het notitieblok is een eigen werkgebied: klikken daarin mag de kaart
+       niet openen. */
+    if (e.target.closest('[data-notes]')) {
+      const del = e.target.closest('.note-del');
+      if (del) removeNote(card, del.dataset.kind, Number(del.dataset.i));
+      const kind = e.target.closest('.note-kind-btn');
+      if (kind) setNoteKind(card, kind.dataset.kind);
+      return;
+    }
+
     const twinBtn = e.target.closest('[data-twin]');
     if (twinBtn) {
       switchTwin(twinBtn.dataset.twin, twinBtn.dataset.member);
@@ -432,6 +542,30 @@
     }
     if (e.target.closest('[data-zoom]')) openPhotoFor(card.dataset.id);
     else openModal(card.dataset.id);
+  });
+
+  function setNoteKind(card, kind) {
+    const form = card.querySelector('.note-form');
+    form.dataset.kind = kind;
+    form.querySelectorAll('.note-kind-btn').forEach(function (b) {
+      const on = b.dataset.kind === kind;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    form.querySelector('.note-input').focus();
+  }
+
+  /* Enter in het invoerveld voegt de notitie toe. */
+  sections.addEventListener('submit', function (e) {
+    const form = e.target.closest('.note-form');
+    if (!form) return;
+    e.preventDefault();
+    const input = form.querySelector('.note-input');
+    const text = input.value.trim();
+    if (!text) return;
+    addNote(form.closest('.card'), form.dataset.kind, text);
+    input.value = '';
+    input.focus();
   });
 
   function switchTwin(twinId, memberId) {

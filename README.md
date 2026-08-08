@@ -42,6 +42,28 @@ const TWINS = [
 Het eerste lid staat standaard op de kaart. De vergelijktabel onderaan de pagina
 toont beide modellen altijd, ongeacht wat de schakelaar doet.
 
+## Eigen notities
+
+Onderin elke kaart staat een blok *Mijn notities*: typ een regel, kies `+` of
+`−`, en hij komt in het lijstje te staan. Enter in het invoerveld voegt de
+notitie toe met het gekozen teken. Met het kruisje achter een regel gooi je hem
+weg. Klikken in dit blok opent de kaart niet.
+
+De notities staan per model — de Siemens en de Bosch hebben dus elk hun eigen
+lijstje, ook al delen ze een kaart.
+
+Ze worden bewaard in `localStorage` onder de sleutel `koelkast-notities-v1`:
+
+```json
+{ "aeg-tk6fs181ds": { "pro": ["Stilste model"], "con": ["Geen vriesvak"] } }
+```
+
+Dat betekent: per browser en per apparaat, niet gedeeld en niet in de repo. Een
+andere browser of een leeggemaakte cache begint met een leeg lijstje. Staat
+`localStorage` niet toe (privémodus, `file://`), dan werkt het blok gewoon, maar
+is het weg zodra het tabblad sluit. Notitietekst wordt bij het tonen ge-escaped,
+dus HTML in een notitie komt als tekst terug.
+
 ## Modellen
 
 **Volledig koelkast**
@@ -147,7 +169,8 @@ terugvaloptie meer.
 index.html                 pagina-opbouw
 assets/style.css           styling, licht + donker thema
 assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
-assets/app.js              secties, merkschakelaar, sortering, detailvenster, vergroting
+assets/app.js              secties, merkschakelaar, sortering, detailvenster,
+                           vergroting, notities
 assets/photos/<model-id>/  productfoto's per model
 ```
 
