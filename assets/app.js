@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  const grid = document.getElementById('grid');
+  const sections = document.getElementById('sections');
   const tableBody = document.querySelector('#compare-table tbody');
   const modal = document.getElementById('modal');
   const stage = document.getElementById('stage');
@@ -11,9 +11,29 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
 
-  let activeFilter = 'all';
+  /* De pagina toont alles, opgedeeld in secties in deze volgorde. */
+  const SECTIONS = [
+    {
+      group: 'koelkast',
+      title: 'Volledig koelkast',
+      blurb: 'Geen vriesvak — de hele kast is koelruimte.'
+    },
+    {
+      group: 'combi-hoog',
+      title: 'Koelvries combi — hoog',
+      blurb: 'Nis 189,4 cm. Past alleen als de plank boven de kast wordt ' +
+             'verwijderd en opnieuw geplaatst (meerprijs € 50 in de offerte).'
+    },
+    {
+      group: 'combi-nis178',
+      title: 'Koelvries combi — huidige maat',
+      blurb: 'Nis 178 cm, dus direct te plaatsen in de bestaande opening.'
+    }
+  ];
+
   let activeSort = 'default';
   let lastFocused = null;
+  let lightboxOrigin = null;
   let currentFridge = null;
   let currentView = 'front';
 
@@ -50,17 +70,25 @@
     return null;
   }
 
-  function visibleFridges() {
-    let list = FRIDGES.filter(function (f) {
-      return activeFilter === 'all' || f.category === activeFilter;
-    });
+  function sorted(list) {
     const cmp = {
       price: function (a, b) { return a.price - b.price; },
       noise: function (a, b) { return a.noiseDb - b.noiseDb; },
       energy: function (a, b) { return a.energyKwh - b.energyKwh; },
       height: function (a, b) { return a.heightCm - b.heightCm; }
     }[activeSort];
-    return cmp ? list.slice().sort(cmp) : list;
+    return cmp ? list.slice().sort(cmp) : list.slice();
+  }
+
+  function fridgesIn(group) {
+    return sorted(FRIDGES.filter(function (f) { return f.group === group; }));
+  }
+
+  /* De vergelijktabel volgt dezelfde volgorde als de secties. */
+  function visibleFridges() {
+    return SECTIONS.reduce(function (all, s) {
+      return all.concat(fridgesIn(s.group));
+    }, []);
   }
 
   /* ---------- kaarten ---------- */
@@ -70,12 +98,11 @@
     return '' +
       '<button class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '" ' +
         'aria-label="Details van ' + f.brand + ' ' + f.model + '">' +
-        '<div class="card-media">' +
+        '<div class="card-media" data-zoom>' +
           cardMedia(f) +
-          '<span class="badge-type">' +
-            (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') +
-          '</span>' +
+          '<span class="badge-type">' + f.nicheLabel + '</span>' +
           (badge ? '<span class="badge-best">' + badge + '</span>' : '') +
+          '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
         '</div>' +
         '<div class="card-body">' +
           '<p class="card-brand">' + f.brand + '</p>' +
@@ -109,27 +136,50 @@
       '<span class="stat-value">' + value + '</span></div>';
   }
 
-  /* Maakt zichtbaar of een prijs uit de offerte komt of een schatting is. */
+  /* Maakt zichtbaar waar een prijs vandaan komt: de offerte, de webshop van
+     Expert, of een schatting. */
+  const SOURCE_TAGS = {
+    offerte: {
+      label: 'offerte',
+      cls: ' is-quoted',
+      title: 'Prijs en specificaties uit de Expert-offerte en het AEG-datasheet'
+    },
+    expert: {
+      label: 'expert.nl',
+      cls: ' is-checked',
+      title: 'Prijs afgelezen van de productpagina op expert.nl, 8 augustus 2026'
+    },
+    web: {
+      label: 'indicatie',
+      cls: '',
+      title: 'Indicatieve straatprijs, niet bij Expert gecontroleerd'
+    }
+  };
+
   function sourceTag(f) {
-    const quoted = f.source === 'offerte';
-    return '<span class="src-tag' + (quoted ? ' is-quoted' : '') + '" title="' +
-      (quoted ? 'Prijs en specificaties uit de Expert-offerte en het AEG-datasheet'
-              : 'Indicatieve straatprijs, niet bij Expert gecontroleerd') + '">' +
-      (quoted ? 'offerte' : 'indicatie') + '</span>';
+    const t = SOURCE_TAGS[f.source] || SOURCE_TAGS.web;
+    return '<span class="src-tag' + t.cls + '" title="' + t.title + '">' +
+      t.label + '</span>';
   }
 
-  function renderGrid() {
-    const list = visibleFridges();
-    grid.innerHTML = list.map(cardHtml).join('');
+  function renderSections() {
+    sections.innerHTML = SECTIONS.map(function (s) {
+      const list = fridgesIn(s.group);
+      if (!list.length) return '';
+      return '<section class="model-section" aria-labelledby="sec-' + s.group + '">' +
+        '<div class="section-head">' +
+          '<h2 id="sec-' + s.group + '">' + s.title +
+            '<span class="section-count">' + list.length + '</span></h2>' +
+          '<p class="section-blurb">' + s.blurb + '</p>' +
+        '</div>' +
+        '<div class="grid">' + list.map(cardHtml).join('') + '</div>' +
+      '</section>';
+    }).join('');
   }
 
-  function renderCounts() {
-    document.querySelectorAll('[data-count]').forEach(function (el) {
-      const key = el.dataset.count;
-      el.textContent = key === 'all'
-        ? FRIDGES.length
-        : FRIDGES.filter(function (f) { return f.category === key; }).length;
-    });
+  function sectionTitle(f) {
+    const s = SECTIONS.filter(function (x) { return x.group === f.group; })[0];
+    return s ? s.title : '';
   }
 
   /* ---------- vergelijktabel ---------- */
@@ -138,7 +188,7 @@
     tableBody.innerHTML = visibleFridges().map(function (f) {
       return '<tr data-id="' + f.id + '">' +
         '<td class="row-model">' + f.brand + ' ' + f.model + '<small>' + f.series + '</small></td>' +
-        '<td>' + (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') + '</td>' +
+        '<td>' + sectionTitle(f) + '</td>' +
         '<td class="num">' + euro.format(f.price) + ' ' + sourceTag(f) + '</td>' +
         '<td>' + energyPill(f.energy) + '</td>' +
         '<td class="num' + (f.energyKwh === BEST.energyKwh ? ' best' : '') + '">' +
@@ -278,16 +328,33 @@
     document.getElementById('lightbox-next').hidden = solo;
   }
 
-  function openLightbox() {
+  /* De vergroting kan uit het detailvenster komen of rechtstreeks van een
+     kaart in het overzicht; `origin` krijgt de focus weer terug. */
+  function openLightbox(origin) {
     if (!currentItem()) return;
+    lightboxOrigin = origin || stage;
     syncLightbox();
     lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
     lightbox.querySelector('.lightbox-close').focus();
   }
 
   function closeLightbox() {
     lightbox.hidden = true;
-    stage.focus();
+    /* Staat het detailvenster nog open, dan blijft de pagina op slot. */
+    if (modal.hidden) document.body.style.overflow = '';
+    if (lightboxOrigin) lightboxOrigin.focus();
+  }
+
+  /* Opent de vergroting bij de eerste foto van een model uit het overzicht. */
+  function openPhotoFor(id) {
+    const f = FRIDGES.filter(function (x) { return x.id === id; })[0];
+    if (!f) return;
+    const first = galleryItems(f)[0];
+    if (!first) return;
+    currentFridge = f;
+    currentView = first.id;
+    openLightbox(document.querySelector('.card[data-id="' + id + '"]'));
   }
 
   /* Bladert door de galerij; de kleine weergave loopt mee. */
@@ -300,28 +367,19 @@
 
   /* ---------- events ---------- */
 
-  document.querySelector('.filters').addEventListener('click', function (e) {
-    const btn = e.target.closest('.chip');
-    if (!btn) return;
-    activeFilter = btn.dataset.filter;
-    document.querySelectorAll('.chip').forEach(function (c) {
-      const on = c === btn;
-      c.classList.toggle('is-active', on);
-      c.setAttribute('aria-selected', String(on));
-    });
-    renderGrid();
-    renderTable();
-  });
-
   document.getElementById('sort').addEventListener('change', function (e) {
     activeSort = e.target.value;
-    renderGrid();
+    renderSections();
     renderTable();
   });
 
-  grid.addEventListener('click', function (e) {
+  /* Op de foto klikken vergroot hem meteen; elders op de kaart opent het
+     detailvenster. */
+  sections.addEventListener('click', function (e) {
     const card = e.target.closest('.card');
-    if (card) openModal(card.dataset.id);
+    if (!card) return;
+    if (e.target.closest('[data-zoom]')) openPhotoFor(card.dataset.id);
+    else openModal(card.dataset.id);
   });
 
   tableBody.addEventListener('click', function (e) {
@@ -338,7 +396,7 @@
     if (e.target.hasAttribute('data-close')) closeModal();
   });
 
-  stage.addEventListener('click', openLightbox);
+  stage.addEventListener('click', function () { openLightbox(stage); });
 
   lightbox.addEventListener('click', function (e) {
     if (e.target.hasAttribute('data-lightbox-close')) closeLightbox();
@@ -364,7 +422,6 @@
     }
   });
 
-  renderCounts();
-  renderGrid();
+  renderSections();
   renderTable();
 })();

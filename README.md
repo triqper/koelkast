@@ -1,11 +1,23 @@
 # Koelkast-keuzehulp
 
 Visueel overzicht van zeven inbouwmodellen: per koelkast een kaart met foto,
-prijs, energielabel, hoogte, geluidsniveau en unieke features. Klik op een kaart
-voor de fotogalerij, een korte beschrijving en de volledige specificatielijst.
-Klik een foto aan om hem op volledige schermgrootte te bekijken.
+prijs, energielabel, hoogte, geluidsniveau en unieke features. De pagina toont
+alles tegelijk, opgedeeld in drie secties. Klik op de foto van een kaart om hem
+op volledige schermgrootte te bekijken; klik ergens anders op de kaart voor de
+fotogalerij, de beschrijving en de volledige specificatielijst.
 
 **Live:** https://triqper.github.io/koelkast/
+
+## Secties
+
+| Sectie | Wat erin staat |
+|---|---|
+| Volledig koelkast | Geen vriesvak — 4 modellen |
+| Koelvries combi — hoog | Nis 189,4 cm, plank moet verzet worden — 2 modellen |
+| Koelvries combi — huidige maat | Nis 178 cm, past direct — alleen de AEG OSC7C181DS |
+
+De secties komen uit het veld `group` in `assets/data.js`. Het sorteermenu
+sorteert binnen elke sectie afzonderlijk.
 
 ## Modellen
 
@@ -13,17 +25,22 @@ Klik een foto aan om hem op volledige schermgrootte te bekijken.
 
 | Model | Prijs | Label | Hoogte | Geluid | Bron |
 |---|---|---|---|---|---|
-| Siemens KI81RNSE0 | € 869 | E · 114 kWh | 177,5 cm | 35 dB | indicatie |
+| Siemens KI81RNSE0 | € 905 | E · 114 kWh | 177,5 cm | 35 dB | expert.nl |
 | Bosch KIR81NSE0 | € 949 | E · 114 kWh | 177 cm | 35 dB | indicatie |
-| Liebherr IRBSd 5120 | € 1.649 | D · 125 kWh | 177 cm | 33 dB | indicatie |
+| Liebherr IRBSd 5120 | € 1.649 | D · 125 kWh | 177 cm | 33 dB | expert.nl |
 | AEG TK6FS181DS | € 1.049 | D · **91 kWh** | 177,2 cm | **32 dB** | offerte |
 
-**Koelvries combi**
+**Koelvries combi — hoog** (nis 189,4 cm)
 
 | Model | Prijs | Label | Hoogte | Geluid | Bron |
 |---|---|---|---|---|---|
 | AEG NSC7C191DS | € 1.329 | D · 172 kWh | 188,4 cm | 34 dB | offerte |
 | AEG NSC6M191ES | € 1.069 | E · 215 kWh | 188,4 cm | 37 dB | offerte |
+
+**Koelvries combi — huidige maat** (nis 178 cm)
+
+| Model | Prijs | Label | Hoogte | Geluid | Bron |
+|---|---|---|---|---|---|
 | AEG OSC7C181DS | € 1.099 | D · 173 kWh | 177,2 cm | 34 dB | offerte |
 
 ## Herkomst van de gegevens
@@ -31,10 +48,15 @@ Klik een foto aan om hem op volledige schermgrootte te bekijken.
 - **AEG (4 modellen) — geverifieerd.** Prijzen uit de offerte van Expert Twello
   (nr. 2601004099, 6 augustus 2026, incl. btw). Specificaties rechtstreeks uit
   de AEG-productdatasheets. Deze dragen het label *offerte*.
-- **Siemens, Bosch, Liebherr — niet geverifieerd.** Staan niet op de offerte;
-  specificaties uit publieke productinformatie, prijs is een indicatieve
-  straatprijs. Label *indicatie*. Niet één-op-één met de offerteprijzen te
-  vergelijken.
+- **Siemens en Liebherr — prijs nagekeken op expert.nl** (8 augustus 2026,
+  incl. btw). Label *expert.nl*. De Siemens KI81RNSE0 kost daar € 905; de
+  eerdere schatting van € 869 was te laag. De Liebherr staat er voor € 1.649
+  onder de naam IRBSd 5120-22, gelijk aan de eerdere schatting. Specificaties
+  komen uit publieke productinformatie. Dit zijn webshopprijzen, geen
+  offerteprijzen.
+- **Bosch — niet verkrijgbaar bij Expert.** Expert voert de KIR41NSE0 en de
+  KIR81VFE0, maar niet de KIR81NSE0. De prijs van € 949 blijft een indicatie,
+  label *indicatie*.
 
 ## Afbeeldingen
 
@@ -63,10 +85,16 @@ gebruikte zijn vervallen, samen met `assets/illustrations.js`.
 
 ### Foto vergroten
 
-Klik in het detailvenster op de grote foto (of gebruik Enter als hij focus heeft)
-om hem op volledige schermgrootte te openen. In die weergave blader je met de
-pijlen of de pijltjestoetsen door de reeks; Escape sluit alleen de vergroting, het
-detailvenster blijft open.
+Er zijn twee ingangen:
+
+- **Vanaf het overzicht** — klik op de foto van een kaart. De vergroting opent
+  meteen bij de eerste foto van dat model, zonder het detailvenster.
+- **Vanuit het detailvenster** — klik op de grote foto (of druk Enter als hij
+  focus heeft).
+
+In beide gevallen blader je met de pijlen of de pijltjestoetsen door de reeks.
+Escape sluit alleen de vergroting; stond het detailvenster open, dan blijft dat
+staan. De focus keert terug naar waar je vandaan kwam.
 
 ### Zelf foto's toevoegen
 
@@ -96,7 +124,7 @@ terugvaloptie meer.
 index.html                 pagina-opbouw
 assets/style.css           styling, licht + donker thema
 assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
-assets/app.js              kaarten, filters, sortering, detailvenster, vergroting
+assets/app.js              secties, sortering, detailvenster, vergroting
 assets/photos/<model-id>/  productfoto's per model
 ```
 

@@ -3,8 +3,14 @@
  * Herkomst van de gegevens staat per model in `source`:
  *  - 'offerte'  : prijs uit de Expert Twello-offerte 2601004099 (06-08-2026,
  *                 incl. btw) en specificaties uit het AEG-datasheet.
+ *  - 'expert'   : prijs afgelezen van de productpagina op expert.nl
+ *                 (08-08-2026, incl. btw); specificaties uit publieke
+ *                 productinformatie.
  *  - 'web'      : specificaties uit publieke productinformatie, prijs is een
- *                 indicatieve straatprijs. Niet geverifieerd bij Expert.
+ *                 indicatieve straatprijs. Niet bij Expert verkrijgbaar.
+ *
+ * `group` bepaalt in welke sectie het model op de pagina komt:
+ * 'koelkast', 'combi-hoog' (nis 189,4 cm) of 'combi-nis178' (nis 178 cm).
  */
 
 const OFFERTE = {
@@ -25,10 +31,11 @@ const FRIDGES = [
     model: 'KI81RNSE0',
     series: 'iQ100',
     category: 'koelkast',
+    group: 'koelkast',
     accent: '#00a6a6',
-    source: 'web',
-    price: 869,
-    priceNote: 'indicatie; adviesprijs € 1.199',
+    source: 'expert',
+    price: 905,
+    priceNote: 'webshopprijs Expert.nl, 8 augustus 2026',
     energy: 'E',
     energyKwh: 114,
     heightCm: 177.5,
@@ -85,10 +92,11 @@ const FRIDGES = [
     model: 'KIR81NSE0',
     series: 'Serie 4',
     category: 'koelkast',
+    group: 'koelkast',
     accent: '#e2001a',
     source: 'web',
     price: 949,
-    priceNote: 'indicatie; adviesprijs € 1.389',
+    priceNote: 'indicatie; Expert voert dit model niet',
     energy: 'E',
     energyKwh: 114,
     heightCm: 177,
@@ -145,10 +153,11 @@ const FRIDGES = [
     model: 'IRBSd 5120',
     series: 'Plus BioFresh',
     category: 'koelkast',
+    group: 'koelkast',
     accent: '#e0a800',
-    source: 'web',
+    source: 'expert',
     price: 1649,
-    priceNote: 'indicatie Nederlandse handel',
+    priceNote: 'webshopprijs Expert.nl (IRBSd 5120-22), 8 augustus 2026',
     energy: 'D',
     energyKwh: 125,
     heightCm: 177,
@@ -201,6 +210,7 @@ const FRIDGES = [
     model: 'TK6FS181DS',
     series: '6000 CustomFlex®',
     category: 'koelkast',
+    group: 'koelkast',
     accent: '#c1121f',
     source: 'offerte',
     price: 1049,
@@ -270,6 +280,7 @@ const FRIDGES = [
     model: 'NSC7C191DS',
     series: '7000 NoFrost CoolAssist®',
     category: 'combi',
+    group: 'combi-hoog',
     accent: '#c1121f',
     source: 'offerte',
     price: 1329,
@@ -342,6 +353,7 @@ const FRIDGES = [
     model: 'NSC6M191ES',
     series: '6000 TwinTech® No Frost',
     category: 'combi',
+    group: 'combi-hoog',
     accent: '#c1121f',
     source: 'offerte',
     price: 1069,
@@ -411,6 +423,7 @@ const FRIDGES = [
     model: 'OSC7C181DS',
     series: '7000 NoFrost CoolAssist®',
     category: 'combi',
+    group: 'combi-nis178',
     accent: '#c1121f',
     source: 'offerte',
     price: 1099,

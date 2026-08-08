@@ -13,6 +13,8 @@
   --brand: #1d4ed8;
   --good: #12854a;
   --good-bg: #e3f6ec;
+  --check: #1d4ed8;
+  --check-bg: #e6edfd;
   --shadow-sm: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
   --shadow-md: 0 4px 12px rgba(16, 24, 40, .08), 0 12px 28px rgba(16, 24, 40, .10);
   --shadow-lg: 0 24px 60px rgba(16, 24, 40, .28);
@@ -33,6 +35,8 @@
     --brand: #7aa2ff;
     --good: #4ade80;
     --good-bg: #10331f;
+    --check: #9db9ff;
+    --check-bg: #182642;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, .45), 0 16px 32px rgba(0, 0, 0, .35);
     --shadow-lg: 0 24px 70px rgba(0, 0, 0, .7);
@@ -87,34 +91,8 @@ h1 {
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
-  justify-content: space-between;
-  margin: 32px 0 24px;
-}
-.filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip {
-  appearance: none;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink-2);
-  padding: 9px 15px;
-  border-radius: 999px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .15s, color .15s, border-color .15s;
-}
-.chip:hover { border-color: var(--ink-3); }
-.chip.is-active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
-.chip-count {
-  display: inline-block;
-  margin-left: 5px;
-  opacity: .6;
-  font-variant-numeric: tabular-nums;
+  justify-content: flex-end;
+  margin: 32px 0 8px;
 }
 .sort { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--ink-2); }
 .sort select {
@@ -128,13 +106,46 @@ h1 {
   cursor: pointer;
 }
 
+/* ---------- secties ---------- */
+
+.model-section { margin-top: 34px; }
+.model-section:first-child { margin-top: 8px; }
+.section-head {
+  border-top: 2px solid var(--ink);
+  padding-top: 14px;
+  margin-bottom: 20px;
+}
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: -.015em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-3);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-variant-numeric: tabular-nums;
+}
+.section-blurb {
+  margin: 6px 0 0;
+  max-width: 68ch;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
 /* ---------- grid & kaarten ---------- */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 22px;
-  margin-bottom: 56px;
 }
 
 .card {
@@ -174,8 +185,33 @@ h1 {
   padding: 12px 12px 4px;
   display: flex;
   justify-content: center;
+  cursor: zoom-in;
 }
-.card-media .fridge-photo { height: 262px; width: 100%; }
+/* Hoger dan voorheen (262 px) zodat staande kasten meer ruimte krijgen; de
+   breedte blijft die van de kaart. */
+.card-media .fridge-photo { height: 400px; width: 100%; }
+.card-zoom {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
+}
+.card-media:hover .card-zoom { opacity: 1; }
+
+@media (max-width: 520px) {
+  .card-media .fridge-photo { height: 320px; }
+}
 
 .badge-type {
   position: absolute;
@@ -241,6 +277,11 @@ h1 {
   border-color: transparent;
   color: var(--good);
 }
+.src-tag.is-checked {
+  background: var(--check-bg);
+  border-color: transparent;
+  color: var(--check);
+}
 
 .card-stats {
   display: grid;
@@ -304,7 +345,7 @@ h1 {
 
 /* ---------- vergelijktabel ---------- */
 
-.compare { margin-bottom: 48px; }
+.compare { margin: 56px 0 48px; }
 .compare h2, .disclosure h2 {
   font-size: 22px;
   letter-spacing: -.015em;

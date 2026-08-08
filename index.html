@@ -15,31 +15,28 @@
     <p class="eyebrow">Keuzehulp · augustus 2026</p>
     <h1>Welke koelkast wordt het?</h1>
     <p class="lede">
-      Zeven inbouwmodellen naast elkaar: vier volledige koelkasten en drie
-      koel-vriescombinaties. Klik op een kaart voor de foto's, de beschrijving
-      en de volledige specificatielijst.
+      Zeven inbouwmodellen, verdeeld over drie secties: volledige koelkasten,
+      koelvries combi's die een hogere nis vragen, en de combi die in de huidige
+      nis past. Klik op een foto om hem groot te bekijken, of ergens anders op de
+      kaart voor de beschrijving en de volledige specificatielijst.
     </p>
     <p class="lede-note">
       De vier AEG-modellen staan op de offerte van Expert Twello
       (nr. 2601004099, 6 augustus 2026) — die prijzen en specificaties komen
-      rechtstreeks uit de offerte en de AEG-datasheets. Voor Siemens, Bosch en
-      Liebherr zijn de prijzen een indicatie.
+      rechtstreeks uit de offerte en de AEG-datasheets. De prijzen van de Siemens
+      en de Liebherr zijn nagekeken op expert.nl; de Bosch verkoopt Expert niet,
+      dus die prijs blijft een indicatie.
     </p>
   </div>
 </header>
 
 <main class="wrap">
 
-  <section class="controls" aria-label="Filteren en sorteren">
-    <div class="filters" role="tablist" aria-label="Filter op type">
-      <button class="chip is-active" role="tab" aria-selected="true" data-filter="all">Alle <span class="chip-count" data-count="all"></span></button>
-      <button class="chip" role="tab" aria-selected="false" data-filter="koelkast">Volledig koelkast <span class="chip-count" data-count="koelkast"></span></button>
-      <button class="chip" role="tab" aria-selected="false" data-filter="combi">Koelvries combi <span class="chip-count" data-count="combi"></span></button>
-    </div>
+  <section class="controls" aria-label="Sorteren">
     <label class="sort">
-      <span>Sorteer op</span>
+      <span>Sorteer binnen elke sectie op</span>
       <select id="sort">
-        <option value="default">Type &amp; merk</option>
+        <option value="default">Merk</option>
         <option value="price">Prijs (laag → hoog)</option>
         <option value="noise">Geluidsniveau (stil → luid)</option>
         <option value="energy">Energieverbruik (zuinig → onzuinig)</option>
@@ -48,7 +45,7 @@
     </label>
   </section>
 
-  <div id="grid" class="grid"></div>
+  <div id="sections"></div>
 
   <section class="compare" aria-labelledby="compare-title">
     <h2 id="compare-title">Alles op een rij</h2>
@@ -71,8 +68,9 @@
     </div>
     <p class="table-note">
       Groen gemarkeerd = beste waarde in die kolom. Prijzen met het label
-      <em>offerte</em> komen uit de Expert-offerte; <em>indicatie</em> is een schatting
-      en dus niet één-op-één met de offerteprijzen te vergelijken.
+      <em>offerte</em> komen uit de Expert-offerte, <em>expert.nl</em> is de webshopprijs
+      van 8 augustus 2026, en <em>indicatie</em> is een schatting die niet één-op-één met
+      de andere twee te vergelijken is.
     </p>
   </section>
 
@@ -119,11 +117,18 @@
       AEG-productdatasheets. Deze modellen dragen het label <em>offerte</em> bij de prijs.
     </p>
     <p>
-      <strong>Siemens, Bosch en Liebherr staan niet op de offerte.</strong> Voor die drie
-      zijn de specificaties afkomstig uit publieke productinformatie en is de prijs een
-      indicatieve straatprijs — niet bij Expert gecontroleerd. Ze dragen het label
-      <em>indicatie</em>. Vraag deze prijzen na bij Expert voordat je ze vergelijkt met de
-      offerteprijzen.
+      <strong>Siemens, Bosch en Liebherr staan niet op de offerte.</strong> Hun
+      specificaties komen uit publieke productinformatie. De prijzen van de Siemens en de
+      Liebherr zijn op 8 augustus 2026 nagekeken op expert.nl en dragen het label
+      <em>expert.nl</em>: de Siemens KI81RNSE0 staat daar voor € 905 (de eerdere schatting
+      van € 869 was te laag) en de Liebherr voor € 1.649, onder de naam IRBSd 5120-22.
+      Dat zijn webshopprijzen, geen offerteprijzen — vraag ze na bij Expert Twello voordat
+      je ze naast de offerte legt.
+    </p>
+    <p>
+      <strong>De Bosch KIR81NSE0 verkoopt Expert niet.</strong> Expert voert wel de
+      KIR41NSE0 en de KIR81VFE0, maar dat zijn andere modellen. De prijs van € 949 blijft
+      daarom een indicatie en draagt het label <em>indicatie</em>.
     </p>
     <p>
       <strong>Afbeeldingen.</strong> Alle zeven modellen tonen echte productfoto's van de
