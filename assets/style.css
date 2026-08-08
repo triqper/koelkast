@@ -562,6 +562,7 @@ td.best { color: var(--good); font-weight: 700; }
   height: 100%;
   object-fit: contain;
 }
+.card-media .fridge-photo { height: 262px; }
 .stage .fridge-photo { height: min(52vh, 420px); }
 .thumb .fridge-photo { height: 62px; }
 .modal-fineprint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); }

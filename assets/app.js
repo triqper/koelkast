@@ -69,7 +69,7 @@
       '<button class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '" ' +
         'aria-label="Details van ' + f.brand + ' ' + f.model + '">' +
         '<div class="card-media">' +
-          renderView(f, 'front') +
+          cardMedia(f) +
           '<span class="badge-type">' +
             (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') +
           '</span>' +
@@ -97,6 +97,12 @@
       '</button>';
   }
 
+  /* Is er een productfoto, dan staat die op de kaart; anders de tekening. */
+  function cardMedia(f) {
+    const photos = photosFor(f);
+    return photos.length ? photoHtml(f, photos[0], null) : renderView(f, 'front');
+  }
+
   function stat(label, value) {
     return '<div class="stat"><span class="stat-label">' + label + '</span>' +
       '<span class="stat-value">' + value + '</span></div>';
@@ -114,6 +120,10 @@
   function renderGrid() {
     const list = visibleFridges();
     grid.innerHTML = list.map(cardHtml).join('');
+    list.forEach(function (f) {
+      const card = grid.querySelector('.card[data-id="' + f.id + '"]');
+      if (card) wireImages(card, f);
+    });
   }
 
   function renderCounts() {
@@ -201,20 +211,42 @@
     modal.querySelector('.modal-close').focus();
   }
 
-  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. */
+  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. De lijst komt uit
+     assets/photos.js, dat tools/haal-fotos.sh genereert; `photos` in data.js
+     blijft werken als handmatig alternatief. */
+  function photosFor(f) {
+    const generated = typeof PHOTOS !== 'undefined' ? PHOTOS[f.id] : null;
+    return generated || f.photos || [];
+  }
+
   function galleryItems(f) {
-    const photos = (f.photos || []).map(function (src, i) {
+    const photos = photosFor(f).map(function (src, i) {
       return { id: 'photo-' + i, label: 'Foto ' + (i + 1), src: src };
     });
     return photos.concat(VIEWS);
   }
 
+  function photoHtml(f, src, label) {
+    return '<img class="fridge-photo" src="' + src + '" loading="lazy" alt="' +
+      f.brand + ' ' + f.model + (label ? ' — ' + label : '') + '">';
+  }
+
   function renderItem(f, item) {
-    if (item.src) {
-      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
-        f.brand + ' ' + f.model + ' — ' + item.label + '">';
-    }
+    if (item.src) return photoHtml(f, item.src, item.label);
     return renderView(f, item.id);
+  }
+
+  /* Ontbreekt of laadt een foto niet, dan valt de tekening terug op zijn plek —
+     nooit een leeg vlak. */
+  function wireImages(container, f) {
+    container.querySelectorAll('img.fridge-photo').forEach(function (img) {
+      img.addEventListener('error', function () {
+        const holder = img.parentNode;
+        if (!holder) return;
+        img.remove();
+        holder.insertAdjacentHTML('afterbegin', renderView(f, 'front'));
+      });
+    });
   }
 
   function renderThumbs() {
@@ -223,12 +255,14 @@
         '" data-view="' + v.id + '" role="tab" aria-selected="' + (v.id === currentView) + '">' +
         renderItem(currentFridge, v) + '<span>' + v.label + '</span></button>';
     }).join('');
+    wireImages(thumbs, currentFridge);
   }
 
   function renderStage() {
     const items = galleryItems(currentFridge);
     const item = items.filter(function (v) { return v.id === currentView; })[0] || items[0];
     stage.innerHTML = renderItem(currentFridge, item);
+    wireImages(stage, currentFridge);
   }
 
   function setView(id) {

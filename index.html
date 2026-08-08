@@ -129,9 +129,12 @@
       <strong>Afbeeldingen.</strong> De omgeving waarin deze pagina is gebouwd heeft geen
       toegang tot expert.nl of de websites van de fabrikanten — het uitgaande netwerk
       blokkeert die domeinen. Er konden daarom geen productfoto's worden opgehaald.
-      In plaats daarvan bevat elke kaart een <em>schematische tekening op schaal</em>:
+      Zolang die ontbreken toont elke kaart een <em>schematische tekening op schaal</em>:
       de verhouding tussen breedte en hoogte komt overeen met de werkelijke buitenmaten,
       en de indeling van plateaus, lades en vriesvakken volgt de specificaties.
+      Zodra de foto's er wel zijn — via <code>tools/haal-fotos.sh</code> of met de hand in
+      <code>assets/photos/</code> — nemen ze automatisch de plek van de tekening in, en
+      blijven de tekeningen als extra weergaven in de galerij staan.
     </p>
   </section>
 
@@ -178,6 +181,7 @@
 </div>
 
 <script src="assets/data.js"></script>
+<script src="assets/photos.js"></script>
 <script src="assets/illustrations.js"></script>
 <script src="assets/app.js"></script>
 </body>
