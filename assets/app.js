@@ -69,7 +69,7 @@
       '<button class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '" ' +
         'aria-label="Details van ' + f.brand + ' ' + f.model + '">' +
         '<div class="card-media">' +
-          renderView(f, 'front') +
+          renderItem(f, coverItem(f)) +
           '<span class="badge-type">' +
             (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') +
           '</span>' +
@@ -201,21 +201,44 @@
     modal.querySelector('.modal-close').focus();
   }
 
-  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. */
+  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. Een item in
+     `photos` is een pad, of {src, label} als je het bijschrift zelf bepaalt. */
   function galleryItems(f) {
-    const photos = (f.photos || []).map(function (src, i) {
-      return { id: 'photo-' + i, label: 'Foto ' + (i + 1), src: src };
+    const photos = (f.photos || []).map(function (p, i) {
+      const photo = typeof p === 'string' ? { src: p } : p;
+      return {
+        id: 'photo-' + i,
+        label: photo.label || 'Foto ' + (i + 1),
+        src: photo.src
+      };
     });
     return photos.concat(VIEWS);
   }
 
+  /* De coverfoto op de kaart: de eerste foto, anders het vooraanzicht. */
+  function coverItem(f) {
+    const first = galleryItems(f)[0];
+    return first.src ? first : { id: 'front', label: 'Vooraanzicht' };
+  }
+
   function renderItem(f, item) {
     if (item.src) {
-      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
+      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" ' +
+        'data-fridge="' + f.id + '" alt="' +
         f.brand + ' ' + f.model + ' — ' + item.label + '">';
     }
     return renderView(f, item.id);
   }
+
+  /* Ontbreekt een fotobestand, dan neemt de tekening die plek over — zo blijft
+     de pagina heel zolang niet alle foto's zijn toegevoegd. */
+  document.addEventListener('error', function (e) {
+    const img = e.target;
+    if (!img.classList || !img.classList.contains('fridge-photo')) return;
+    const f = FRIDGES.filter(function (x) { return x.id === img.dataset.fridge; })[0];
+    if (!f) return;
+    img.outerHTML = renderView(f, 'front');
+  }, true);
 
   function renderThumbs() {
     thumbs.innerHTML = galleryItems(currentFridge).map(function (v) {

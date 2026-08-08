@@ -67,7 +67,13 @@ const FRIDGES = [
       ['Montage', 'Sleepdeursysteem'],
       ['Deurscharnier', 'Rechts (verwisselbaar)']
     ],
-    photos: [],
+    /* Echte productfoto's. De eerste is de coverfoto op de kaart. */
+    photos: [
+      { src: 'assets/photos/siemens-ki81rnse0-1-open.jpg', label: 'Deur open' },
+      { src: 'assets/photos/siemens-ki81rnse0-2-interieur.jpg', label: 'Interieur in detail' },
+      { src: 'assets/photos/siemens-ki81rnse0-3-vershoudlades.jpg', label: 'Vershoudlades' },
+      { src: 'assets/photos/siemens-ki81rnse0-4-bediening.jpg', label: 'Bedieningspaneel' }
+    ],
     photoUrl: 'https://www.siemens-home.bsh-group.com/nl/nl/product/koelen-en-vriezen/inbouw-koelkasten-en-vriezers/inbouw-koelkasten/KI81RNSE0',
     photoLabel: 'Foto’s op Siemens.nl',
     expertUrl: 'https://www.expert.nl/siemens-ki81rnse0-372629860'

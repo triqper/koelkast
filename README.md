@@ -37,29 +37,38 @@ voor een korte beschrijving, alle afbeeldingen en de volledige specificatielijst
 
 ## Afbeeldingen
 
-Er zijn geen productfoto's opgehaald: het uitgaande netwerk van de bouwomgeving
-blokkeert expert.nl, aeg.nl en bsh-group.com (403 policy denial). Elke kaart
-bevat daarom een schematische tekening **op schaal** — de verhouding
-breedte/hoogte volgt de werkelijke buitenmaten, de indeling van plateaus, lades
-en vriesvakken volgt de datasheet. Elk detailvenster linkt door naar de
-productpagina van de fabrikant voor de echte foto's.
+Heeft een model foto's, dan is de **eerste foto de coverfoto** op de kaart in
+het overzicht en staan de overige foto's vooraan in de galerij van het
+detailvenster. Modellen zonder foto's tonen een schematische tekening **op
+schaal** — de verhouding breedte/hoogte volgt de werkelijke buitenmaten, de
+indeling van plateaus, lades en vriesvakken volgt de datasheet. De tekeningen
+blijven altijd als extra weergaven in de galerij staan, en elk detailvenster
+linkt door naar de productpagina van de fabrikant.
+
+Ontbreekt een fotobestand, dan valt die plek terug op het
+vooraanzicht-tekeningetje; de pagina blijft dus heel.
 
 ### Zelf foto's toevoegen
 
 1. Zet de bestanden in `assets/photos/`, bijvoorbeeld
    `assets/photos/aeg-nsc7c191ds-1.jpg`.
-2. Vul in `assets/data.js` de `photos`-array van het model:
+2. Vul in `assets/data.js` de `photos`-array van het model. Een pad volstaat,
+   met `{ src, label }` bepaal je het bijschrift in de galerij zelf:
 
    ```js
    photos: [
-     'assets/photos/aeg-nsc7c191ds-1.jpg',
+     { src: 'assets/photos/aeg-nsc7c191ds-1.jpg', label: 'Deur open' },
      'assets/photos/aeg-nsc7c191ds-2.jpg'
    ],
    ```
 
-De foto's verschijnen dan vóór de tekeningen in de galerij; de tekeningen
-blijven als extra weergaven staan. Laat de array leeg om alleen tekeningen te
-tonen.
+Laat de array leeg om alleen tekeningen te tonen.
+
+De Siemens KI81RNSE0 verwacht vier bestanden; welke dat zijn staat in
+[`assets/photos/README.md`](assets/photos/README.md). De bouwomgeving kan die
+foto's niet zelf ophalen — het uitgaande netwerk blokkeert bsh-group.com,
+bol.com en expert.nl (403 policy denial) — dus die vier JPG's moeten er met de
+hand bij.
 
 ## Bestanden
 
