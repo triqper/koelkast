@@ -197,9 +197,17 @@ const FRIDGES = [
     photos: [
       { src: 'assets/photos/liebherr-irbsd-5120/01-productfoto.webp', label: 'Productfoto' },
       { src: 'assets/photos/liebherr-irbsd-5120/02-interieur.webp', label: 'Interieur' },
-      { src: 'assets/photos/liebherr-irbsd-5120/03-deur-dicht.webp', label: 'Deur dicht' }
+      { src: 'assets/photos/liebherr-irbsd-5120/03-biofresh-lades.webp', label: 'BioFresh-lades' },
+      { src: 'assets/photos/liebherr-irbsd-5120/04-biofresh-zone.webp', label: 'BioFresh 0°C' },
+      { src: 'assets/photos/liebherr-irbsd-5120/05-plateaus.webp', label: 'Plateaus' },
+      { src: 'assets/photos/liebherr-irbsd-5120/06-deurvakken.webp', label: 'Deurvakken' },
+      { src: 'assets/photos/liebherr-irbsd-5120/07-eierhouder.webp', label: 'Eierhouder' },
+      { src: 'assets/photos/liebherr-irbsd-5120/08-powercooling.webp', label: 'PowerCooling' },
+      { src: 'assets/photos/liebherr-irbsd-5120/09-bediening.webp', label: 'Bediening' },
+      { src: 'assets/photos/liebherr-irbsd-5120/10-maatschets.webp', label: 'Maatschets' },
+      { src: 'assets/photos/liebherr-irbsd-5120/11-versheidstabel.webp', label: 'Versheidstabel' }
     ],
-    photoCredit: 'Productfoto’s: Liebherr-Hausgeräte.',
+    photoCredit: 'Productfoto’s: Liebherr-Hausgeräte; de detailopnames via Bemmel en Kroon.',
     photoUrl: 'https://www.liebherr.com/nl-nl/p/irbsd-5120-3093352',
     photoLabel: 'Foto’s op Liebherr.nl',
     expertUrl: 'https://www.expert.nl/liebherr-irbsd-5120-22-372636963'
@@ -489,6 +497,18 @@ const FRIDGES = [
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/osc7c181ds/',
     photoLabel: 'Foto’s op AEG.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=OSC7C181DS'
+  }
+];
+
+/* Modellen die op één kaart samenkomen met een merkschakelaar. De Siemens en
+ * de Bosch rollen van dezelfde BSH-band: gelijke inhoud, label, verbruik en
+ * geluidsniveau. Wat verschilt staat in `differs`. */
+const TWINS = [
+  {
+    id: 'bsh-310',
+    members: ['siemens-ki81rnse0', 'bosch-kir81nse0'],
+    shared: 'Dezelfde BSH-techniek: 310 liter, label E, 114 kWh/jaar en 35 dB.',
+    differs: 'Verschil zit in merk, prijs, breedte/nis en de indeling van lades en deurvakken.'
   }
 ];
 

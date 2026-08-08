@@ -159,16 +159,13 @@ h1 {
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
-  font: inherit;
-  color: inherit;
   overflow: hidden;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-.card:hover, .card:focus-visible {
+.card:hover, .card:focus-within {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   border-color: var(--ink-3);
-  outline: none;
 }
 .card::before {
   content: "";
@@ -187,9 +184,8 @@ h1 {
   justify-content: center;
   cursor: zoom-in;
 }
-/* Hoger dan voorheen (262 px) zodat staande kasten meer ruimte krijgen; de
-   breedte blijft die van de kaart. */
-.card-media .fridge-photo { height: 400px; width: 100%; }
+/* Coverbeeld 640 px hoog; de breedte blijft die van de kaart. */
+.card-media .fridge-photo { height: 640px; width: 100%; }
 .card-zoom {
   position: absolute;
   left: 50%;
@@ -209,8 +205,9 @@ h1 {
 }
 .card-media:hover .card-zoom { opacity: 1; }
 
-@media (max-width: 520px) {
-  .card-media .fridge-photo { height: 320px; }
+/* Op een telefoon vult 640 px bijna het hele scherm; daar iets lager. */
+@media (max-width: 560px) {
+  .card-media .fridge-photo { height: 460px; }
 }
 
 .badge-type {
@@ -335,12 +332,65 @@ h1 {
   color: var(--ink-2);
 }
 
-.card-cta {
+/* De detailknop is de plek waar het toetsenbord de kaart binnenkomt. */
+.card-open {
   margin-top: auto;
-  padding-top: 16px;
+  padding: 16px 0 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
   font-size: 13px;
   font-weight: 650;
   color: var(--brand);
+  cursor: pointer;
+}
+.card-open:hover { text-decoration: underline; }
+
+/* ---------- twee merken op één kaart ---------- */
+
+.twin-head {
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.twin-toggle {
+  display: inline-flex;
+  padding: 3px;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+.twin-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.twin-btn:hover { color: var(--ink); }
+.twin-btn.is-on {
+  background: var(--ink);
+  color: var(--bg);
+}
+.twin-shared {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+.twin-note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
 }
 
 /* ---------- vergelijktabel ---------- */

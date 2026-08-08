@@ -1,10 +1,11 @@
 # Koelkast-keuzehulp
 
-Visueel overzicht van zeven inbouwmodellen: per koelkast een kaart met foto,
-prijs, energielabel, hoogte, geluidsniveau en unieke features. De pagina toont
-alles tegelijk, opgedeeld in drie secties. Klik op de foto van een kaart om hem
-op volledige schermgrootte te bekijken; klik ergens anders op de kaart voor de
-fotogalerij, de beschrijving en de volledige specificatielijst.
+Visueel overzicht van zeven inbouwmodellen: per koelkast een kaart met een
+coverfoto van 640 px hoog, prijs, energielabel, hoogte, geluidsniveau en unieke
+features. De pagina toont alles tegelijk, opgedeeld in drie secties. Klik op de
+foto van een kaart om hem op volledige schermgrootte te bekijken; klik ergens
+anders op de kaart voor de fotogalerij, de beschrijving en de volledige
+specificatielijst.
 
 **Live:** https://triqper.github.io/koelkast/
 
@@ -12,12 +13,34 @@ fotogalerij, de beschrijving en de volledige specificatielijst.
 
 | Sectie | Wat erin staat |
 |---|---|
-| Volledig koelkast | Geen vriesvak — 4 modellen |
+| Volledig koelkast | Geen vriesvak — 4 modellen op 3 kaarten |
 | Koelvries combi — hoog | Nis 189,4 cm, plank moet verzet worden — 2 modellen |
 | Koelvries combi — huidige maat | Nis 178 cm, past direct — alleen de AEG OSC7C181DS |
 
 De secties komen uit het veld `group` in `assets/data.js`. Het sorteermenu
-sorteert binnen elke sectie afzonderlijk.
+sorteert binnen elke sectie afzonderlijk. De teller bij een sectiekop telt
+modellen, niet kaarten.
+
+## Twee merken op één kaart
+
+De Siemens KI81RNSE0 en de Bosch KIR81NSE0 komen van dezelfde BSH-band: gelijke
+inhoud (310 l), label E, 114 kWh/jaar en 35 dB. Ze delen daarom één kaart met een
+merkschakelaar; de kaart wisselt dan van foto, prijs, model, nishoogte en
+features. Dit staat in `TWINS` in `assets/data.js`:
+
+```js
+const TWINS = [
+  {
+    id: 'bsh-310',
+    members: ['siemens-ki81rnse0', 'bosch-kir81nse0'],
+    shared: 'Wat de twee gemeen hebben.',
+    differs: 'Waarin ze verschillen.'
+  }
+];
+```
+
+Het eerste lid staat standaard op de kaart. De vergelijktabel onderaan de pagina
+toont beide modellen altijd, ongeacht wat de schakelaar doet.
 
 ## Modellen
 
@@ -62,13 +85,13 @@ sorteert binnen elke sectie afzonderlijk.
 
 Alle zeven modellen hebben echte productfoto's van de fabrikant, in
 `assets/photos/<model-id>/`. Ze zijn teruggebracht tot maximaal 1200 px, als webp
-opgeslagen en van hun witte canvasranden ontdaan; samen ongeveer 1,8 MB.
+opgeslagen en van hun witte canvasranden ontdaan; samen ongeveer 2,3 MB.
 
 | Model | Foto's | Bron |
 |---|---|---|
 | Siemens KI81RNSE0 | 5 | mediaserver BSH Home Appliances |
 | Bosch KIR81NSE0 | 5 | mediaserver BSH Home Appliances |
-| Liebherr IRBSd 5120 | 3 | asset-CDN Liebherr-Hausgeräte |
+| Liebherr IRBSd 5120 | 11 | Liebherr-CDN (cover) + vakhandel (details) |
 | AEG TK6FS181DS | 7 | AEG-beeld via Expert.nl |
 | AEG OSC7C181DS | 8 | AEG-beeld via Expert.nl |
 | AEG NSC7C191DS | 7 | AEG-beeld via de vakhandel |
@@ -124,7 +147,7 @@ terugvaloptie meer.
 index.html                 pagina-opbouw
 assets/style.css           styling, licht + donker thema
 assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
-assets/app.js              secties, sortering, detailvenster, vergroting
+assets/app.js              secties, merkschakelaar, sortering, detailvenster, vergroting
 assets/photos/<model-id>/  productfoto's per model
 ```
 

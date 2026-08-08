@@ -80,24 +80,49 @@
     return cmp ? list.slice().sort(cmp) : list.slice();
   }
 
-  function fridgesIn(group) {
-    return sorted(FRIDGES.filter(function (f) { return f.group === group; }));
+  function byId(id) {
+    return FRIDGES.filter(function (f) { return f.id === id; })[0];
   }
 
-  /* De vergelijktabel volgt dezelfde volgorde als de secties. */
+  function twinOf(f) {
+    return TWINS.filter(function (t) {
+      return t.members.indexOf(f.id) !== -1;
+    })[0];
+  }
+
+  /* Welk lid van een tweeling op dit moment op de kaart staat. */
+  const activeTwin = {};
+  TWINS.forEach(function (t) { activeTwin[t.id] = t.members[0]; });
+
+  function fridgesIn(group) {
+    return sorted(FRIDGES.filter(function (f) {
+      if (f.group !== group) return false;
+      const t = twinOf(f);
+      /* Van een tweeling staat alleen het gekozen merk op het overzicht. */
+      return !t || activeTwin[t.id] === f.id;
+    }));
+  }
+
+  /* De vergelijktabel toont alle modellen, ook het merk dat nu niet op de
+     kaart staat, in dezelfde volgorde als de secties. */
   function visibleFridges() {
     return SECTIONS.reduce(function (all, s) {
-      return all.concat(fridgesIn(s.group));
+      return all.concat(sorted(FRIDGES.filter(function (f) {
+        return f.group === s.group;
+      })));
     }, []);
   }
 
   /* ---------- kaarten ---------- */
 
+  /* De kaart is geen knop meer: de merkschakelaar en de detailknop zijn zelf
+     knoppen, en die mogen niet in een knop genest zitten. */
   function cardHtml(f) {
     const badge = badgeFor(f);
+    const twin = twinOf(f);
     return '' +
-      '<button class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '" ' +
-        'aria-label="Details van ' + f.brand + ' ' + f.model + '">' +
+      '<article class="card' + (twin ? ' is-twin' : '') + '" ' +
+        'style="--accent:' + f.accent + '" data-id="' + f.id + '">' +
         '<div class="card-media" data-zoom>' +
           cardMedia(f) +
           '<span class="badge-type">' + f.nicheLabel + '</span>' +
@@ -105,6 +130,7 @@
           '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
         '</div>' +
         '<div class="card-body">' +
+          (twin ? twinToggle(twin, f) : '') +
           '<p class="card-brand">' + f.brand + '</p>' +
           '<h2 class="card-model">' + f.model + '</h2>' +
           '<p class="card-series">' + f.series + '</p>' +
@@ -118,12 +144,30 @@
             stat('Hoogte', f.heightLabel) +
             stat('Geluid', f.noiseDb + ' dB') +
           '</div>' +
+          (twin ? '<p class="twin-note">' + twin.differs + '</p>' : '') +
           '<ul class="card-features">' +
             f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('') +
           '</ul>' +
-          '<p class="card-cta">Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</p>' +
+          '<button type="button" class="card-open">' +
+            'Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</button>' +
         '</div>' +
-      '</button>';
+      '</article>';
+  }
+
+  /* Twee merken op één kaart: de schakelaar wisselt welk model getoond wordt. */
+  function twinToggle(t, active) {
+    return '<div class="twin-head">' +
+      '<div class="twin-toggle" role="group" aria-label="Kies merk">' +
+        t.members.map(function (id) {
+          const m = byId(id);
+          const on = id === active.id;
+          return '<button type="button" class="twin-btn' + (on ? ' is-on' : '') +
+            '" data-twin="' + t.id + '" data-member="' + id + '" ' +
+            'aria-pressed="' + on + '">' + m.brand + '</button>';
+        }).join('') +
+      '</div>' +
+      '<p class="twin-shared">' + t.shared + '</p>' +
+    '</div>';
   }
 
   /* De eerste foto uit de galerij is het kaartbeeld. */
@@ -166,10 +210,13 @@
     sections.innerHTML = SECTIONS.map(function (s) {
       const list = fridgesIn(s.group);
       if (!list.length) return '';
+      /* Tel modellen, niet kaarten: een tweeling is één kaart maar twee
+         modellen, en de tabel eronder toont ze allebei. */
+      const total = FRIDGES.filter(function (f) { return f.group === s.group; }).length;
       return '<section class="model-section" aria-labelledby="sec-' + s.group + '">' +
         '<div class="section-head">' +
           '<h2 id="sec-' + s.group + '">' + s.title +
-            '<span class="section-count">' + list.length + '</span></h2>' +
+            '<span class="section-count">' + total + '</span></h2>' +
           '<p class="section-blurb">' + s.blurb + '</p>' +
         '</div>' +
         '<div class="grid">' + list.map(cardHtml).join('') + '</div>' +
@@ -373,14 +420,29 @@
     renderTable();
   });
 
-  /* Op de foto klikken vergroot hem meteen; elders op de kaart opent het
-     detailvenster. */
+  /* Op de foto klikken vergroot hem meteen; de merkschakelaar wisselt van
+     model; elders op de kaart opent het detailvenster. */
   sections.addEventListener('click', function (e) {
     const card = e.target.closest('.card');
     if (!card) return;
+    const twinBtn = e.target.closest('[data-twin]');
+    if (twinBtn) {
+      switchTwin(twinBtn.dataset.twin, twinBtn.dataset.member);
+      return;
+    }
     if (e.target.closest('[data-zoom]')) openPhotoFor(card.dataset.id);
     else openModal(card.dataset.id);
   });
+
+  function switchTwin(twinId, memberId) {
+    if (activeTwin[twinId] === memberId) return;
+    activeTwin[twinId] = memberId;
+    renderSections();
+    /* De kaart is opnieuw opgebouwd; zet de focus terug op de knop. */
+    const btn = sections.querySelector(
+      '[data-twin="' + twinId + '"][data-member="' + memberId + '"]');
+    if (btn) btn.focus();
+  }
 
   tableBody.addEventListener('click', function (e) {
     const row = e.target.closest('tr');
