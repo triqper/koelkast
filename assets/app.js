@@ -69,7 +69,7 @@
       '<button class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '" ' +
         'aria-label="Details van ' + f.brand + ' ' + f.model + '">' +
         '<div class="card-media">' +
-          renderView(f, 'front') +
+          cardMedia(f) +
           '<span class="badge-type">' +
             (f.category === 'combi' ? 'Koelvries combi' : 'Volledig koelkast') +
           '</span>' +
@@ -92,9 +92,18 @@
           '<ul class="card-features">' +
             f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('') +
           '</ul>' +
-          '<p class="card-cta">Bekijk beschrijving &amp; alle tekeningen &rarr;</p>' +
+          '<p class="card-cta">' +
+            (f.photos && f.photos.length
+              ? 'Bekijk foto&rsquo;s, beschrijving &amp; specificaties'
+              : 'Bekijk beschrijving &amp; alle tekeningen') + ' &rarr;</p>' +
         '</div>' +
       '</button>';
+  }
+
+  /* Is er een echte productfoto, dan staat die op de kaart; anders de tekening. */
+  function cardMedia(f) {
+    const first = galleryItems(f)[0];
+    return first.src ? renderItem(f, first) : renderView(f, 'front');
   }
 
   function stat(label, value) {
@@ -186,11 +195,12 @@
       photoLink.hidden = true;
     }
 
-    document.getElementById('modal-fineprint').textContent = f.source === 'offerte'
+    document.getElementById('modal-fineprint').textContent = (f.source === 'offerte'
       ? 'Prijs uit de Expert Twello-offerte 2601004099 (6 augustus 2026, incl. btw); ' +
         'specificaties uit het AEG-datasheet. De tekeningen zijn schematisch, op schaal.'
       : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd. ' +
-        'De tekeningen zijn schematisch, op schaal.';
+        'De tekeningen zijn schematisch, op schaal.') +
+      (f.photoCredit ? ' ' + f.photoCredit : '');
 
     modal.querySelector('.modal-panel').style.setProperty('--accent', f.accent);
     renderThumbs();
@@ -201,10 +211,13 @@
     modal.querySelector('.modal-close').focus();
   }
 
-  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. */
+  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. Een foto is een
+   * pad, of een object { src, label } als je een eigen bijschrift wilt. */
   function galleryItems(f) {
-    const photos = (f.photos || []).map(function (src, i) {
-      return { id: 'photo-' + i, label: 'Foto ' + (i + 1), src: src };
+    const photos = (f.photos || []).map(function (p, i) {
+      const src = typeof p === 'string' ? p : p.src;
+      const label = (typeof p === 'string' ? null : p.label) || 'Foto ' + (i + 1);
+      return { id: 'photo-' + i, label: label, src: src };
     });
     return photos.concat(VIEWS);
   }

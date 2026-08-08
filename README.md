@@ -37,29 +37,39 @@ voor een korte beschrijving, alle afbeeldingen en de volledige specificatielijst
 
 ## Afbeeldingen
 
-Er zijn geen productfoto's opgehaald: het uitgaande netwerk van de bouwomgeving
-blokkeert expert.nl, aeg.nl en bsh-group.com (403 policy denial). Elke kaart
-bevat daarom een schematische tekening **op schaal** — de verhouding
-breedte/hoogte volgt de werkelijke buitenmaten, de indeling van plateaus, lades
-en vriesvakken volgt de datasheet. Elk detailvenster linkt door naar de
-productpagina van de fabrikant voor de echte foto's.
+Voor de **Siemens KI81RNSE0** staan echte productfoto's in de repo, opgehaald bij
+Siemens Home (BSH Home Appliances) via de officiële productpagina: vier
+fabrieksfoto's plus de officiële maatschets, in `assets/photos/siemens-ki81rnse0/`.
+
+Voor de overige modellen is nog geen fotomateriaal opgehaald. Die kaarten tonen
+een schematische tekening **op schaal** — de verhouding breedte/hoogte volgt de
+werkelijke buitenmaten, de indeling van plateaus, lades en vriesvakken volgt de
+datasheet. Elk detailvenster linkt door naar de productpagina van de fabrikant.
+
+De tekeningen blijven overal staan: bij een model mét foto's komen ze in de
+galerij achter de foto's.
 
 ### Zelf foto's toevoegen
 
-1. Zet de bestanden in `assets/photos/`, bijvoorbeeld
-   `assets/photos/aeg-nsc7c191ds-1.jpg`.
-2. Vul in `assets/data.js` de `photos`-array van het model:
+1. Zet de bestanden in `assets/photos/<model-id>/`, bijvoorbeeld
+   `assets/photos/aeg-nsc7c191ds/01-productfoto.webp`.
+2. Vul in `assets/data.js` de `photos`-array van het model. Een pad volstaat;
+   een object geeft de foto een eigen bijschrift in de galerij:
 
    ```js
    photos: [
-     'assets/photos/aeg-nsc7c191ds-1.jpg',
-     'assets/photos/aeg-nsc7c191ds-2.jpg'
+     { src: 'assets/photos/aeg-nsc7c191ds/01-productfoto.webp', label: 'Productfoto' },
+     'assets/photos/aeg-nsc7c191ds/02-interieur.webp'
    ],
+   photoCredit: 'Productfoto’s: AEG.',
    ```
 
-De foto's verschijnen dan vóór de tekeningen in de galerij; de tekeningen
-blijven als extra weergaven staan. Laat de array leeg om alleen tekeningen te
-tonen.
+   `photoCredit` is optioneel en wordt achter de kleine lettertjes in het
+   detailvenster gezet.
+
+De foto's verschijnen vóór de tekeningen in de galerij en de eerste foto komt
+op de kaart in het overzicht te staan. Laat de array leeg om alleen tekeningen
+te tonen.
 
 ## Bestanden
 
@@ -69,6 +79,7 @@ assets/style.css           styling, licht + donker thema
 assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
 assets/illustrations.js    SVG-tekeningen, op schaal per model
 assets/app.js              kaarten, filters, sortering, detailvenster
+assets/photos/<model-id>/  productfoto's per model
 ```
 
 Geen build-stap, geen dependencies, geen externe requests — open `index.html`
