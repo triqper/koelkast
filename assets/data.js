@@ -48,10 +48,10 @@ const FRIDGES = [
       'superCooling snelkoelfunctie',
       '2 vershoudlades voor groente & fruit',
       'Heldere LED-verlichting',
-      'Veiligheidsglas plateaus'
+      'PowerVentilation-luchtverdeling'
     ],
     description:
-      'De Siemens KI81RNSE0 is een volledig integreerbare koelkast van 178 cm nishoogte zonder vriesvak, met 310 liter netto koelruimte. Met de superCooling-functie koel je verse boodschappen versneld terug zonder dat de rest van je voorraad opwarmt. De twee vershoudlades houden groente en fruit langer knapperig en de LED-verlichting verlicht elke hoek van de kast. Zes plateaus van veiligheidsglas (vijf in hoogte verstelbaar) maken de indeling flexibel en makkelijk schoon te maken. De temperatuur regel je elektronisch met led-indicatie. Montage gebeurt met het sleepdeursysteem.',
+      'De Siemens KI81RNSE0 is een volledig integreerbare koelkast van 178 cm nishoogte zonder vriesvak, met 310 liter netto koelruimte. Met de superCooling-functie koel je verse boodschappen versneld terug zonder dat de rest van je voorraad opwarmt. De twee vershoudlades onderin — op de foto’s te herkennen aan de ‘Fresh’-opdruk — houden groente en fruit langer knapperig, en het PowerVentilation-paneel midden op de achterwand verdeelt de koude lucht gelijkmatig over alle plateaus. Zes plateaus van veiligheidsglas (vijf in hoogte verstelbaar) maken de indeling flexibel en makkelijk schoon te maken; in de deur zitten vijf vakken die naar onderen toe dieper worden, met een flessenvak onderaan. De temperatuur stel je in op de touch-strook aan de bovenrand: vaste standen van 2 tot 8 °C met een led-indicatie, geen cijferdisplay. Montage gebeurt met het sleepdeursysteem.',
     specs: [
       ['Type', 'Inbouwkoelkast zonder vriesvak'],
       ['Netto inhoud', '310 liter'],
@@ -62,11 +62,16 @@ const FRIDGES = [
       ['Klimaatklasse', 'SN-ST'],
       ['Plateaus', '6 van veiligheidsglas, 5 verstelbaar'],
       ['Groentelades', '2 vershoudlades'],
+      ['Deurvakken', '5, oplopend in diepte, onderste is flessenvak'],
+      ['Luchtverdeling', 'PowerVentilation'],
       ['Verlichting', 'LED'],
-      ['Bediening', 'Elektronisch met led-indicatie'],
+      ['Bediening', 'Touch-strook, led-indicatie, geen display'],
+      ['Temperatuurbereik', '2–8 °C in vaste standen'],
+      ['Uitschakelen', 'Aan/uit 3 seconden indrukken'],
       ['Montage', 'Sleepdeursysteem'],
       ['Deurscharnier', 'Rechts (verwisselbaar)']
     ],
+    /* Zet echte foto's in assets/photos/ en vul ze hier in — zie README. */
     photos: [],
     photoUrl: 'https://www.siemens-home.bsh-group.com/nl/nl/product/koelen-en-vriezen/inbouw-koelkasten-en-vriezers/inbouw-koelkasten/KI81RNSE0',
     photoLabel: 'Foto’s op Siemens.nl',

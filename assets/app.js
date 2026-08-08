@@ -186,11 +186,16 @@
       photoLink.hidden = true;
     }
 
+    const drawingNote = hasPhotoLayout(f)
+      ? 'De tekeningen zijn op schaal; de indeling, de bedieningsstrook en de ' +
+        'deurvakken zijn natekend van de officiële productfoto’s.'
+      : 'De tekeningen zijn schematisch, op schaal.';
+
     document.getElementById('modal-fineprint').textContent = f.source === 'offerte'
       ? 'Prijs uit de Expert Twello-offerte 2601004099 (6 augustus 2026, incl. btw); ' +
-        'specificaties uit het AEG-datasheet. De tekeningen zijn schematisch, op schaal.'
+        'specificaties uit het AEG-datasheet. ' + drawingNote
       : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd. ' +
-        'De tekeningen zijn schematisch, op schaal.';
+        drawingNote;
 
     modal.querySelector('.modal-panel').style.setProperty('--accent', f.accent);
     renderThumbs();
@@ -201,21 +206,42 @@
     modal.querySelector('.modal-close').focus();
   }
 
-  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. */
+  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. Een foto die
+     niet blijkt te bestaan wordt overgeslagen, zodat een ontbrekend bestand
+     geen kapot plaatje in de galerij achterlaat. */
+  const missingPhotos = Object.create(null);
+
   function galleryItems(f) {
-    const photos = (f.photos || []).map(function (src, i) {
+    const photos = (f.photos || []).filter(function (src) {
+      return !missingPhotos[src];
+    }).map(function (src, i) {
       return { id: 'photo-' + i, label: 'Foto ' + (i + 1), src: src };
     });
-    return photos.concat(VIEWS);
+    return photos.concat(viewsFor(f));
   }
 
   function renderItem(f, item) {
     if (item.src) {
       return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
-        f.brand + ' ' + f.model + ' — ' + item.label + '">';
+        f.brand + ' ' + f.model + ' — ' + item.label + '" ' +
+        'data-photo="' + item.src + '" onerror="window.__photoMissing(this)">';
     }
     return renderView(f, item.id);
   }
+
+  /* Wordt door de onerror van een foto aangeroepen. */
+  window.__photoMissing = function (img) {
+    const src = img.getAttribute('data-photo');
+    if (!src || missingPhotos[src]) return;
+    missingPhotos[src] = true;
+    if (!currentFridge) return;
+    const items = galleryItems(currentFridge);
+    if (!items.some(function (v) { return v.id === currentView; })) {
+      currentView = items[0].id;
+    }
+    renderThumbs();
+    renderStage();
+  };
 
   function renderThumbs() {
     thumbs.innerHTML = galleryItems(currentFridge).map(function (v) {

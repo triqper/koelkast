@@ -37,29 +37,51 @@ voor een korte beschrijving, alle afbeeldingen en de volledige specificatielijst
 
 ## Afbeeldingen
 
-Er zijn geen productfoto's opgehaald: het uitgaande netwerk van de bouwomgeving
-blokkeert expert.nl, aeg.nl en bsh-group.com (403 policy denial). Elke kaart
-bevat daarom een schematische tekening **op schaal** — de verhouding
-breedte/hoogte volgt de werkelijke buitenmaten, de indeling van plateaus, lades
-en vriesvakken volgt de datasheet. Elk detailvenster linkt door naar de
-productpagina van de fabrikant voor de echte foto's.
+Er zijn geen productfoto's als bestand opgenomen: het uitgaande netwerk van de
+bouwomgeving blokkeert expert.nl, aeg.nl, bsh-group.com en bosch-home.com
+(403 policy denial). Elke kaart bevat daarom een tekening **op schaal** — de
+verhouding breedte/hoogte volgt de werkelijke buitenmaten. Elk detailvenster
+linkt door naar de productpagina van de fabrikant voor de echte foto's.
+
+### Siemens KI81RNSE0: natekend van de officiële foto's
+
+Voor dit model waren de officiële productfoto's beschikbaar (interieur, deur
+open, detail van de bedieningsstrook, ledverlichting). De indeling is daarvan
+overgenomen in plaats van uit de specificatietabel afgeleid, en het model heeft
+een extra aanzicht **Deur open**. Uit de foto's komen:
+
+- 6 plateaus van veiligheidsglas boven twee vershoudlades met `Fresh`-opdruk en
+  een pictogramstrook *fruit & vegetables*;
+- het **PowerVentilation**-paneel midden op de achterwand, direct onder de
+  bedieningsstrook;
+- de bedieningsstrook `super · > · 2 / 3 / 4 / 6 / 8 °C · uit na 3 sec.` —
+  vaste standen met led-indicatie, géén cijferdisplay (de generieke tekening
+  liet eerder een display met cijfers zien, dat klopte niet);
+- 5 deurvakken die naar onderen toe dieper worden, met het flessenvak onderaan;
+  deurscharnier rechts.
+
+De vastgelegde indeling staat in `PHOTO_LAYOUT` in `assets/illustrations.js`.
+Een model daarin krijgt automatisch de natekende interieur- en
+bedieningsaanzichten plus het aanzicht *Deur open*; modellen zonder invoer
+houden de schematische tekeningen.
 
 ### Zelf foto's toevoegen
 
 1. Zet de bestanden in `assets/photos/`, bijvoorbeeld
-   `assets/photos/aeg-nsc7c191ds-1.jpg`.
+   `assets/photos/siemens-ki81rnse0-1.jpg`.
 2. Vul in `assets/data.js` de `photos`-array van het model:
 
    ```js
    photos: [
-     'assets/photos/aeg-nsc7c191ds-1.jpg',
-     'assets/photos/aeg-nsc7c191ds-2.jpg'
+     'assets/photos/siemens-ki81rnse0-1.jpg',
+     'assets/photos/siemens-ki81rnse0-2.jpg'
    ],
    ```
 
 De foto's verschijnen dan vóór de tekeningen in de galerij; de tekeningen
 blijven als extra weergaven staan. Laat de array leeg om alleen tekeningen te
-tonen.
+tonen. Een bestand dat niet bestaat wordt overgeslagen — een verkeerd pad levert
+dus geen kapot plaatje op, alleen een 404 in de console.
 
 ## Bestanden
 
@@ -67,7 +89,7 @@ tonen.
 index.html                 pagina-opbouw
 assets/style.css           styling, licht + donker thema
 assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
-assets/illustrations.js    SVG-tekeningen, op schaal per model
+assets/illustrations.js    SVG-tekeningen op schaal + PHOTO_LAYOUT (natekend)
 assets/app.js              kaarten, filters, sortering, detailvenster
 ```
 

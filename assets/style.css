@@ -468,7 +468,7 @@ td.best { color: var(--good); font-weight: 700; }
   justify-content: center;
 }
 .stage .fridge-svg { height: min(52vh, 420px); width: 100%; }
-.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); gap: 8px; }
 .thumb {
   padding: 6px 2px 2px;
   border: 1px solid var(--line);
@@ -587,6 +587,12 @@ td.best { color: var(--good); font-weight: 700; }
 .fridge-svg .panel-shell { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.2; }
 .fridge-svg .panel-display { fill: var(--liner); stroke: var(--line); stroke-width: 1; }
 .fridge-svg .panel-btn { fill: var(--surface); stroke: var(--line); stroke-width: 1; }
+.fridge-svg .vent-panel { fill: var(--surface); stroke: var(--line-soft); stroke-width: .8; opacity: .95; }
+.fridge-svg .door-liner { fill: var(--liner); stroke: var(--line-soft); stroke-width: .8; }
+.fridge-svg .door-bin { stroke: var(--line); stroke-width: .8; }
+.fridge-svg .svg-nano { font: 600 6.5px system-ui, sans-serif; fill: var(--ink-3); }
+.fridge-svg .svg-wordmark { font: 700 7px system-ui, sans-serif; letter-spacing: .1em; fill: var(--ink-3); }
+.fridge-svg .svg-fresh { font: 600 8px system-ui, sans-serif; letter-spacing: .04em; opacity: .8; }
 .fridge-svg .svg-micro { font: 600 8.5px system-ui, sans-serif; fill: var(--ink-3); }
 .fridge-svg .svg-brand { font: 800 11px system-ui, sans-serif; letter-spacing: .12em; }
 .fridge-svg .svg-cap { font: 650 11px system-ui, sans-serif; fill: var(--ink-2); }
