@@ -42,6 +42,36 @@ const TWINS = [
 Het eerste lid staat standaard op de kaart. De vergelijktabel onderaan de pagina
 toont beide modellen altijd, ongeacht wat de schakelaar doet.
 
+## Inhoud tegenover de huidige kast
+
+Elke kaart toont de netto inhoud in liters — bij een koelvries combi gesplitst
+in koel en vries — met daarnaast het verschil met de kast die er nu staat. Die
+referentie staat in `HUIDIG` in `assets/data.js`:
+
+```js
+const HUIDIG = { fridge: 210, freezer: 70 };
+```
+
+Groen is meer dan nu, rood is minder. Dat is een verschil, geen oordeel: minder
+vriesruimte weegt anders als er een losse vriezer staat.
+
+| Model | Koel | Vries | Totaal |
+|---|---|---|---|
+| Siemens KI81RNSE0 | 310 l (+100) | geen (−70) | 310 l (+30) |
+| Bosch KIR81NSE0 | 310 l (+100) | geen (−70) | 310 l (+30) |
+| Liebherr IRBSd 5120 | 294 l (+84) | geen (−70) | 294 l (+14) |
+| AEG TK6FS181DS | 307 l (+97) | geen (−70) | 307 l (+27) |
+| AEG NSC7C191DS | 207 l (−3) | 62 l (−8) | 269 l (−11) |
+| AEG NSC6M191ES | 207 l (−3) | 62 l (−8) | 269 l (−11) |
+| AEG OSC7C181DS | 186 l (−24) | 62 l (−8) | 248 l (−32) |
+
+Opvallend: alle drie de combi's zijn kleiner dan wat er nu staat, terwijl de
+volledige koelkasten fors meer koelruimte geven maar geen vriesvak hebben.
+
+De tekst in de kolom *Inhoud* van de vergelijktabel wordt uit `capacityFridge`
+en `capacityFreezer` afgeleid in plaats van apart genoteerd; de losse tekst gaf
+voor de OSC7C181DS 249 l totaal terwijl 186 + 62 = 248.
+
 ## Eigen notities
 
 Onderin elke kaart staat een blok *Mijn notities*: typ een regel, kies `+` of

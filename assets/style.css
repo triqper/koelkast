@@ -898,3 +898,57 @@ td.best { color: var(--good); font-weight: 700; }
   transition: border-color .15s, color .15s;
 }
 .note-add:hover { border-color: var(--ink-3); color: var(--ink); }
+
+/* ---------- inhoud tegenover de huidige kast ---------- */
+
+.cap {
+  margin: 14px 0 0;
+  padding: 11px 12px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.cap-title {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.cap-title span {
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 11px;
+  opacity: .85;
+}
+.cap-rows { display: flex; flex-direction: column; gap: 3px; }
+.cap-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.cap-row.is-total {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+  font-weight: 700;
+}
+.cap-label { color: var(--ink-2); }
+.cap-row.is-total .cap-label { color: var(--ink); }
+.cap-value { font-weight: 650; }
+.cap-delta {
+  min-width: 62px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 700;
+}
+.cap-delta.is-up { color: var(--good); }
+.cap-delta.is-down { color: var(--bad); }
+.cap-delta.is-same { color: var(--ink-3); }

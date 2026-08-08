@@ -167,6 +167,7 @@
             stat('Hoogte', f.heightLabel) +
             stat('Geluid', f.noiseDb + ' dB') +
           '</div>' +
+          capacityBlock(f) +
           (twin ? '<p class="twin-note">' + twin.differs + '</p>' : '') +
           '<ul class="card-features">' +
             f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('') +
@@ -279,6 +280,42 @@
       '<span class="stat-value">' + value + '</span></div>';
   }
 
+  /* Uit de cijfers afgeleid, niet apart genoteerd: een handgeschreven totaal
+     liep uit de pas met de deelinhouden. */
+  function capacityText(f) {
+    if (!f.capacityFreezer) return f.capacityFridge + ' l koelruimte';
+    return (f.capacityFridge + f.capacityFreezer) + ' l totaal — ' +
+      f.capacityFridge + ' l koel + ' + f.capacityFreezer + ' l vries';
+  }
+
+  /* Inhoud in liters, koel en vries apart, afgezet tegen de kast die er nu
+     staat. Het verschil is een feit, geen oordeel: minder vriesruimte is geen
+     nadeel als er een losse vriezer staat. */
+  function capacityBlock(f) {
+    return '<div class="cap">' +
+      '<p class="cap-title">Inhoud tegenover de huidige kast ' +
+        '<span>' + HUIDIG.fridge + ' l koel + ' + HUIDIG.freezer + ' l vries</span></p>' +
+      '<div class="cap-rows">' +
+        capRow('Koel', f.capacityFridge, HUIDIG.fridge, false) +
+        capRow('Vries', f.capacityFreezer, HUIDIG.freezer, false) +
+        capRow('Totaal', f.capacityFridge + f.capacityFreezer,
+               HUIDIG.fridge + HUIDIG.freezer, true) +
+      '</div>' +
+    '</div>';
+  }
+
+  function capRow(label, value, ref, isTotal) {
+    const d = value - ref;
+    const cls = d > 0 ? ' is-up' : (d < 0 ? ' is-down' : ' is-same');
+    const delta = d === 0 ? 'gelijk'
+      : (d > 0 ? '+' : '−') + Math.abs(d) + ' l';
+    return '<div class="cap-row' + (isTotal ? ' is-total' : '') + '">' +
+      '<span class="cap-label">' + label + '</span>' +
+      '<span class="cap-value">' + (value ? value + ' l' : 'geen') + '</span>' +
+      '<span class="cap-delta' + cls + '">' + delta + '</span>' +
+    '</div>';
+  }
+
   /* Maakt zichtbaar waar een prijs vandaan komt: de offerte, de webshop van
      Expert, of een schatting. */
   const SOURCE_TAGS = {
@@ -342,7 +379,7 @@
         '<td class="num">' + f.heightLabel + '</td>' +
         '<td class="num' + (f.noiseDb === BEST.noiseDb ? ' best' : '') + '">' +
           f.noiseDb + ' dB</td>' +
-        '<td>' + f.capacity + '</td>' +
+        '<td>' + capacityText(f) + '</td>' +
       '</tr>';
     }).join('');
   }

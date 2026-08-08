@@ -13,6 +13,12 @@
  * 'koelkast', 'combi-hoog' (nis 189,4 cm) of 'combi-nis178' (nis 178 cm).
  */
 
+/* De kast die er nu staat. Elke kaart zet zijn inhoud hiertegen af. */
+const HUIDIG = {
+  fridge: 210,
+  freezer: 70
+};
+
 const OFFERTE = {
   nummer: '2601004099',
   datum: '6 augustus 2026',
@@ -43,7 +49,6 @@ const FRIDGES = [
     nicheLabel: 'nis 178 cm',
     noiseDb: 35,
     noiseClass: null,
-    capacity: '310 l koelruimte',
     capacityFridge: 310,
     capacityFreezer: 0,
     widthCm: 56,
@@ -104,7 +109,6 @@ const FRIDGES = [
     nicheLabel: 'nis 177,5 cm',
     noiseDb: 35,
     noiseClass: null,
-    capacity: '310 l koelruimte',
     capacityFridge: 310,
     capacityFreezer: 0,
     widthCm: 54,
@@ -165,7 +169,6 @@ const FRIDGES = [
     nicheLabel: 'nis 178,8 cm',
     noiseDb: 33,
     noiseClass: null,
-    capacity: '294 l koelruimte',
     capacityFridge: 294,
     capacityFreezer: 0,
     widthCm: 54,
@@ -230,7 +233,6 @@ const FRIDGES = [
     nicheLabel: 'nis 178 cm',
     noiseDb: 32,
     noiseClass: 'B',
-    capacity: '307 l koelruimte',
     capacityFridge: 307,
     capacityFreezer: 0,
     widthCm: 54.6,
@@ -300,7 +302,6 @@ const FRIDGES = [
     nicheLabel: 'nis 189,4 cm',
     noiseDb: 34,
     noiseClass: 'B',
-    capacity: '269 l totaal — 207 l koel + 62 l vries',
     capacityFridge: 207,
     capacityFreezer: 62,
     widthCm: 54.6,
@@ -373,7 +374,6 @@ const FRIDGES = [
     nicheLabel: 'nis 189,4 cm',
     noiseDb: 37,
     noiseClass: 'C',
-    capacity: '269 l totaal — 207 l koel + 62 l vries',
     capacityFridge: 207,
     capacityFreezer: 62,
     widthCm: 54.6,
@@ -443,7 +443,6 @@ const FRIDGES = [
     nicheLabel: 'nis 178 cm',
     noiseDb: 34,
     noiseClass: 'B',
-    capacity: '249 l totaal — 186 l koel + 62 l vries',
     capacityFridge: 186,
     capacityFreezer: 62,
     widthCm: 54.6,
