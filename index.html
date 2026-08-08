@@ -16,8 +16,8 @@
     <h1>Welke koelkast wordt het?</h1>
     <p class="lede">
       Zeven inbouwmodellen naast elkaar: vier volledige koelkasten en drie
-      koel-vriescombinaties. Klik op een kaart voor de beschrijving, de foto's
-      en tekeningen en de volledige specificatielijst.
+      koel-vriescombinaties. Klik op een kaart voor de foto's, de beschrijving
+      en de volledige specificatielijst.
     </p>
     <p class="lede-note">
       De vier AEG-modellen staan op de offerte van Expert Twello
@@ -126,13 +126,20 @@
       offerteprijzen.
     </p>
     <p>
-      <strong>Afbeeldingen.</strong> Van de Siemens KI81RNSE0 staan echte productfoto's op
-      de pagina: vier fabrieksfoto's en de officiële maatschets, opgehaald bij Siemens Home
-      (BSH Home Appliances). Voor de overige modellen zijn nog geen foto's beschikbaar; die
-      kaarten tonen een <em>schematische tekening op schaal</em>: de verhouding tussen
-      breedte en hoogte komt overeen met de werkelijke buitenmaten, en de indeling van
-      plateaus, lades en vriesvakken volgt de specificaties. Ook bij de Siemens vind je
-      die tekeningen terug — ze staan achter de foto's in het detailvenster.
+      <strong>Afbeeldingen.</strong> Alle zeven modellen tonen echte productfoto's van de
+      fabrikant. Klik een foto aan om hem op volledige schermgrootte te bekijken; met de
+      pijltjestoetsen blader je door de reeks. De schematische tekeningen die hier eerder
+      stonden zijn vervallen.
+    </p>
+    <p class="fineprint-sources">
+      <strong>Herkomst van de foto's.</strong> Siemens en Bosch komen van de mediaserver van
+      BSH Home Appliances, Liebherr van de eigen asset-CDN van Liebherr-Hausgeräte. De vier
+      AEG-modellen komen uit AEG's eigen productbeeld: TK6FS181DS en OSC7C181DS via Expert.nl,
+      NSC7C191DS en NSC6M191ES via de vakhandel — aeg.nl zelf is vanuit deze bouwomgeving niet
+      bereikbaar. Bij de NSC7C191DS is het aanbod aan schone productfotografie beperkt; een
+      deel van die beelden draagt AEG's eigen tekst in de afbeelding. Alle foto's zijn
+      auteursrechtelijk beschermd materiaal van de fabrikanten en staan hier alleen als
+      keuzehulp.
     </p>
   </section>
 
@@ -151,7 +158,9 @@
     <button class="modal-close" data-close aria-label="Sluiten">&times;</button>
     <div class="modal-body">
       <div class="modal-gallery">
-        <div class="stage" id="stage"></div>
+        <button class="stage" id="stage" type="button" aria-label="Foto vergroten">
+          <span class="stage-zoom" aria-hidden="true">Vergroten</span>
+        </button>
         <div class="thumbs" id="thumbs" role="tablist" aria-label="Afbeeldingen"></div>
       </div>
       <div class="modal-info">
@@ -178,8 +187,22 @@
   </div>
 </div>
 
+<!-- Foto op volle schermgrootte -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-backdrop" data-lightbox-close></div>
+  <button class="lightbox-close" data-lightbox-close aria-label="Sluiten">&times;</button>
+  <button class="lightbox-nav is-prev" id="lightbox-prev" aria-label="Vorige foto">&#8249;</button>
+  <button class="lightbox-nav is-next" id="lightbox-next" aria-label="Volgende foto">&#8250;</button>
+  <figure class="lightbox-figure" role="dialog" aria-modal="true" aria-label="Foto op ware grootte">
+    <img id="lightbox-img" alt="">
+    <figcaption>
+      <span id="lightbox-caption"></span>
+      <span class="lightbox-count" id="lightbox-count"></span>
+    </figcaption>
+  </figure>
+</div>
+
 <script src="assets/data.js"></script>
-<script src="assets/illustrations.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 # Koelkast-keuzehulp
 
-Visueel overzicht van zeven inbouwmodellen: per koelkast een kaart met tekening,
+Visueel overzicht van zeven inbouwmodellen: per koelkast een kaart met foto,
 prijs, energielabel, hoogte, geluidsniveau en unieke features. Klik op een kaart
-voor een korte beschrijving, alle afbeeldingen en de volledige specificatielijst.
+voor de fotogalerij, een korte beschrijving en de volledige specificatielijst.
+Klik een foto aan om hem op volledige schermgrootte te bekijken.
 
 **Live:** https://triqper.github.io/koelkast/
 
@@ -37,17 +38,35 @@ voor een korte beschrijving, alle afbeeldingen en de volledige specificatielijst
 
 ## Afbeeldingen
 
-Voor de **Siemens KI81RNSE0** staan echte productfoto's in de repo, opgehaald bij
-Siemens Home (BSH Home Appliances) via de officiële productpagina: vier
-fabrieksfoto's plus de officiële maatschets, in `assets/photos/siemens-ki81rnse0/`.
+Alle zeven modellen hebben echte productfoto's van de fabrikant, in
+`assets/photos/<model-id>/`. Ze zijn teruggebracht tot maximaal 1200 px, als webp
+opgeslagen en van hun witte canvasranden ontdaan; samen ongeveer 1,8 MB.
 
-Voor de overige modellen is nog geen fotomateriaal opgehaald. Die kaarten tonen
-een schematische tekening **op schaal** — de verhouding breedte/hoogte volgt de
-werkelijke buitenmaten, de indeling van plateaus, lades en vriesvakken volgt de
-datasheet. Elk detailvenster linkt door naar de productpagina van de fabrikant.
+| Model | Foto's | Bron |
+|---|---|---|
+| Siemens KI81RNSE0 | 5 | mediaserver BSH Home Appliances |
+| Bosch KIR81NSE0 | 5 | mediaserver BSH Home Appliances |
+| Liebherr IRBSd 5120 | 3 | asset-CDN Liebherr-Hausgeräte |
+| AEG TK6FS181DS | 7 | AEG-beeld via Expert.nl |
+| AEG OSC7C181DS | 8 | AEG-beeld via Expert.nl |
+| AEG NSC7C191DS | 7 | AEG-beeld via de vakhandel |
+| AEG NSC6M191ES | 4 | AEG-beeld via de vakhandel |
 
-De tekeningen blijven overal staan: bij een model mét foto's komen ze in de
-galerij achter de foto's.
+`aeg.nl` en `media.aeg.nl` zijn vanuit de bouwomgeving niet bereikbaar (de proxy
+geeft een policy denial), vandaar de omweg via Expert en de vakhandel voor AEG.
+Van de NSC7C191DS is weinig schone productfotografie beschikbaar; een deel van
+die beelden draagt AEG's eigen tekst in de afbeelding.
+
+De foto's zijn auteursrechtelijk beschermd materiaal van de fabrikanten en staan
+hier alleen als keuzehulp. De schematische SVG-tekeningen die de pagina eerder
+gebruikte zijn vervallen, samen met `assets/illustrations.js`.
+
+### Foto vergroten
+
+Klik in het detailvenster op de grote foto (of gebruik Enter als hij focus heeft)
+om hem op volledige schermgrootte te openen. In die weergave blader je met de
+pijlen of de pijltjestoetsen door de reeks; Escape sluit alleen de vergroting, het
+detailvenster blijft open.
 
 ### Zelf foto's toevoegen
 
@@ -67,9 +86,9 @@ galerij achter de foto's.
    `photoCredit` is optioneel en wordt achter de kleine lettertjes in het
    detailvenster gezet.
 
-De foto's verschijnen vóór de tekeningen in de galerij en de eerste foto komt
-op de kaart in het overzicht te staan. Laat de array leeg om alleen tekeningen
-te tonen.
+De eerste foto uit de array is het kaartbeeld in het overzicht; de rest volgt in
+de galerij. Een model zonder foto's krijgt een lege kaart — de galerij kent geen
+terugvaloptie meer.
 
 ## Bestanden
 
@@ -77,8 +96,7 @@ te tonen.
 index.html                 pagina-opbouw
 assets/style.css           styling, licht + donker thema
 assets/data.js             de dataset (specs, prijzen, features, beschrijvingen)
-assets/illustrations.js    SVG-tekeningen, op schaal per model
-assets/app.js              kaarten, filters, sortering, detailvenster
+assets/app.js              kaarten, filters, sortering, detailvenster, vergroting
 assets/photos/<model-id>/  productfoto's per model
 ```
 

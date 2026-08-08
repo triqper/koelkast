@@ -71,7 +71,7 @@ const FRIDGES = [
       { src: 'assets/photos/siemens-ki81rnse0/01-productfoto.webp', label: 'Productfoto' },
       { src: 'assets/photos/siemens-ki81rnse0/02-interieur.webp', label: 'Plateaus' },
       { src: 'assets/photos/siemens-ki81rnse0/03-vershoudlades.webp', label: 'Vershoudlades' },
-      { src: 'assets/photos/siemens-ki81rnse0/04-bediening.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/siemens-ki81rnse0/04-bedieningspaneel.webp', label: 'Bedieningspaneel' },
       { src: 'assets/photos/siemens-ki81rnse0/05-maatschets.webp', label: 'Maatschets' }
     ],
     photoCredit: 'Productfoto’s: Siemens Home (BSH Home Appliances).',
@@ -127,8 +127,15 @@ const FRIDGES = [
       ['Verlichting', 'LED'],
       ['Montage', 'Sleepdeursysteem']
     ],
-    photos: [],
-    photoUrl: 'https://www.bosch-home.nl/productlijst/KIR81NSE0',
+    photos: [
+      { src: 'assets/photos/bosch-kir81nse0/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/bosch-kir81nse0/02-plateaus.webp', label: 'Plateaus' },
+      { src: 'assets/photos/bosch-kir81nse0/03-vershoudlades.webp', label: 'Vershoudlades' },
+      { src: 'assets/photos/bosch-kir81nse0/04-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/bosch-kir81nse0/05-maatschets.webp', label: 'Maatschets' }
+    ],
+    photoCredit: 'Productfoto’s: Bosch (BSH Home Appliances).',
+    photoUrl: 'https://www.bosch-home.nl/product/KIR81NSE0',
     photoLabel: 'Foto’s op Bosch.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=KIR81NSE0'
   },
@@ -178,7 +185,12 @@ const FRIDGES = [
       ['Extra', 'Flessenrek meegeleverd'],
       ['Montage', 'Sleepdeursysteem, zelf te monteren']
     ],
-    photos: [],
+    photos: [
+      { src: 'assets/photos/liebherr-irbsd-5120/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/liebherr-irbsd-5120/02-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/liebherr-irbsd-5120/03-deur-dicht.webp', label: 'Deur dicht' }
+    ],
+    photoCredit: 'Productfoto’s: Liebherr-Hausgeräte.',
     photoUrl: 'https://www.liebherr.com/nl-nl/p/irbsd-5120-3093352',
     photoLabel: 'Foto’s op Liebherr.nl',
     expertUrl: 'https://www.expert.nl/liebherr-irbsd-5120-22-372636963'
@@ -238,7 +250,16 @@ const FRIDGES = [
       ['Montage', 'Sleepscharnier'],
       ['Productnummer', '923 581 344']
     ],
-    photos: [],
+    photos: [
+      { src: 'assets/photos/aeg-tk6fs181ds/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-tk6fs181ds/02-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/aeg-tk6fs181ds/03-customflex.webp', label: 'CustomFlex' },
+      { src: 'assets/photos/aeg-tk6fs181ds/04-extrazone.webp', label: 'ExtraZone' },
+      { src: 'assets/photos/aeg-tk6fs181ds/05-groentelade.webp', label: 'Groentelade' },
+      { src: 'assets/photos/aeg-tk6fs181ds/06-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/aeg-tk6fs181ds/07-energielabel.webp', label: 'Energielabel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG, via Expert.nl.',
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/refrigerators/built-in-refrigerator/tk6fs181ds/',
     photoLabel: 'Foto’s op AEG.nl',
     expertUrl: 'https://www.expert.nl/aeg-tk6fs181ds-372643156'
@@ -301,7 +322,16 @@ const FRIDGES = [
       ['Montage', 'Sleepscharnier'],
       ['Productnummer', '925 954 041']
     ],
-    photos: [],
+    photos: [
+      { src: 'assets/photos/aeg-nsc7c191ds/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-nsc7c191ds/02-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/aeg-nsc7c191ds/03-extrachill.webp', label: 'ExtraChill' },
+      { src: 'assets/photos/aeg-nsc7c191ds/04-extrazone.webp', label: 'ExtraZone' },
+      { src: 'assets/photos/aeg-nsc7c191ds/05-luchtcirculatie.webp', label: 'Luchtcirculatie' },
+      { src: 'assets/photos/aeg-nsc7c191ds/06-multiflow.webp', label: 'MultiFlow' },
+      { src: 'assets/photos/aeg-nsc7c191ds/07-bedieningspaneel.webp', label: 'Bedieningspaneel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG. Enkele beelden dragen AEG’s eigen bijschrift.',
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/nsc7c191ds/',
     photoLabel: 'Foto’s op AEG.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=NSC7C191DS'
@@ -364,7 +394,13 @@ const FRIDGES = [
       ['Montage', 'Sleepscharnier'],
       ['Productnummer', '925 954 000']
     ],
-    photos: [],
+    photos: [
+      { src: 'assets/photos/aeg-nsc6m191es/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-nsc6m191es/02-groentelade.webp', label: 'Groentelade' },
+      { src: 'assets/photos/aeg-nsc6m191es/03-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/aeg-nsc6m191es/04-bedieningspaneel.webp', label: 'Bedieningspaneel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG.',
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/nsc6m191es/',
     photoLabel: 'Foto’s op AEG.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=NSC6M191ES'
@@ -426,7 +462,17 @@ const FRIDGES = [
       ['Montage', 'Sleepscharnier'],
       ['Productnummer', '925 555 054']
     ],
-    photos: [],
+    photos: [
+      { src: 'assets/photos/aeg-osc7c181ds/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-osc7c181ds/02-in-de-keuken.webp', label: 'In de keuken' },
+      { src: 'assets/photos/aeg-osc7c181ds/03-plateaus.webp', label: 'Plateaus' },
+      { src: 'assets/photos/aeg-osc7c181ds/04-vrieslades.webp', label: 'Vrieslades' },
+      { src: 'assets/photos/aeg-osc7c181ds/05-koelruimte.webp', label: 'Koelruimte' },
+      { src: 'assets/photos/aeg-osc7c181ds/06-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/aeg-osc7c181ds/07-maatschets.webp', label: 'Maatschets' },
+      { src: 'assets/photos/aeg-osc7c181ds/08-energielabel.webp', label: 'Energielabel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG, via Expert.nl.',
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/osc7c181ds/',
     photoLabel: 'Foto’s op AEG.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=OSC7C181DS'

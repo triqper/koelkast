@@ -8,6 +8,8 @@
   const modal = document.getElementById('modal');
   const stage = document.getElementById('stage');
   const thumbs = document.getElementById('thumbs');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
 
   let activeFilter = 'all';
   let activeSort = 'default';
@@ -92,18 +94,14 @@
           '<ul class="card-features">' +
             f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('') +
           '</ul>' +
-          '<p class="card-cta">' +
-            (f.photos && f.photos.length
-              ? 'Bekijk foto&rsquo;s, beschrijving &amp; specificaties'
-              : 'Bekijk beschrijving &amp; alle tekeningen') + ' &rarr;</p>' +
+          '<p class="card-cta">Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</p>' +
         '</div>' +
       '</button>';
   }
 
-  /* Is er een echte productfoto, dan staat die op de kaart; anders de tekening. */
+  /* De eerste foto uit de galerij is het kaartbeeld. */
   function cardMedia(f) {
-    const first = galleryItems(f)[0];
-    return first.src ? renderItem(f, first) : renderView(f, 'front');
+    return renderItem(f, galleryItems(f)[0]);
   }
 
   function stat(label, value) {
@@ -197,9 +195,8 @@
 
     document.getElementById('modal-fineprint').textContent = (f.source === 'offerte'
       ? 'Prijs uit de Expert Twello-offerte 2601004099 (6 augustus 2026, incl. btw); ' +
-        'specificaties uit het AEG-datasheet. De tekeningen zijn schematisch, op schaal.'
-      : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd. ' +
-        'De tekeningen zijn schematisch, op schaal.') +
+        'specificaties uit het AEG-datasheet.'
+      : 'Indicatieve prijs (' + f.priceNote + '), niet bij Expert gecontroleerd.') +
       (f.photoCredit ? ' ' + f.photoCredit : '');
 
     modal.querySelector('.modal-panel').style.setProperty('--accent', f.accent);
@@ -211,23 +208,24 @@
     modal.querySelector('.modal-close').focus();
   }
 
-  /* Eigen foto's (assets/photos/...) gaan voor de tekeningen. Een foto is een
+  /* De galerij bestaat uit de productfoto's uit assets/photos/. Een foto is een
    * pad, of een object { src, label } als je een eigen bijschrift wilt. */
   function galleryItems(f) {
-    const photos = (f.photos || []).map(function (p, i) {
+    return (f.photos || []).map(function (p, i) {
       const src = typeof p === 'string' ? p : p.src;
       const label = (typeof p === 'string' ? null : p.label) || 'Foto ' + (i + 1);
       return { id: 'photo-' + i, label: label, src: src };
     });
-    return photos.concat(VIEWS);
+  }
+
+  function altFor(f, item) {
+    return f.brand + ' ' + f.model + ' — ' + item.label;
   }
 
   function renderItem(f, item) {
-    if (item.src) {
-      return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
-        f.brand + ' ' + f.model + ' — ' + item.label + '">';
-    }
-    return renderView(f, item.id);
+    if (!item) return '';
+    return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
+      altFor(f, item) + '">';
   }
 
   function renderThumbs() {
@@ -238,22 +236,66 @@
     }).join('');
   }
 
-  function renderStage() {
+  function currentItem() {
     const items = galleryItems(currentFridge);
-    const item = items.filter(function (v) { return v.id === currentView; })[0] || items[0];
-    stage.innerHTML = renderItem(currentFridge, item);
+    return items.filter(function (v) { return v.id === currentView; })[0] || items[0];
+  }
+
+  function renderStage() {
+    stage.innerHTML = renderItem(currentFridge, currentItem()) +
+      '<span class="stage-zoom" aria-hidden="true">Vergroten</span>';
   }
 
   function setView(id) {
     currentView = id;
     renderThumbs();
     renderStage();
+    if (!lightbox.hidden) syncLightbox();
   }
 
   function closeModal() {
     modal.hidden = true;
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
+  }
+
+  /* ---------- foto op volle schermgrootte ---------- */
+
+  /* Zet de lightbox op de foto die nu in de galerij actief is. */
+  function syncLightbox() {
+    const items = galleryItems(currentFridge);
+    const item = currentItem();
+    if (!item) return;
+    /* Op id zoeken: galleryItems levert bij elke aanroep nieuwe objecten. */
+    const nr = items.map(function (v) { return v.id; }).indexOf(item.id) + 1;
+    lightboxImg.src = item.src;
+    lightboxImg.alt = altFor(currentFridge, item);
+    document.getElementById('lightbox-caption').textContent =
+      currentFridge.brand + ' ' + currentFridge.model + ' — ' + item.label;
+    document.getElementById('lightbox-count').textContent = nr + ' / ' + items.length;
+    const solo = items.length < 2;
+    document.getElementById('lightbox-prev').hidden = solo;
+    document.getElementById('lightbox-next').hidden = solo;
+  }
+
+  function openLightbox() {
+    if (!currentItem()) return;
+    syncLightbox();
+    lightbox.hidden = false;
+    lightbox.querySelector('.lightbox-close').focus();
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    stage.focus();
+  }
+
+  /* Bladert door de galerij; de kleine weergave loopt mee. */
+  function stepPhoto(dir) {
+    const ids = galleryItems(currentFridge).map(function (v) { return v.id; });
+    if (ids.length < 2) return;
+    const i = ids.indexOf(currentView);
+    setView(ids[(i + dir + ids.length) % ids.length]);
   }
 
   /* ---------- events ---------- */
@@ -296,16 +338,28 @@
     if (e.target.hasAttribute('data-close')) closeModal();
   });
 
+  stage.addEventListener('click', openLightbox);
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-lightbox-close')) closeLightbox();
+  });
+  document.getElementById('lightbox-prev').addEventListener('click', function () {
+    stepPhoto(-1);
+  });
+  document.getElementById('lightbox-next').addEventListener('click', function () {
+    stepPhoto(1);
+  });
+
   document.addEventListener('keydown', function (e) {
-    if (modal.hidden) return;
-    if (e.key === 'Escape') { closeModal(); return; }
+    /* De lightbox ligt boven het detailvenster en krijgt de toetsen eerst. */
+    const inLightbox = !lightbox.hidden;
+    if (!inLightbox && modal.hidden) return;
+    if (e.key === 'Escape') {
+      if (inLightbox) closeLightbox(); else closeModal();
+      return;
+    }
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-      const ids = galleryItems(currentFridge).map(function (v) { return v.id; });
-      const i = ids.indexOf(currentView);
-      const next = e.key === 'ArrowRight'
-        ? (i + 1) % ids.length
-        : (i - 1 + ids.length) % ids.length;
-      setView(ids[next]);
+      stepPhoto(e.key === 'ArrowRight' ? 1 : -1);
       e.preventDefault();
     }
   });

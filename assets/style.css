@@ -17,12 +17,6 @@
   --shadow-md: 0 4px 12px rgba(16, 24, 40, .08), 0 12px 28px rgba(16, 24, 40, .10);
   --shadow-lg: 0 24px 60px rgba(16, 24, 40, .28);
   --radius: 14px;
-  /* metaal voor de tekeningen */
-  --metal-1: #e5e8ed;
-  --metal-2: #f6f8fa;
-  --metal-3: #d3d8e0;
-  --liner: #fbfcfd;
-  --niche: #e7e2d8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,11 +36,6 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, .45), 0 16px 32px rgba(0, 0, 0, .35);
     --shadow-lg: 0 24px 70px rgba(0, 0, 0, .7);
-    --metal-1: #333b46;
-    --metal-2: #414a57;
-    --metal-3: #262d37;
-    --liner: #232a34;
-    --niche: #2b3038;
   }
 }
 
@@ -186,7 +175,6 @@ h1 {
   display: flex;
   justify-content: center;
 }
-.card-media .fridge-svg { height: 262px; width: 100%; }
 .card-media .fridge-photo { height: 262px; width: 100%; }
 
 .badge-type {
@@ -460,15 +448,39 @@ td.best { color: var(--good); font-weight: 700; }
 @media (max-width: 860px) {
   .modal-gallery { border-right: 0; border-bottom: 1px solid var(--line-soft); }
 }
+/* De grote weergave is een knop: klikken opent de foto op schermgrootte. */
 .stage {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--line-soft);
   border-radius: 12px;
   padding: 10px;
   display: flex;
   justify-content: center;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: zoom-in;
+  transition: border-color .15s;
 }
-.stage .fridge-svg { height: min(52vh, 420px); width: 100%; }
+.stage:hover { border-color: var(--ink-3); }
+.stage-zoom {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
+}
+.stage:hover .stage-zoom,
+.stage:focus-visible .stage-zoom { opacity: 1; }
 .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .thumb {
   padding: 6px 2px 2px;
@@ -485,7 +497,6 @@ td.best { color: var(--good); font-weight: 700; }
 }
 .thumb:hover { border-color: var(--ink-3); }
 .thumb.is-active { border-color: var(--ink); background: var(--surface-2); }
-.thumb .fridge-svg { height: 62px; width: 100%; }
 .thumb span { font-size: 10.5px; color: var(--ink-3); font-weight: 600; }
 .thumb.is-active span { color: var(--ink); }
 
@@ -567,33 +578,100 @@ td.best { color: var(--good); font-weight: 700; }
 .thumb .fridge-photo { height: 62px; }
 .modal-fineprint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); }
 
-/* ---------- SVG-tekeningen ---------- */
 
-.fridge-svg { display: block; }
-.fridge-svg .body-stroke { stroke: var(--line); stroke-width: 1.2; }
-.fridge-svg .cabinet-shell { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.2; }
-.fridge-svg .liner { fill: var(--liner); stroke: var(--line-soft); stroke-width: 1; }
-.fridge-svg .shadow { fill: rgba(16, 24, 40, .13); }
-.fridge-svg .seam { stroke: var(--line); stroke-width: 1.4; }
-.fridge-svg .seam-soft { stroke: var(--line); stroke-width: .9; opacity: .7; }
-.fridge-svg .handle-groove { fill: var(--metal-3); opacity: .9; }
-.fridge-svg .handle-bar { fill: var(--metal-3); }
-.fridge-svg .sheen { fill: #fff; opacity: .28; }
-.fridge-svg .shelf { stroke: var(--line); stroke-width: .7; }
-.fridge-svg .drawer { stroke: var(--line); stroke-width: .8; }
-.fridge-svg .freezer-drawer { fill: var(--metal-1); stroke: var(--line); stroke-width: .8; opacity: .85; }
-.fridge-svg .rail { stroke: var(--ink-3); stroke-width: 1.4; opacity: .6; }
-.fridge-svg .niche { fill: var(--niche); stroke: var(--line); stroke-width: 1; opacity: .55; }
-.fridge-svg .dim { stroke: var(--ink-3); stroke-width: 1; }
-.fridge-svg .panel-shell { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.2; }
-.fridge-svg .panel-display { fill: var(--liner); stroke: var(--line); stroke-width: 1; }
-.fridge-svg .panel-btn { fill: var(--surface); stroke: var(--line); stroke-width: 1; }
-.fridge-svg .svg-micro { font: 600 8.5px system-ui, sans-serif; fill: var(--ink-3); }
-.fridge-svg .svg-brand { font: 800 11px system-ui, sans-serif; letter-spacing: .12em; }
-.fridge-svg .svg-cap { font: 650 11px system-ui, sans-serif; fill: var(--ink-2); }
-.fridge-svg .svg-display { font: 700 17px ui-monospace, "SF Mono", Menlo, monospace; }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .fridge-svg .sheen { opacity: .07; }
-  :root:not([data-theme="light"]) .fridge-svg .shadow { fill: rgba(0, 0, 0, .5); }
+/* ---------- foto op volle schermgrootte ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox[hidden] { display: none; }
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 11, 18, .92);
+  cursor: zoom-out;
+}
+.lightbox-figure {
+  position: relative;
+  margin: 0;
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.lightbox-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 130px);
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+}
+.lightbox-figure figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #f4f6fa;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: center;
+}
+.lightbox-count { color: rgba(244, 246, 250, .62); font-weight: 500; }
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, .28);
+  background: rgba(20, 25, 35, .72);
+  color: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, border-color .15s;
+}
+.lightbox-close:hover,
+.lightbox-nav:hover { background: rgba(50, 58, 74, .95); border-color: rgba(255, 255, 255, .5); }
+.lightbox-close {
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  font-size: 26px;
+  line-height: 1;
+}
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  font-size: 30px;
+  line-height: 1;
+  padding-bottom: 4px;
+}
+.lightbox-nav.is-prev { left: 18px; }
+.lightbox-nav.is-next { right: 18px; }
+.lightbox-nav[hidden] { display: none; }
+
+@media (max-width: 640px) {
+  .lightbox { padding: 12px; }
+  .lightbox-nav { width: 40px; height: 40px; font-size: 26px; }
+  .lightbox-nav.is-prev { left: 8px; }
+  .lightbox-nav.is-next { right: 8px; }
+  .lightbox-figure img { max-height: calc(100vh - 150px); }
 }
