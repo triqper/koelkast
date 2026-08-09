@@ -95,6 +95,10 @@
     return Math.round(f.energyKwh * STROOMPRIJS);
   }
 
+  function costLabel(f) {
+    return '€' + yearlyCost(f) + ' p.j.';
+  }
+
   function energyPill(letter) {
     return '<span class="energy-pill" style="background:' + ENERGY_COLORS[letter] + '">' +
       letter + '</span>';
@@ -145,11 +149,12 @@
                 '<span class="price-value">' + euro.format(f.price) + '</span>' +
                 sourceTag(f) +
               '</p>' +
-              (f.rating ? ratingHtml(f.rating) : '') +
             '</div>' +
             '<div class="card-head-badges">' +
               energyPill(f.energy) +
               '<span class="noise-badge">' + f.noiseDb + ' dB</span>' +
+              '<span class="noise-badge">' + f.capacityL + 'l</span>' +
+              '<span class="noise-badge">' + costLabel(f) + '</span>' +
             '</div>' +
           '</div>' +
           notesHtml(f.id) +
@@ -161,11 +166,6 @@
             'Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</button>' +
         '</div>' +
       '</article>';
-  }
-
-  function ratingHtml(r) {
-    return '<p class="card-rating"><span aria-hidden="true">&#9733;</span> ' +
-      r.score.toFixed(1) + ' <span class="card-rating-count">(' + r.count + ')</span></p>';
   }
 
   /* ---------- eigen notities ---------- */
@@ -286,11 +286,8 @@
     return '<div class="cap">' +
       '<p class="cap-title">Kernspecs</p>' +
       '<p class="cap-line spec-strip">' +
-        specItem('Inhoud', f.capacityL + ' l') +
-        specItem('Geluid', f.noiseDb + ' dB') +
         specItem('Maten (h×b×d)', f.heightCm + '×' + f.widthCm + '×' + f.depthCm + ' cm') +
-        specItem('Label', f.energy + ' — ' + f.energyKwh + ' kWh/jr') +
-        specItem('Stroomkosten', '&plusmn; ' + euro.format(yearlyCost(f)) + '/jr') +
+        specItem('Jaarverbruik', f.energyKwh + ' kWh/jr') +
       '</p>' +
     '</div>';
   }
