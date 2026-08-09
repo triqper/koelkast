@@ -345,6 +345,191 @@ const VRIEZERS = [
     photoUrl: 'https://www.smeg.com/nl',
     photoLabel: 'Smeg.com',
     expertUrl: 'https://www.expert.nl/smeg-ff18en2hx-rvs-372588180'
+  },
+  {
+    id: 'beko-rfne448e35w',
+    brand: 'Beko',
+    model: 'RFNE448E35W',
+    series: 'ProSmart',
+    kleur: 'Wit',
+    group: 'vriezer',
+    accent: '#e2001a',
+    source: 'expert',
+    price: 849,
+    priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    energy: 'E',
+    energyKwh: 292,
+    heightCm: 192,
+    widthCm: 70,
+    depthCm: 77,
+    noiseDb: 38,
+    capacityL: 404,
+    tagline: 'Verreweg de grootste: 404 liter, ook breder en dieper dan de rest.',
+    highlights: [
+      '404 liter — veruit de meeste inhoud',
+      'ProSmart-invertercompressor, stil en zuinig voor dit formaat',
+      '8 lades + 2 glazen platen',
+      'Freezer Guard — werkt door tot -15°C omgevingstemperatuur'
+    ],
+    description:
+      'De Beko RFNE448E35W is met 404 liter ruim de grootste vrieskast in dit overzicht — ook merkbaar breder (70 cm) en dieper (77 cm) dan de andere modellen, die allemaal rond de 59-65 cm blijven. De ProSmart-invertercompressor houdt het geluidsniveau met 38 dB toch laag voor dit formaat. Acht lades en twee glazen platen bieden veel indeelbare ruimte, en Freezer Guard-technologie laat hem ook in een onverwarmde garage of schuur tot -15°C werken.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '404 liter'],
+      ['Afmetingen (h×b×d)', '192 × 70 × 77 cm'],
+      ['Energielabel', 'E — 292 kWh/jaar'],
+      ['Geluidsniveau', '38 dB(A)'],
+      ['Lades', '8 + 2 glazen platen'],
+      ['Compressor', 'ProSmart-inverter'],
+      ['Omgevingstemperatuur', 'Tot -15°C (Freezer Guard)'],
+      ['Ontdooiing', 'NoFrost']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/beko-rfne448e35w/01-productfoto.webp', label: 'Productfoto' }
+    ],
+    photoCredit: 'Productfoto: Beko, via Expert.nl.',
+    photoUrl: 'https://www.beko.com/nl-nl/producten/vrijstaande-vriezers/404-l-rechtop-diepvriezer-rfne448e35w',
+    photoLabel: 'Foto’s op Beko.com',
+    expertUrl: 'https://www.expert.nl/beko-rfne448e35w-372579133'
+  },
+  {
+    id: 'inventum-vr1850w',
+    brand: 'Inventum',
+    model: 'VR1850W',
+    series: '',
+    kleur: 'Wit',
+    group: 'vriezer',
+    accent: '#2b2d42',
+    source: 'expert',
+    price: 699,
+    priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    energy: 'C',
+    energyKwh: 157,
+    heightCm: 185,
+    widthCm: 59.5,
+    depthCm: 64.4,
+    noiseDb: 39,
+    capacityL: 272,
+    tagline: 'Beste energielabel van de vergelijking: C bij 157 kWh/jaar.',
+    highlights: [
+      'Energielabel C — geen ander model komt hoger',
+      'Laagste jaarverbruik: 157 kWh',
+      '5 jaar fabrieksgarantie van Inventum',
+      'Digitaal display, 5 lades + 2 deurvakken'
+    ],
+    description:
+      'De Inventum VR1850W springt eruit met energielabel C en 157 kWh per jaar — merkbaar zuiniger dan alle andere modellen in dit overzicht, die allemaal op D of E zitten. Met 272 liter, 3 glazen platen, 5 transparante lades en 2 deurvakken is de indeling vergelijkbaar met de andere modellen rond de 185-186 cm. Inventum geeft er 5 jaar fabrieksgarantie op.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '272 liter'],
+      ['Afmetingen (h×b×d)', '185 × 59,5 × 64,4 cm'],
+      ['Energielabel', 'C — 157 kWh/jaar'],
+      ['Geluidsniveau', '39 dB(A)'],
+      ['Lades', '5 transparante lades + 3 glazen platen + 2 deurvakken'],
+      ['Snelvriezen', 'Supervriezen'],
+      ['Ontdooiing', 'Low Frost'],
+      ['Garantie', '5 jaar fabrieksgarantie']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/inventum-vr1850w/01-productfoto.webp', label: 'Productfoto' }
+    ],
+    photoCredit: 'Productfoto: Inventum, via Expert.nl.',
+    photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/koelen-vriezen/vr1850w/',
+    photoLabel: 'Foto’s op Inventum.eu',
+    expertUrl: 'https://www.expert.nl/inventum-vr1850w-372636897'
+  },
+  {
+    id: 'inventum-vr1850b',
+    brand: 'Inventum',
+    model: 'VR1850B',
+    series: '',
+    kleur: 'Zwart',
+    group: 'vriezer',
+    accent: '#2b2d42',
+    source: 'expert',
+    price: 665,
+    priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    energy: 'C',
+    energyKwh: 157,
+    heightCm: 185,
+    widthCm: 59.5,
+    depthCm: 64.4,
+    noiseDb: 39,
+    capacityL: 272,
+    tagline: 'Zelfde zuinige C-label als de witte VR1850W, nu in zwart staal — en goedkoper.',
+    highlights: [
+      'Energielabel C — geen ander model komt hoger',
+      'Goedkoper dan de witte versie: € 665',
+      'Zwart roestvrijstaal design',
+      '5 jaar fabrieksgarantie van Inventum'
+    ],
+    description:
+      'De Inventum VR1850B is technisch gelijk aan de witte VR1850W — energielabel C, 157 kWh, 272 liter, 39 dB — maar in zwart roestvrijstaal en met een lagere prijs (€ 665 tegenover € 699). Zelfde 5 transparante lades, Low Frost-technologie en 5 jaar fabrieksgarantie.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '272 liter'],
+      ['Afmetingen (h×b×d)', '185 × 59,5 × 64,4 cm'],
+      ['Energielabel', 'C — 157 kWh/jaar'],
+      ['Geluidsniveau', '39 dB(A)'],
+      ['Lades', '5 transparante lades + 2 deurvakken'],
+      ['Snelvriezen', 'Supervriezen'],
+      ['Ontdooiing', 'Low Frost'],
+      ['Kleur', 'Zwart roestvrijstaal'],
+      ['Garantie', '5 jaar fabrieksgarantie']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/inventum-vr1850b/01-productfoto.webp', label: 'Productfoto' }
+    ],
+    photoCredit: 'Productfoto: Inventum, via Expert.nl.',
+    photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/vriezers/vr1850b/',
+    photoLabel: 'Foto’s op Inventum.eu',
+    expertUrl: 'https://www.expert.nl/inventum-vr1850b-zwart-372636896'
+  },
+  {
+    id: 'beko-b5rfne315g',
+    brand: 'Beko',
+    model: 'B5RFNE315G',
+    series: 'ProSmart',
+    kleur: 'Zwart',
+    group: 'vriezer',
+    accent: '#e2001a',
+    source: 'expert',
+    price: 649,
+    priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    energy: 'D',
+    energyKwh: 200,
+    heightCm: 186.5,
+    widthCm: 59.7,
+    depthCm: 70.9,
+    noiseDb: 34,
+    capacityL: 286,
+    tagline: 'Goedkoopste model dat ook nog eens tot de stilste behoort: € 649, 34 dB.',
+    highlights: [
+      'Laagste prijs van alle elf modellen: € 649',
+      'Stilst samen met de Whirlpool 6312-serie: 34 dB',
+      'SmoothFit-deur opent 90° zonder uit te steken — ideaal in een hoek',
+      '3 geharde glazen platen, elk tot 25 kg'
+    ],
+    description:
+      'De Beko B5RFNE315G is met € 649 het goedkoopste model in de hele vergelijking, en met 34 dB tegelijk een van de stilste — dankzij de ProSmart-invertercompressor. De SmoothFit-deur opent tot 90° zonder voor de kast uit te steken, handig bij plaatsing in een hoek. Drie geharde glazen platen dragen elk tot 25 kg, en de deur is omkeerbaar naar de andere kant.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '286 liter'],
+      ['Afmetingen (h×b×d)', '186,5 × 59,7 × 70,9 cm'],
+      ['Energielabel', 'D — 200 kWh/jaar'],
+      ['Geluidsniveau', '34 dB(A)'],
+      ['Compressor', 'ProSmart-inverter'],
+      ['Platen', '3 geharde glazen platen, 25 kg per stuk'],
+      ['Deur', 'Omkeerbaar, SmoothFit tot 90°'],
+      ['Ontdooiing', 'NoFrost']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/beko-b5rfne315g/01-productfoto.webp', label: 'Productfoto' }
+    ],
+    photoCredit: 'Productfoto: Beko, via Expert.nl.',
+    photoUrl: 'https://www.beko.com/nl-nl/producten/vrijstaande-vriezers/plaats-instellingen-vrijstaand-afwasmachine-b5rfne315g',
+    photoLabel: 'Foto’s op Beko.com',
+    expertUrl: 'https://www.expert.nl/beko-b5rfne315g-zwart-372649839'
   }
 ];
 
