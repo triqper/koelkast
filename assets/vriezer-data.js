@@ -61,7 +61,8 @@ const VRIEZERS = [
       ['Garantie', '10 jaar op de compressor']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/aeg-oag7m281ew/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/aeg-oag7m281ew/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/aeg-oag7m281ew/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: AEG, via Expert.nl.',
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/freezers/free-standing-freezer/oag7m281ew/',
@@ -111,7 +112,8 @@ const VRIEZERS = [
       ['Garantie', '10 jaar op de compressor']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/aeg-oag7m281ex/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/aeg-oag7m281ex/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/aeg-oag7m281ex/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: AEG, via Expert.nl.',
     photoUrl: 'https://www.aeg.nl/kitchen/cooling/freezers/free-standing-freezer/oag7m281ex/',
@@ -158,7 +160,8 @@ const VRIEZERS = [
       ['Deuralarm', 'Ja']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/whirlpool-whmff6312w5e/01-productfoto.jpg', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/whirlpool-whmff6312w5e/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/whirlpool-whmff6312w5e/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Whirlpool (European Appliances Netherlands BV).',
     photoUrl: 'https://www.whirlpool.nl/w/whirlpool-vrijstaande-diepvriezer-whmff-6312-w5e/859991740610',
@@ -205,7 +208,8 @@ const VRIEZERS = [
       ['Kleur', 'New Silver (inox-look)']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/whirlpool-whmff6312xp5e/01-productfoto.jpg', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/whirlpool-whmff6312xp5e/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/whirlpool-whmff6312xp5e/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Whirlpool France (vtexassets).',
     photoUrl: 'https://www.whirlpool.nl/w/whirlpool-whmff-6312-xp5e-diepvriezer-kastmodel/859991740620',
@@ -250,8 +254,11 @@ const VRIEZERS = [
       ['Lades', 'Transparant'],
       ['Ontdooiing', 'Waterafvoersysteem']
     ],
-    photos: [],
-    photoCredit: '',
+    photos: [
+      { src: 'assets/photos-vriezer/whirlpool-whmff1292w4e/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/whirlpool-whmff1292w4e/02-open.webp', label: 'Open — indeling' }
+    ],
+    photoCredit: 'Productfoto: Whirlpool, via Krëfel.be.',
     photoUrl: 'https://www.whirlpool.be/nl_BE/w/whirlpool-whmff-1292-w4e-diepvries-kastmodel/859991739970',
     photoLabel: 'Foto’s op Whirlpool.be',
     expertUrl: 'https://www.expert.nl/zoeken?q=WHMFF+1292+W4E'
@@ -292,8 +299,11 @@ const VRIEZERS = [
       ['Vriestechnologie', 'Total NoFrost'],
       ['Extra', 'Blackout Alert bij stroomuitval']
     ],
-    photos: [],
-    photoCredit: '',
+    photos: [
+      { src: 'assets/photos-vriezer/whirlpool-whlf1292w5e/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/whirlpool-whlf1292w5e/02-open.jpg', label: 'Open — indeling' }
+    ],
+    photoCredit: 'Productfoto: Whirlpool, via Van Loock Electro.',
     photoUrl: 'https://www.whirlpool.nl/w/whirlpool-whlf-1292-w5e-diepvriezer-kastmodel/859993311710',
     photoLabel: 'Foto’s op Whirlpool.nl',
     expertUrl: 'https://www.expert.nl/zoeken?q=WHLF+1292+W5E'
@@ -339,7 +349,8 @@ const VRIEZERS = [
       ['Verlichting', 'LED']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/smeg-ff18en2hx/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/smeg-ff18en2hx/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/smeg-ff18en2hx/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Smeg, via Expert.nl.',
     photoUrl: 'https://www.smeg.com/nl',
@@ -385,7 +396,8 @@ const VRIEZERS = [
       ['Ontdooiing', 'NoFrost']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/beko-rfne448e35w/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/beko-rfne448e35w/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/beko-rfne448e35w/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Beko, via Expert.nl.',
     photoUrl: 'https://www.beko.com/nl-nl/producten/vrijstaande-vriezers/404-l-rechtop-diepvriezer-rfne448e35w',
@@ -431,7 +443,8 @@ const VRIEZERS = [
       ['Garantie', '5 jaar fabrieksgarantie']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/inventum-vr1850w/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/inventum-vr1850w/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/inventum-vr1850w/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Inventum, via Expert.nl.',
     photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/koelen-vriezen/vr1850w/',
@@ -478,7 +491,8 @@ const VRIEZERS = [
       ['Garantie', '5 jaar fabrieksgarantie']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/inventum-vr1850b/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/inventum-vr1850b/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/inventum-vr1850b/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Inventum, via Expert.nl.',
     photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/vriezers/vr1850b/',
@@ -524,7 +538,8 @@ const VRIEZERS = [
       ['Ontdooiing', 'NoFrost']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/beko-b5rfne315g/01-productfoto.webp', label: 'Productfoto' }
+      { src: 'assets/photos-vriezer/beko-b5rfne315g/01-gesloten.webp', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/beko-b5rfne315g/02-open.jpg', label: 'Open — indeling' }
     ],
     photoCredit: 'Productfoto: Beko, via Expert.nl.',
     photoUrl: 'https://www.beko.com/nl-nl/producten/vrijstaande-vriezers/plaats-instellingen-vrijstaand-afwasmachine-b5rfne315g',
