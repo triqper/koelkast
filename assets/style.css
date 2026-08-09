@@ -216,8 +216,9 @@ h1 {
   position: absolute;
   right: 12px;
   bottom: 12px;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,19 +226,31 @@ h1 {
   border: 1px solid var(--line);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
-  font-size: 18px;
-  line-height: 1;
-  color: var(--ink-3);
   cursor: pointer;
-  transition: color .15s, border-color .15s, background .15s, transform .1s;
+  transition: border-color .15s, background .15s, transform .1s;
 }
-.fav-btn:hover { color: var(--bad); border-color: var(--bad); }
-.fav-btn:active { transform: scale(.9); }
-.fav-btn.is-fav {
-  color: var(--bad);
-  border-color: transparent;
-  background: var(--bad-bg);
+.fav-btn svg { display: block; overflow: visible; }
+.fav-btn svg path {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.9;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: fill .15s, stroke .15s;
 }
+.fav-btn:hover svg path { stroke: var(--bad); }
+.fav-btn:active { transform: scale(.92); }
+.fav-btn.is-fav { border-color: transparent; background: var(--bad-bg); }
+.fav-btn.is-fav svg path { fill: var(--bad); stroke: var(--bad); }
+
+/* Speelse bevestiging bij het favoriet maken zelf; verwijderen blijft rustig. */
+@keyframes fav-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.32); }
+  65%  { transform: scale(.92); }
+  100% { transform: scale(1); }
+}
+.fav-btn.just-set svg { animation: fav-pop .4s cubic-bezier(.34, 1.56, .64, 1); }
 
 /* Op een telefoon vult 640 px bijna het hele scherm; daar iets lager. */
 @media (max-width: 560px) {

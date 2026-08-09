@@ -295,12 +295,20 @@
 
   /* Hartje rechtsonder op de foto: favoriet markeren voor de vergelijking
      onderaan de pagina. */
+  /* Eigen hartpad (geen icoonbibliotheek): symmetrisch om x=12, twee lobben
+     boven die samenkomen in een punt onderaan. Gevuld bij favoriet, anders
+     alleen een omtrek. */
+  const HEART_PATH = 'M12 21C12 21 3 14.6 3 9.1 3 6.1 5.4 4 8.3 4 10.1 4 11.4 5 12 6.4 ' +
+    '12.6 5 13.9 4 15.7 4 18.6 4 21 6.1 21 9.1 21 14.6 12 21 12 21Z';
+
   function favButton(f) {
     const on = !!FAVORITES[f.id];
     return '<button type="button" class="fav-btn' + (on ? ' is-fav' : '') +
       '" data-fav="' + f.id + '" aria-pressed="' + on + '" aria-label="' +
       (on ? 'Verwijder uit favorieten' : 'Markeer als favoriet') + '">' +
-      '<span aria-hidden="true">' + (on ? '♥' : '♡') + '</span>' +
+      '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">' +
+        '<path d="' + HEART_PATH + '"></path>' +
+      '</svg>' +
     '</button>';
   }
 
@@ -657,12 +665,23 @@
      staan) en zet de focus terug op het hartje, zodat toetsenbordgebruikers
      niet kwijtraken waar ze waren. */
   function toggleFavorite(id) {
+    const turningOn = !FAVORITES[id];
     if (FAVORITES[id]) delete FAVORITES[id];
     else FAVORITES[id] = true;
     saveFavorites();
     renderSections();
-    const btn = sections.querySelector('[data-fav="' + id + '"]');
-    if (btn) btn.focus();
+    /* Een favoriet kan nu op twee plekken staan (de eigen sectie én de
+       favorietensectie) — allebei krijgen het pop-effect. */
+    const btns = sections.querySelectorAll('[data-fav="' + id + '"]');
+    btns.forEach(function (b) {
+      if (!turningOn) return;
+      b.classList.add('just-set');
+      b.addEventListener('animationend', function done() {
+        b.classList.remove('just-set');
+        b.removeEventListener('animationend', done);
+      });
+    });
+    if (btns[0]) btns[0].focus();
   }
 
   function setNoteKind(card, kind) {
