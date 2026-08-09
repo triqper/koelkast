@@ -38,12 +38,30 @@
      is het na het sluiten van het tabblad weg. */
   const NOTES_KEY = 'koelkast-notities-v1';
 
+  const AUTHORS = { robbin: 'Robbin', anne: 'Anne' };
+
+  function authorLabel(key) {
+    return AUTHORS[key] || key;
+  }
+
+  /* Oude notities waren platte tekst-strings zonder auteur. Alles wat al
+     bestond is van Robbin — dat migreren we bij het inladen naar het nieuwe
+     { text, author }-formaat. */
   function loadNotes() {
+    let raw;
     try {
-      return JSON.parse(localStorage.getItem(NOTES_KEY)) || {};
+      raw = JSON.parse(localStorage.getItem(NOTES_KEY)) || {};
     } catch (e) {
       return {};
     }
+    Object.keys(raw).forEach(function (id) {
+      ['pro', 'con'].forEach(function (kind) {
+        raw[id][kind] = (raw[id][kind] || []).map(function (n) {
+          return typeof n === 'string' ? { text: n, author: 'robbin' } : n;
+        });
+      });
+    });
+    return raw;
   }
 
   function saveNotes() {
@@ -55,6 +73,13 @@
   }
 
   const NOTES = loadNotes();
+
+  /* Wie de notitielijst nu ziet ('robbin', 'anne' of 'all' voor beiden) en
+     wie als auteur geldt zodra je zelf een notitie toevoegt. Op 'all' staan
+     blijft de laatst gekozen persoon de auteur — je kunt niet 'als beiden'
+     iets toevoegen. */
+  let authorFilter = 'all';
+  let currentAuthor = 'robbin';
 
   /* Favorieten, per model, bewaard in de browser van de bezoeker — zelfde
      opzet als de notities. */
@@ -217,12 +242,18 @@
     return { pro: n.pro || [], con: n.con || [] };
   }
 
-  function noteRow(kind, text, i) {
+  /* `i` is de index in de volledige (ongefilterde) lijst van dat model —
+     data-i moet daarnaar blijven wijzen, ook als er door de auteursfilter
+     minder rijen te zien zijn, anders verwijdert het kruisje de verkeerde
+     notitie. */
+  function noteRow(kind, note, i) {
     const pro = kind === 'pro';
+    const author = authorLabel(note.author);
     return '<li class="note is-' + kind + '">' +
       '<span class="note-mark" aria-hidden="true">' + (pro ? '+' : '&minus;') + '</span>' +
-      '<span class="sr-only">' + (pro ? 'Pluspunt' : 'Minpunt') + ': </span>' +
-      '<span class="note-text">' + esc(text) + '</span>' +
+      '<span class="sr-only">' + (pro ? 'Pluspunt' : 'Minpunt') + ' van ' + author + ': </span>' +
+      '<span class="note-text">' + esc(note.text) + '</span>' +
+      '<span class="note-author is-' + note.author + '">' + author + '</span>' +
       '<button type="button" class="note-del" data-kind="' + kind + '" data-i="' + i + '" ' +
         'aria-label="Notitie verwijderen">&times;</button>' +
     '</li>';
@@ -230,10 +261,17 @@
 
   function noteListHtml(id) {
     const n = notesFor(id);
-    const rows = n.pro.map(function (t, i) { return noteRow('pro', t, i); })
-      .concat(n.con.map(function (t, i) { return noteRow('con', t, i); }));
-    return rows.length ? rows.join('')
-      : '<li class="note-empty">Nog geen notities.</li>';
+    const visible = function (note) {
+      return authorFilter === 'all' || note.author === authorFilter;
+    };
+    const rows = [];
+    n.pro.forEach(function (note, i) { if (visible(note)) rows.push(noteRow('pro', note, i)); });
+    n.con.forEach(function (note, i) { if (visible(note)) rows.push(noteRow('con', note, i)); });
+    if (rows.length) return rows.join('');
+    const anyAtAll = n.pro.length + n.con.length > 0;
+    return '<li class="note-empty">' + (anyAtAll
+      ? 'Geen notities van ' + authorLabel(authorFilter) + '.'
+      : 'Nog geen notities.') + '</li>';
   }
 
   function notesHtml(id) {
@@ -263,7 +301,7 @@
   function addNote(card, kind, text) {
     const id = card.dataset.id;
     const n = notesFor(id);
-    n[kind] = n[kind].concat(text);
+    n[kind] = n[kind].concat({ text: text, author: currentAuthor });
     NOTES[id] = n;
     saveNotes();
     refreshNotes(card);
@@ -629,6 +667,22 @@
     activeSort = e.target.value;
     renderSections();
     renderTable();
+  });
+
+  /* Geldt voor alle kaarten tegelijk, dus staat los van de sectiehernder.
+     'Beiden' laat currentAuthor ongewijzigd: dat blijft de auteur zodra je
+     zelf iets toevoegt terwijl je alles bekijkt. */
+  document.querySelector('.author-filter').addEventListener('click', function (e) {
+    const btn = e.target.closest('.author-btn');
+    if (!btn) return;
+    authorFilter = btn.dataset.author;
+    if (authorFilter !== 'all') currentAuthor = authorFilter;
+    document.querySelectorAll('.author-btn').forEach(function (b) {
+      const on = b === btn;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    renderSections();
   });
 
   /* Op de foto klikken vergroot hem meteen; de merkschakelaar wisselt van

@@ -95,9 +95,35 @@ h1 {
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 32px 0 8px;
 }
+
+/* Geldt voor alle kaarten tegelijk — vandaar in de controls-balk, niet per
+   kaart. Zelfde pil-vormgeving als de merkschakelaar op de foto. */
+.author-filter { display: flex; align-items: center; gap: 9px; font-size: 14px; }
+.author-filter-label { color: var(--ink-2); }
+.author-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.author-btn + .author-btn { margin-left: -1px; }
+.author-btn:hover { border-color: var(--ink-3); }
+.author-btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
 .sort { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--ink-2); }
 .sort select {
   font: inherit;
@@ -907,6 +933,19 @@ td.best { color: var(--good); font-weight: 700; }
 .note.is-pro .note-mark { background: var(--good-bg); color: var(--good); }
 .note.is-con .note-mark { background: var(--bad-bg); color: var(--bad); }
 .note-text { flex: 1; min-width: 0; overflow-wrap: anywhere; color: var(--ink); }
+/* Alleen nuttig als je 'Beiden' bekijkt, maar staat er altijd bij -- anders
+   springt de tekst opzij zodra je van filter wisselt. */
+.note-author {
+  flex: none;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-3);
+}
 .note-del {
   flex: none;
   border: 0;

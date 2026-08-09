@@ -36,7 +36,13 @@
 
 <main class="wrap">
 
-  <section class="controls" aria-label="Sorteren">
+  <section class="controls" aria-label="Sorteren en notities">
+    <div class="author-filter" role="group" aria-label="Notities van">
+      <span class="author-filter-label">Notities van</span>
+      <button type="button" class="author-btn" data-author="robbin">Robbin</button>
+      <button type="button" class="author-btn" data-author="anne">Anne</button>
+      <button type="button" class="author-btn is-on" data-author="all" aria-pressed="true">Beiden</button>
+    </div>
     <label class="sort">
       <span>Sorteer binnen elke sectie op</span>
       <select id="sort">
