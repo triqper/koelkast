@@ -335,15 +335,6 @@ h1 {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
-.price-discount {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--good);
-  background: var(--good-bg);
-  padding: 3px 7px;
-  border-radius: 4px;
-  white-space: nowrap;
-}
 
 /* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
    een aparte statsrij verderop. */
