@@ -13,7 +13,7 @@
 
   const SECTION = {
     title: 'Vrijstaande vrieskasten',
-    blurb: 'Alle zeven modellen op één rij — inhoud, geluid, maten, energielabel ' +
+    blurb: 'Alle modellen op één rij — inhoud, geluid, maten, energielabel ' +
            'en geschatte stroomkosten staan direct op de kaart.'
   };
 
