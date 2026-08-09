@@ -1077,3 +1077,37 @@ td.best { color: var(--good); font-weight: 700; }
 .cap-item-value.is-down { color: var(--bad); }
 .cap-item-value.is-same { color: var(--ink-3); }
 .cap-item-value.is-none { color: var(--ink-3); }
+
+/* ---------- vriezerpagina: sterrenscore en foto-placeholder ---------- */
+
+.card-rating {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.card-rating span[aria-hidden] { color: #f0b429; }
+.card-rating-count { color: var(--ink-3); }
+
+.spec-strip { row-gap: 8px; }
+
+/* Modellen zonder productfoto krijgen een rustige placeholder in plaats van
+   een lege kaart. */
+.photo-placeholder {
+  height: 640px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--ink-3);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+@media (max-width: 560px) {
+  .photo-placeholder { height: 300px; }
+}
+.stage .photo-placeholder { height: min(52vh, 420px); }
