@@ -261,6 +261,32 @@ h1 {
 .price-value { font-size: 27px; font-weight: 700; letter-spacing: -.02em; }
 .price-note { font-size: 12px; color: var(--ink-3); margin: 3px 0 0; }
 
+/* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
+   een aparte statsrij verderop. */
+.card-head { display: flex; align-items: flex-start; gap: 10px; }
+.card-head-text { min-width: 0; flex: 1; }
+.card-head-badges {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.noise-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .src-tag {
   font-size: 10.5px;
   font-weight: 700;
@@ -938,14 +964,7 @@ td.best { color: var(--good); font-weight: 700; }
   font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
-.cap-row.is-total {
-  margin-top: 4px;
-  padding-top: 6px;
-  border-top: 1px solid var(--line);
-  font-weight: 700;
-}
 .cap-label { color: var(--ink-2); }
-.cap-row.is-total .cap-label { color: var(--ink); }
 .cap-value { font-weight: 650; }
 .cap-delta {
   min-width: 62px;

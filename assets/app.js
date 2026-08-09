@@ -154,20 +154,23 @@
           '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
         '</div>' +
         '<div class="card-body">' +
-          '<p class="card-brand">' + f.brand + '</p>' +
-          '<h2 class="card-model">' + f.model + '</h2>' +
-          '<p class="card-series">' + f.series + '</p>' +
-          '<p class="card-price">' +
-            '<span class="price-value">' + euro.format(f.price) + '</span>' +
-            sourceTag(f) +
-          '</p>' +
-          '<p class="price-note">' + f.priceNote + '</p>' +
-          notesHtml(f.id) +
-          '<div class="card-stats">' +
-            stat('Label', energyPill(f.energy)) +
-            stat('Hoogte', f.heightLabel) +
-            stat('Geluid', f.noiseDb + ' dB') +
+          '<div class="card-head">' +
+            '<div class="card-head-text">' +
+              '<p class="card-brand">' + f.brand + '</p>' +
+              '<h2 class="card-model">' + f.model + '</h2>' +
+              '<p class="card-series">' + f.series + '</p>' +
+              '<p class="card-price">' +
+                '<span class="price-value">' + euro.format(f.price) + '</span>' +
+                sourceTag(f) +
+              '</p>' +
+              '<p class="price-note">' + f.priceNote + '</p>' +
+            '</div>' +
+            '<div class="card-head-badges">' +
+              energyPill(f.energy) +
+              '<span class="noise-badge">' + f.noiseDb + ' dB</span>' +
+            '</div>' +
           '</div>' +
+          notesHtml(f.id) +
           capacityBlock(f) +
           (twin ? '<p class="twin-note">' + twin.differs + '</p>' : '') +
           '<ul class="card-features">' +
@@ -294,20 +297,18 @@
       '<p class="cap-title">Inhoud tegenover de huidige kast ' +
         '<span>' + HUIDIG.fridge + ' l koel + ' + HUIDIG.freezer + ' l vries</span></p>' +
       '<div class="cap-rows">' +
-        capRow('Koel', f.capacityFridge, HUIDIG.fridge, false) +
-        capRow('Vries', f.capacityFreezer, HUIDIG.freezer, false) +
-        capRow('Totaal', f.capacityFridge + f.capacityFreezer,
-               HUIDIG.fridge + HUIDIG.freezer, true) +
+        capRow('Koel', f.capacityFridge, HUIDIG.fridge) +
+        capRow('Vries', f.capacityFreezer, HUIDIG.freezer) +
       '</div>' +
     '</div>';
   }
 
-  function capRow(label, value, ref, isTotal) {
+  function capRow(label, value, ref) {
     const d = value - ref;
     const cls = d > 0 ? ' is-up' : (d < 0 ? ' is-down' : ' is-same');
     const delta = d === 0 ? 'gelijk'
       : (d > 0 ? '+' : '−') + Math.abs(d) + ' l';
-    return '<div class="cap-row' + (isTotal ? ' is-total' : '') + '">' +
+    return '<div class="cap-row">' +
       '<span class="cap-label">' + label + '</span>' +
       '<span class="cap-value">' + (value ? value + ' l' : 'geen') + '</span>' +
       '<span class="cap-delta' + cls + '">' + delta + '</span>' +
