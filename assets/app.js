@@ -163,7 +163,6 @@
                 '<span class="price-value">' + euro.format(f.price) + '</span>' +
                 sourceTag(f) +
               '</p>' +
-              '<p class="price-note">' + f.priceNote + '</p>' +
             '</div>' +
             '<div class="card-head-badges">' +
               energyPill(f.energy) +
@@ -300,30 +299,34 @@
       f.capacityFridge + ' l koel + ' + f.capacityFreezer + ' l vries';
   }
 
-  /* Inhoud in liters, koel en vries apart, afgezet tegen de kast die er nu
-     staat. Het verschil is een feit, geen oordeel: minder vriesruimte is geen
-     nadeel als er een losse vriezer staat. */
+  /* Alleen het verschil met de kast die er nu staat, niet de liters zelf: op
+     één regel, Koel en Vries naast elkaar. Geen vriesvak is een feit ('Geen'),
+     geen verlies om in liters uit te drukken. */
   function capacityBlock(f) {
+    const koel = capDelta(f.capacityFridge - HUIDIG.fridge);
+    const vries = f.capacityFreezer
+      ? capDelta(f.capacityFreezer - HUIDIG.freezer)
+      : { cls: ' is-none', text: 'Geen' };
     return '<div class="cap">' +
       '<p class="cap-title">Inhoud tegenover de huidige kast ' +
         '<span>' + HUIDIG.fridge + ' l koel + ' + HUIDIG.freezer + ' l vries</span></p>' +
-      '<div class="cap-rows">' +
-        capRow('Koel', f.capacityFridge, HUIDIG.fridge) +
-        capRow('Vries', f.capacityFreezer, HUIDIG.freezer) +
-      '</div>' +
+      '<p class="cap-line">' +
+        capItem('Koel', koel) +
+        capItem('Vries', vries) +
+      '</p>' +
     '</div>';
   }
 
-  function capRow(label, value, ref) {
-    const d = value - ref;
-    const cls = d > 0 ? ' is-up' : (d < 0 ? ' is-down' : ' is-same');
-    const delta = d === 0 ? 'gelijk'
-      : (d > 0 ? '+' : '−') + Math.abs(d) + ' l';
-    return '<div class="cap-row">' +
-      '<span class="cap-label">' + label + '</span>' +
-      '<span class="cap-value">' + (value ? value + ' l' : 'geen') + '</span>' +
-      '<span class="cap-delta' + cls + '">' + delta + '</span>' +
-    '</div>';
+  function capDelta(d) {
+    if (d === 0) return { cls: ' is-same', text: 'gelijk' };
+    return { cls: d > 0 ? ' is-up' : ' is-down', text: (d > 0 ? '+' : '−') + Math.abs(d) + ' l' };
+  }
+
+  function capItem(label, d) {
+    return '<span class="cap-item">' +
+      '<span class="cap-item-label">' + label + '</span> ' +
+      '<span class="cap-item-value' + d.cls + '">' + d.text + '</span>' +
+    '</span>';
   }
 
   /* Maakt zichtbaar waar een prijs vandaan komt: de offerte, de webshop van

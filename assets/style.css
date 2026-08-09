@@ -259,7 +259,6 @@ h1 {
   gap: 9px;
 }
 .price-value { font-size: 27px; font-weight: 700; letter-spacing: -.02em; }
-.price-note { font-size: 12px; color: var(--ink-3); margin: 3px 0 0; }
 
 /* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
    een aparte statsrij verderop. */
@@ -963,23 +962,19 @@ td.best { color: var(--good); font-weight: 700; }
   font-size: 11px;
   opacity: .85;
 }
-.cap-rows { display: flex; flex-direction: column; gap: 3px; }
-.cap-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: baseline;
-  gap: 10px;
+/* Koel en vries op één regel, alleen het verschil met de huidige kast. */
+.cap-line {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
   font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
-.cap-label { color: var(--ink-2); }
-.cap-value { font-weight: 650; }
-.cap-delta {
-  min-width: 62px;
-  text-align: right;
-  font-size: 12px;
-  font-weight: 700;
-}
-.cap-delta.is-up { color: var(--good); }
-.cap-delta.is-down { color: var(--bad); }
-.cap-delta.is-same { color: var(--ink-3); }
+.cap-item { display: inline-flex; align-items: baseline; gap: 5px; white-space: nowrap; }
+.cap-item-label { color: var(--ink-2); }
+.cap-item-value { font-weight: 700; }
+.cap-item-value.is-up { color: var(--good); }
+.cap-item-value.is-down { color: var(--bad); }
+.cap-item-value.is-same { color: var(--ink-3); }
+.cap-item-value.is-none { color: var(--ink-3); }
