@@ -208,7 +208,11 @@
               '<h2 class="card-model">' + f.model + '</h2>' +
               '<p class="card-series">' + f.series + '</p>' +
               '<p class="card-price">' +
-                '<span class="price-value">' + euro.format(f.price) + '</span>' +
+                (f.energy === 'D'
+                  ? '<span class="price-original">' + euro.format(f.price) + '</span>' +
+                    '<span class="price-discount" title="€650 duurzaamheidsregeling">−€650</span>' +
+                    '<span class="price-value">' + euro.format(f.price - 650) + '</span>'
+                  : '<span class="price-value">' + euro.format(f.price) + '</span>') +
                 sourceTag(f) +
               '</p>' +
             '</div>' +
@@ -482,10 +486,15 @@
 
   function renderTable() {
     tableBody.innerHTML = visibleFridges().map(function (f) {
+      const priceCell = f.energy === 'D'
+        ? '<span class="price-original">' + euro.format(f.price) + '</span> ' +
+          '<span class="price-discount">−€650</span> ' +
+          '<strong>' + euro.format(f.price - 650) + '</strong>'
+        : euro.format(f.price);
       return '<tr data-id="' + f.id + '">' +
         '<td class="row-model">' + f.brand + ' ' + f.model + '<small>' + f.series + '</small></td>' +
         '<td>' + sectionTitle(f) + '</td>' +
-        '<td class="num">' + euro.format(f.price) + ' ' + sourceTag(f) + '</td>' +
+        '<td class="num">' + priceCell + ' ' + sourceTag(f) + '</td>' +
         '<td>' + energyPill(f.energy) + '</td>' +
         '<td class="num' + (f.energyKwh === BEST.energyKwh ? ' best' : '') + '">' +
           f.energyKwh + '</td>' +
@@ -512,8 +521,11 @@
     document.getElementById('modal-tagline').textContent = f.tagline;
     document.getElementById('modal-desc').textContent = f.description;
 
+    const priceDisplay = f.energy === 'D'
+      ? euro.format(f.price - 650) + ' <span class="stat-note">(was ' + euro.format(f.price) + ')</span>'
+      : euro.format(f.price);
     document.getElementById('modal-keys').innerHTML =
-      stat('Prijs', euro.format(f.price)) +
+      stat('Prijs', priceDisplay) +
       stat('Label', energyPill(f.energy)) +
       stat('Hoogte', f.heightLabel) +
       stat('Geluid', f.noiseDb + ' dB') +

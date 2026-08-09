@@ -328,6 +328,22 @@ h1 {
   gap: 9px;
 }
 .price-value { font-size: 27px; font-weight: 700; letter-spacing: -.02em; }
+.price-original {
+  font-size: 14px;
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.price-discount {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--good);
+  background: var(--good-bg);
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
 
 /* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
    een aparte statsrij verderop. */
@@ -399,6 +415,16 @@ h1 {
   margin-bottom: 3px;
 }
 .stat-value { font-size: 15px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.stat-note {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 2px;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
 
 .energy-pill {
   display: inline-flex;
