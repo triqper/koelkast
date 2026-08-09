@@ -209,9 +209,9 @@
               '<p class="card-series">' + f.series + '</p>' +
               '<p class="card-price">' +
                 (f.energy === 'D'
-                  ? '<span class="price-original">' + euro.format(f.price) + '</span>' +
-                    '<span class="price-discount" title="€650 duurzaamheidsregeling">−€650</span>' +
-                    '<span class="price-value">' + euro.format(f.price - 650) + '</span>'
+                  ? '<span class="price-value">' + euro.format(f.price - 649) + '</span>' +
+                    '<span class="price-original" title="Duurzaamheidsregeling: €649 korting">' +
+                      euro.format(f.price) + '</span>'
                   : '<span class="price-value">' + euro.format(f.price) + '</span>') +
                 sourceTag(f) +
               '</p>' +
@@ -487,9 +487,8 @@
   function renderTable() {
     tableBody.innerHTML = visibleFridges().map(function (f) {
       const priceCell = f.energy === 'D'
-        ? '<span class="price-original">' + euro.format(f.price) + '</span> ' +
-          '<span class="price-discount">−€650</span> ' +
-          '<strong>' + euro.format(f.price - 650) + '</strong>'
+        ? '<strong>' + euro.format(f.price - 649) + '</strong> ' +
+          '<span class="price-original">' + euro.format(f.price) + '</span>'
         : euro.format(f.price);
       return '<tr data-id="' + f.id + '">' +
         '<td class="row-model">' + f.brand + ' ' + f.model + '<small>' + f.series + '</small></td>' +
@@ -522,7 +521,7 @@
     document.getElementById('modal-desc').textContent = f.description;
 
     const priceDisplay = f.energy === 'D'
-      ? euro.format(f.price - 650) + ' <span class="stat-note">(was ' + euro.format(f.price) + ')</span>'
+      ? euro.format(f.price - 649) + ' <span class="stat-note">(was ' + euro.format(f.price) + ')</span>'
       : euro.format(f.price);
     document.getElementById('modal-keys').innerHTML =
       stat('Prijs', priceDisplay) +
