@@ -33,14 +33,15 @@ const TWINS = [
   {
     id: 'bsh-310',
     members: ['siemens-ki81rnse0', 'bosch-kir81nse0'],
-    shared: 'Wat de twee gemeen hebben.',
     differs: 'Waarin ze verschillen.'
   }
 ];
 ```
 
-Het eerste lid staat standaard op de kaart. De vergelijktabel onderaan de pagina
-toont beide modellen altijd, ongeacht wat de schakelaar doet.
+Het eerste lid staat standaard op de kaart, en die kaart begint verder hetzelfde
+als elke andere: alleen `differs` verschijnt, als notitie bij de specificaties.
+De vergelijktabel onderaan de pagina toont beide modellen altijd, ongeacht wat
+de schakelaar doet.
 
 Staat de kaart op een badge zoals *Stilst* of *Zuinigst* (rechtsboven op de
 foto, zelfde hoek als de schakelaar), dan schuift die badge naar beneden om de

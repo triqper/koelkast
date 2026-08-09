@@ -391,14 +391,6 @@ h1 {
   background: var(--ink);
   color: var(--bg);
 }
-.twin-shared {
-  margin: 0 0 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line-soft);
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--ink-3);
-}
 .twin-note {
   margin: 12px 0 0;
   font-size: 12px;

@@ -154,7 +154,6 @@
           '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
         '</div>' +
         '<div class="card-body">' +
-          (twin ? '<p class="twin-shared">' + twin.shared + '</p>' : '') +
           '<p class="card-brand">' + f.brand + '</p>' +
           '<h2 class="card-model">' + f.model + '</h2>' +
           '<p class="card-series">' + f.series + '</p>' +

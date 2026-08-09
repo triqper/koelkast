@@ -501,12 +501,12 @@ const FRIDGES = [
 
 /* Modellen die op één kaart samenkomen met een merkschakelaar. De Siemens en
  * de Bosch rollen van dezelfde BSH-band: gelijke inhoud, label, verbruik en
- * geluidsniveau. Wat verschilt staat in `differs`. */
+ * geluidsniveau. Wat verschilt staat in `differs`; de kaart begint verder
+ * hetzelfde als elke andere kaart. */
 const TWINS = [
   {
     id: 'bsh-310',
     members: ['siemens-ki81rnse0', 'bosch-kir81nse0'],
-    shared: 'Dezelfde BSH-techniek: 310 liter, label E, 114 kWh/jaar en 35 dB.',
     differs: 'Verschil zit in merk, prijs, breedte/nis en de indeling van lades en deurvakken.'
   }
 ];
