@@ -172,10 +172,10 @@
           '</div>' +
           notesHtml(f.id) +
           capacityBlock(f) +
-          (twin ? '<p class="twin-note">' + twin.differs + '</p>' : '') +
           '<ul class="card-features">' +
             f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('') +
           '</ul>' +
+          (twin ? twinDiffNote(twin) : '') +
           '<button type="button" class="card-open">' +
             'Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</button>' +
         '</div>' +
@@ -269,6 +269,17 @@
           'aria-pressed="' + on + '">' + m.brand + '</button>';
       }).join('') +
     '</div>';
+  }
+
+  /* Laatste zin van de kaart: waarin de twee merken verschillen. De titel
+     volgt uit de merken zelf, zodat een volgend paar in TWINS geen eigen
+     titeltekst nodig heeft. */
+  function twinDiffNote(t) {
+    const title = 'Verschil ' + t.members.map(function (id) {
+      return byId(id).brand;
+    }).join(' en ');
+    return '<p class="twin-note-title">' + title + '</p>' +
+      '<p class="twin-note">' + t.differs + '</p>';
   }
 
   /* De eerste foto uit de galerij is het kaartbeeld. */
