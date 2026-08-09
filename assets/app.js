@@ -150,10 +150,11 @@
           cardMedia(f) +
           '<span class="badge-type">' + f.nicheLabel + '</span>' +
           (badge ? '<span class="badge-best">' + badge + '</span>' : '') +
+          (twin ? twinMediaToggle(twin, f) : '') +
           '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
         '</div>' +
         '<div class="card-body">' +
-          (twin ? twinToggle(twin, f) : '') +
+          (twin ? '<p class="twin-shared">' + twin.shared + '</p>' : '') +
           '<p class="card-brand">' + f.brand + '</p>' +
           '<h2 class="card-model">' + f.model + '</h2>' +
           '<p class="card-series">' + f.series + '</p>' +
@@ -162,6 +163,7 @@
             sourceTag(f) +
           '</p>' +
           '<p class="price-note">' + f.priceNote + '</p>' +
+          notesHtml(f.id) +
           '<div class="card-stats">' +
             stat('Label', energyPill(f.energy)) +
             stat('Hoogte', f.heightLabel) +
@@ -174,7 +176,6 @@
           '</ul>' +
           '<button type="button" class="card-open">' +
             'Bekijk foto&rsquo;s, beschrijving &amp; specificaties &rarr;</button>' +
-          notesHtml(f.id) +
         '</div>' +
       '</article>';
   }
@@ -254,19 +255,17 @@
     refreshNotes(card);
   }
 
-  /* Twee merken op één kaart: de schakelaar wisselt welk model getoond wordt. */
-  function twinToggle(t, active) {
-    return '<div class="twin-head">' +
-      '<div class="twin-toggle" role="group" aria-label="Kies merk">' +
-        t.members.map(function (id) {
-          const m = byId(id);
-          const on = id === active.id;
-          return '<button type="button" class="twin-btn' + (on ? ' is-on' : '') +
-            '" data-twin="' + t.id + '" data-member="' + id + '" ' +
-            'aria-pressed="' + on + '">' + m.brand + '</button>';
-        }).join('') +
-      '</div>' +
-      '<p class="twin-shared">' + t.shared + '</p>' +
+  /* Twee merken op één kaart: de schakelaar staat rechtsboven op de foto en
+     wisselt welk model de kaart toont. */
+  function twinMediaToggle(t, active) {
+    return '<div class="twin-toggle media-twin-toggle" role="group" aria-label="Kies merk">' +
+      t.members.map(function (id) {
+        const m = byId(id);
+        const on = id === active.id;
+        return '<button type="button" class="twin-btn' + (on ? ' is-on' : '') +
+          '" data-twin="' + t.id + '" data-member="' + id + '" ' +
+          'aria-pressed="' + on + '">' + m.brand + '</button>';
+      }).join('') +
     '</div>';
   }
 

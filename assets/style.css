@@ -353,11 +353,18 @@ h1 {
 
 /* ---------- twee merken op één kaart ---------- */
 
-.twin-head {
-  margin: 0 0 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line-soft);
+/* De schakelaar zelf ligt op de cover foto, rechtsboven; badge-best staat op
+   dezelfde hoek en schuift bij een tweeling naar beneden om niet te overlappen. */
+.media-twin-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
+.card.is-twin .badge-best { top: 54px; }
+
 .twin-toggle {
   display: inline-flex;
   padding: 3px;
@@ -385,7 +392,9 @@ h1 {
   color: var(--bg);
 }
 .twin-shared {
-  margin: 8px 0 0;
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-soft);
   font-size: 12px;
   line-height: 1.45;
   color: var(--ink-3);
@@ -785,10 +794,13 @@ td.best { color: var(--good); font-weight: 700; }
   border: 0;
 }
 
+/* Staat nu onder de prijs, niet meer als laatste element van de kaart —
+   daarom een kader zoals .cap, niet meer edge-to-edge tot de kaartrand. */
 .card-notes {
-  margin: 16px -18px -18px;
-  padding: 14px 18px 16px;
-  border-top: 1px solid var(--line-soft);
+  margin: 14px 0 0;
+  padding: 12px 12px 11px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
   background: var(--surface-2);
   cursor: default;
 }

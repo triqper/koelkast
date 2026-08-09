@@ -25,8 +25,8 @@ modellen, niet kaarten.
 
 De Siemens KI81RNSE0 en de Bosch KIR81NSE0 komen van dezelfde BSH-band: gelijke
 inhoud (310 l), label E, 114 kWh/jaar en 35 dB. Ze delen daarom één kaart met een
-merkschakelaar; de kaart wisselt dan van foto, prijs, model, nishoogte en
-features. Dit staat in `TWINS` in `assets/data.js`:
+merkschakelaar rechtsboven op de coverfoto; de kaart wisselt dan van foto, prijs,
+model, nishoogte en features. Dit staat in `TWINS` in `assets/data.js`:
 
 ```js
 const TWINS = [
@@ -41,6 +41,11 @@ const TWINS = [
 
 Het eerste lid staat standaard op de kaart. De vergelijktabel onderaan de pagina
 toont beide modellen altijd, ongeacht wat de schakelaar doet.
+
+Staat de kaart op een badge zoals *Stilst* of *Zuinigst* (rechtsboven op de
+foto, zelfde hoek als de schakelaar), dan schuift die badge naar beneden om de
+schakelaar niet te overlappen — bij de huidige gegevens komt dat niet voor,
+maar de CSS-regel staat klaar (`.card.is-twin .badge-best`).
 
 ## Inhoud tegenover de huidige kast
 
@@ -74,8 +79,8 @@ voor de OSC7C181DS 249 l totaal terwijl 186 + 62 = 248.
 
 ## Eigen notities
 
-Onderin elke kaart staat een blok *Mijn notities*: typ een regel, kies `+` of
-`−`, en hij komt in het lijstje te staan. Enter in het invoerveld voegt de
+Direct onder de prijs staat een blok *Mijn notities*: typ een regel, kies `+`
+of `−`, en hij komt in het lijstje te staan. Enter in het invoerveld voegt de
 notitie toe met het gekozen teken. Met het kruisje achter een regel gooi je hem
 weg. Klikken in dit blok opent de kaart niet.
 
