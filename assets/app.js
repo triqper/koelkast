@@ -55,6 +55,28 @@
   }
 
   const NOTES = loadNotes();
+
+  /* Favorieten, per model, bewaard in de browser van de bezoeker — zelfde
+     opzet als de notities. */
+  const FAV_KEY = 'koelkast-favorieten-v1';
+
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem(FAV_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveFavorites() {
+    try {
+      localStorage.setItem(FAV_KEY, JSON.stringify(FAVORITES));
+    } catch (e) {
+      /* vol of geblokkeerd: favorieten blijven in deze sessie staan */
+    }
+  }
+
+  const FAVORITES = loadFavorites();
   let lastFocused = null;
   let lightboxOrigin = null;
   let currentFridge = null;
@@ -151,6 +173,7 @@
           '<span class="badge-type">' + f.nicheLabel + '</span>' +
           (badge ? '<span class="badge-best">' + badge + '</span>' : '') +
           (twin ? twinMediaToggle(twin, f) : '') +
+          favButton(f) +
           '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
         '</div>' +
         '<div class="card-body">' +
@@ -270,6 +293,17 @@
     '</div>';
   }
 
+  /* Hartje rechtsonder op de foto: favoriet markeren voor de vergelijking
+     onderaan de pagina. */
+  function favButton(f) {
+    const on = !!FAVORITES[f.id];
+    return '<button type="button" class="fav-btn' + (on ? ' is-fav' : '') +
+      '" data-fav="' + f.id + '" aria-pressed="' + on + '" aria-label="' +
+      (on ? 'Verwijder uit favorieten' : 'Markeer als favoriet') + '">' +
+      '<span aria-hidden="true">' + (on ? '♥' : '♡') + '</span>' +
+    '</button>';
+  }
+
   /* Laatste zin van de kaart: waarin de twee merken verschillen. De titel
      volgt uit de merken zelf, zodat een volgend paar in TWINS geen eigen
      titeltekst nodig heeft. */
@@ -355,8 +389,14 @@
       t.label + '</span>';
   }
 
+  /* Favoriete modellen, ongeacht sectie — elk model telt apart mee, ook de
+     kant van een tweeling die nu niet in het overzicht staat. */
+  function favoriteFridges() {
+    return sorted(FRIDGES.filter(function (f) { return FAVORITES[f.id]; }));
+  }
+
   function renderSections() {
-    sections.innerHTML = SECTIONS.map(function (s) {
+    const groupSections = SECTIONS.map(function (s) {
       const list = fridgesIn(s.group);
       if (!list.length) return '';
       /* Tel modellen, niet kaarten: een tweeling is één kaart maar twee
@@ -371,6 +411,20 @@
         '<div class="grid">' + list.map(cardHtml).join('') + '</div>' +
       '</section>';
     }).join('');
+
+    const favs = favoriteFridges();
+    const favSection = !favs.length ? '' :
+      '<section class="model-section is-favorites" aria-labelledby="sec-favorites">' +
+        '<div class="section-head">' +
+          '<h2 id="sec-favorites">Favorieten' +
+            '<span class="section-count">' + favs.length + '</span></h2>' +
+          '<p class="section-blurb">Met het hartje op een foto gemarkeerd, hier ' +
+            'naast elkaar om ze direct te vergelijken.</p>' +
+        '</div>' +
+        '<div class="grid">' + favs.map(cardHtml).join('') + '</div>' +
+      '</section>';
+
+    sections.innerHTML = groupSections + favSection;
   }
 
   function sectionTitle(f) {
@@ -590,9 +644,26 @@
       switchTwin(twinBtn.dataset.twin, twinBtn.dataset.member);
       return;
     }
+    const favBtn = e.target.closest('[data-fav]');
+    if (favBtn) {
+      toggleFavorite(favBtn.dataset.fav);
+      return;
+    }
     if (e.target.closest('[data-zoom]')) openPhotoFor(card.dataset.id);
     else openModal(card.dataset.id);
   });
+
+  /* Herbouwt de secties (de kaart met dit model kan er ná een wissel niet meer
+     staan) en zet de focus terug op het hartje, zodat toetsenbordgebruikers
+     niet kwijtraken waar ze waren. */
+  function toggleFavorite(id) {
+    if (FAVORITES[id]) delete FAVORITES[id];
+    else FAVORITES[id] = true;
+    saveFavorites();
+    renderSections();
+    const btn = sections.querySelector('[data-fav="' + id + '"]');
+    if (btn) btn.focus();
+  }
 
   function setNoteKind(card, kind) {
     const form = card.querySelector('.note-form');

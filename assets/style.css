@@ -209,6 +209,36 @@ h1 {
 }
 .card-media:hover .card-zoom { opacity: 1; }
 
+/* Hartje rechtsonder: favoriet markeren voor de vergelijkingssectie
+   onderaan. Altijd zichtbaar (niet pas bij hover) — anders is de knop op
+   een telefoon niet te vinden. */
+.fav-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s, transform .1s;
+}
+.fav-btn:hover { color: var(--bad); border-color: var(--bad); }
+.fav-btn:active { transform: scale(.9); }
+.fav-btn.is-fav {
+  color: var(--bad);
+  border-color: transparent;
+  background: var(--bad-bg);
+}
+
 /* Op een telefoon vult 640 px bijna het hele scherm; daar iets lager. */
 @media (max-width: 560px) {
   .card-media .fridge-photo { height: 460px; }
