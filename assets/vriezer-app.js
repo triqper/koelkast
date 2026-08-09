@@ -132,7 +132,7 @@
     const badge = badgeFor(f);
     return '' +
       '<article class="card" style="--accent:' + f.accent + '" data-id="' + f.id + '">' +
-        '<div class="card-media" data-zoom>' +
+        '<div class="card-media">' +
           cardMedia(f) +
           '<span class="badge-type">' + f.kleur + '</span>' +
           (badge ? '<span class="badge-best">' + badge + '</span>' : '') +
@@ -268,11 +268,25 @@
 
   /* De eerste foto uit de galerij is het kaartbeeld. Zonder foto's komt er
      een simpele placeholder met vriessymbool, zodat de kaart niet leeg is. */
+  /* Twee foto's naast elkaar op de kaart: dicht en open, zodat de indeling
+     direct te zien is zonder het detailvenster te openen. */
   function cardMedia(f) {
-    const item = galleryItems(f)[0];
-    if (item) return renderItem(f, item);
-    return '<div class="photo-placeholder" aria-hidden="true">' +
-      '<span>' + f.brand + '<br>' + f.model + '</span></div>';
+    const items = galleryItems(f);
+    return '<div class="card-media-photos">' +
+      mediaSlot(f, items[0], 0) +
+      mediaSlot(f, items[1], 1) +
+    '</div>';
+  }
+
+  function mediaSlot(f, item, index) {
+    const label = index === 0 ? 'Dicht' : 'Open';
+    const photo = item ? renderItem(f, item) :
+      '<div class="photo-placeholder" aria-hidden="true">' +
+        '<span>' + f.brand + '<br>' + f.model + '</span></div>';
+    return '<div class="card-media-photo" data-zoom data-photo-index="' + index + '">' +
+      photo +
+      '<span class="card-media-photo-label">' + label + '</span>' +
+    '</div>';
   }
 
   function stat(label, value) {
@@ -505,13 +519,14 @@
     if (lightboxOrigin) lightboxOrigin.focus();
   }
 
-  function openPhotoFor(id) {
+  function openPhotoFor(id, index) {
     const f = VRIEZERS.filter(function (x) { return x.id === id; })[0];
     if (!f) return;
-    const first = galleryItems(f)[0];
-    if (!first) return;
+    const items = galleryItems(f);
+    const item = items[index] || items[0];
+    if (!item) return;
     currentFreezer = f;
-    currentView = first.id;
+    currentView = item.id;
     openLightbox(document.querySelector('.card[data-id="' + id + '"]'));
   }
 
@@ -560,7 +575,8 @@
       toggleFavorite(favBtn.dataset.fav);
       return;
     }
-    if (e.target.closest('[data-zoom]')) openPhotoFor(card.dataset.id);
+    const zoomEl = e.target.closest('[data-zoom]');
+    if (zoomEl) openPhotoFor(card.dataset.id, Number(zoomEl.dataset.photoIndex));
     else openModal(card.dataset.id);
   });
 
