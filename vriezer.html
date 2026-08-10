@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vriezers vergelijken — visueel overzicht</title>
-<meta name="description" content="Visueel overzicht van elf vrijstaande vrieskasten: inhoud, geluidsniveau, maten, energielabel en geschatte stroomkosten per jaar.">
+<meta name="description" content="Visueel overzicht van twaalf vrijstaande vrieskasten: inhoud, geluidsniveau, maten, energielabel, geschatte stroomkosten en de goedkoopste NL-webshop per model.">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧊</text></svg>">
 </head>
@@ -15,15 +15,18 @@
     <p class="eyebrow">Keuzehulp · augustus 2026</p>
     <h1>Welke vriezer wordt het?</h1>
     <p class="lede">
-      Elf vrijstaande vrieskasten op één rij, in één sectie. Inhoud in liters,
-      geluidsniveau, maten (hoogte × breedte × diepte), energielabel en geschatte
-      stroomkosten per jaar staan direct op elke kaart — geen klikken nodig om ze
-      te zien. Klik op een foto om hem groot te bekijken, of ergens anders op de
-      kaart voor de beschrijving en de volledige specificatielijst. Onderin kun
-      je je eigen plus- en minpunten kwijt, net als bij de koelkasten.
+      Twaalf vrijstaande vrieskasten op één rij, in één sectie, standaard
+      gesorteerd op prijs (laag naar hoog). Inhoud in liters, geluidsniveau,
+      maten (hoogte × breedte × diepte), energielabel en geschatte
+      stroomkosten per jaar staan direct op elke kaart — geen klikken nodig om
+      ze te zien. Onder de Expert-prijs staat ook meteen of een andere
+      NL-webshop goedkoper is, met een directe link. Klik op een foto om hem
+      groot te bekijken, of ergens anders op de kaart voor de beschrijving en
+      de volledige specificatielijst. Onderin kun je je eigen plus- en
+      minpunten kwijt, net als bij de koelkasten.
     </p>
     <p class="lede-note">
-      Alle elf modellen en hun prijzen komen van de productoverzichten op
+      Alle twaalf modellen en hun prijzen komen van de productoverzichten op
       Expert.nl, bekeken op 9 augustus 2026. Afmetingen, geluidsniveau en het
       exacte jaarverbruik die niet op de productkaart zelf stonden zijn
       aangevuld uit de datasheet van de fabrikant — zie de toelichting onderaan
@@ -46,7 +49,7 @@
       <span>Sorteer op</span>
       <select id="sort">
         <option value="default">Merk</option>
-        <option value="price">Prijs (laag → hoog)</option>
+        <option value="price" selected>Prijs (laag → hoog)</option>
         <option value="capacity">Inhoud (groot → klein)</option>
         <option value="noise">Geluidsniveau (stil → luid)</option>
         <option value="energy">Energieverbruik (zuinig → onzuinig)</option>
@@ -70,6 +73,7 @@
             <th scope="col">Maten h×b×d</th>
             <th scope="col">Geluid</th>
             <th scope="col">Inhoud</th>
+            <th scope="col">Elders goedkoper</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -78,19 +82,20 @@
     <p class="table-note">
       Groen gemarkeerd = beste waarde in die kolom. Stroomkosten zijn een
       schatting bij € 0,40/kWh, geen offerte — je eigen energiecontract bepaalt
-      het werkelijke bedrag.
+      het werkelijke bedrag. "Elders goedkoper" vergelijkt de Expert-prijs met
+      andere grote NL-webshops, zie de toelichting hieronder.
     </p>
   </section>
 
   <section class="disclosure" aria-labelledby="bron-title">
     <h2 id="bron-title">Over de gegevens en de afbeeldingen</h2>
     <p>
-      <strong>Prijzen komen van Expert.nl.</strong> Alle elf modellen en hun
+      <strong>Prijzen komen van Expert.nl.</strong> Alle twaalf modellen en hun
       prijzen staan op de productoverzichten van Expert.nl, bekeken op 9 augustus
       2026. De AEG OAG7M281EW, AEG OAG7M281EX, de Smeg FF18EN2HX, de twee
-      Beko's en de twee Inventums hebben een eigen productpagina op Expert.nl
-      waar ook het energielabel, het jaarverbruik, het geluidsniveau, de maten
-      en de inhoud vandaan komen.
+      Beko's, de twee Inventums en de ETNA VV172NRVS hebben een eigen
+      productpagina op Expert.nl waar ook het energielabel, het jaarverbruik,
+      het geluidsniveau, de maten en de inhoud vandaan komen.
     </p>
     <p>
       <strong>De vier Whirlpool-modellen zijn aangevuld.</strong> Prijs, hoogte,
@@ -109,22 +114,41 @@
       bedrag hangt af van je eigen energiecontract.
     </p>
     <p>
-      <strong>Afbeeldingen.</strong> Negen van de elf modellen tonen een echte
-      productfoto van de fabrikant of winkel. Van de Whirlpool WHMFF 1292 W4E en
-      de Whirlpool WHLF 1292 W5E kon geen bruikbare productfoto worden
-      opgehaald; die kaarten tonen daarom een neutrale placeholder met merk en
-      modelnaam. Klik een foto aan om hem op volledige schermgrootte te
-      bekijken; met de pijltjestoetsen blader je door de reeks.
+      <strong>"Elders goedkoper" is gecontroleerd bij bol.com, Coolblue,
+      MediaMarkt en de prijsvergelijking op BCC.nl</strong>, bekeken op
+      9 augustus 2026. Bij vier modellen bleek een andere webshop goedkoper dan
+      Expert.nl — dat staat er met een directe link bij, inclusief het
+      prijsverschil. Bij de rest was de laagste prijs elders gelijk aan (of
+      hoger dan) Expert.nl, was het model niet leverbaar bij de gecontroleerde
+      winkels, of werd het daar helemaal niet verkocht — dat staat er dan ook
+      bij vermeld. De vier Whirlpool-modellen zijn bij geen van de
+      gecontroleerde NL-webshops gevonden (wel bij Belgische winkels als
+      Krëfel en Elektromic, die hier niet zijn meegenomen). Prijzen bij andere
+      webshops kunnen inmiddels gewijzigd zijn — de link gaat naar de
+      productpagina zelf.
+    </p>
+    <p>
+      <strong>De ETNA VV172NRVS is als enige in dit overzicht getest door de
+      Consumentenbond</strong>: Beste koop in januari 2026, Beste uit de test
+      in februari 2026 en een duurzaamheidsscore van 8,4 (feb 2026) — te zien
+      als badge op de kaart en in de kleine lettertjes van het detailvenster.
+    </p>
+    <p>
+      <strong>Afbeeldingen.</strong> Alle twaalf modellen tonen een echte
+      productfoto van de fabrikant of winkel, dicht en met de deur open. Klik
+      een foto aan om hem op volledige schermgrootte te bekijken; met de
+      pijltjestoetsen blader je door de reeks.
     </p>
     <p class="fineprint-sources">
       <strong>Herkomst van de foto's.</strong> AEG OAG7M281EW, AEG OAG7M281EX,
-      Smeg FF18EN2HX, Beko RFNE448E35W, Beko B5RFNE315G, Inventum VR1850W en
-      Inventum VR1850B komen van de productpagina op Expert.nl zelf. Whirlpool
-      WHMFF 6312 W5E komt van Elektromic (dezelfde CDN als de eigen
-      Whirlpool-distributeur), Whirlpool WHMFF 6312 XP5E van de Whirlpool
-      Frankrijk-productpagina. Alle foto's zijn auteursrechtelijk beschermd
-      materiaal van de fabrikanten of winkels en staan hier alleen als
-      keuzehulp.
+      Smeg FF18EN2HX, Beko RFNE448E35W, Beko B5RFNE315G, Inventum VR1850W,
+      Inventum VR1850B en ETNA VV172NRVS komen van de productpagina op
+      Expert.nl zelf. Whirlpool WHMFF 6312 W5E komt van Elektromic (dezelfde
+      CDN als de eigen Whirlpool-distributeur), Whirlpool WHMFF 6312 XP5E van
+      de Whirlpool Frankrijk-productpagina, en de Whirlpool WHMFF 1292 W4E en
+      WHLF 1292 W5E van Krëfel.be en Van Loock Electro. Alle foto's zijn
+      auteursrechtelijk beschermd materiaal van de fabrikanten of winkels en
+      staan hier alleen als keuzehulp.
     </p>
   </section>
 
@@ -153,6 +177,7 @@
         <h2 id="modal-title"></h2>
         <p class="modal-tagline" id="modal-tagline"></p>
         <div class="modal-keys" id="modal-keys"></div>
+        <div id="modal-cheaper"></div>
         <p class="modal-desc" id="modal-desc"></p>
         <h3>Unieke features</h3>
         <ul class="feature-list" id="modal-features"></ul>
