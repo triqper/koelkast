@@ -701,10 +701,10 @@ const VRIEZERS = [
     price: 694,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
     cheaper: {
-      shop: 'Bol.com',
-      price: 639,
-      savings: 55,
-      url: 'https://www.bol.com/nl/nl/p/etna-vv172nrvs-vrijstaande-vriezer-172-cm-hoog-rvs-energielabel-c-multi-flow-360-technologie-fastfreeze-5-lades-2-schappen/9300000179590382/'
+      shop: 'Keukenloods.nl',
+      price: 613,
+      savings: 81,
+      url: 'https://www.keukenloods.nl/product/etna-vv172nrvs-vriezer-etna/'
     },
     award: 'Hoogst beoordeeld door de Consumentenbond',
     reviews: {
