@@ -714,9 +714,10 @@ const VRIEZERS = [
       { src: 'assets/photos-vriezer/inventum-vr1850b/01-gesloten.webp', label: 'Dicht' },
       { src: 'assets/photos-vriezer/inventum-vr1850b/02-open.jpg', label: 'Open — indeling' },
       { src: 'assets/photos-vriezer/inventum-vr1850b/03-klantfoto-buitenkant.jpg', label: 'Klantfoto — geplaatst' },
-      { src: 'assets/photos-vriezer/inventum-vr1850b/04-klantfoto-interieur.jpg', label: 'Klantfoto — gevuld' }
+      { src: 'assets/photos-vriezer/inventum-vr1850b/04-klantfoto-interieur.jpg', label: 'Klantfoto — gevuld' },
+      { src: 'assets/photos-vriezer/inventum-vr1850b/05-productfoto-open.jpg', label: 'Open — gevuld' }
     ],
-    photoCredit: 'Productfoto: Inventum, via Expert.nl. Klantfoto’s: Pieter Andela (Aalten), via een review op Inventum.eu.',
+    photoCredit: 'Productfoto: Inventum, via Expert.nl. Klantfoto’s: Pieter Andela (Aalten), via een review op Inventum.eu. Vijfde foto (open, gevuld): aangeleverd door gebruiker, herkomst niet geverifieerd.',
     photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/vriezers/vr1850b/#comment-images-2',
     photoLabel: 'Foto’s op Inventum.eu',
     expertUrl: 'https://www.expert.nl/inventum-vr1850b-zwart-372636896'
@@ -867,9 +868,10 @@ const VRIEZERS = [
     ],
     photos: [
       { src: 'assets/photos-vriezer/etna-vv172nrvs/01-gesloten.jpg', label: 'Dicht' },
-      { src: 'assets/photos-vriezer/etna-vv172nrvs/02-open.jpg', label: 'Open — indeling' }
+      { src: 'assets/photos-vriezer/etna-vv172nrvs/02-open.jpg', label: 'Open — indeling' },
+      { src: 'assets/photos-vriezer/etna-vv172nrvs/03-productfoto-open.jpg', label: 'Open — gevuld' }
     ],
-    photoCredit: 'Productfoto: ETNA, via Expert.nl.',
+    photoCredit: 'Productfoto: ETNA, via Expert.nl. Derde foto (open, gevuld): aangeleverd door gebruiker, herkomst niet geverifieerd.',
     photoUrl: 'https://etna.nl/keukenapparatuur/vv172nrvs/',
     photoLabel: 'Foto’s op Etna.nl',
     expertUrl: 'https://www.expert.nl/etna-vv172nrvs-rvs-372640470'
