@@ -14,6 +14,15 @@
  * Stroomkosten per jaar zijn berekend als jaarverbruik (kWh) x aangenomen
  * stroomprijs, zie STROOMPRIJS hieronder — geen offerte- of contractprijs,
  * alleen een indicatie om modellen onderling te vergelijken.
+ *
+ * `cheaper` is de goedkoopste vondst bij een andere grote NL-webshop (bol.com,
+ * Coolblue, MediaMarkt, of via de prijsvergelijking op BCC.nl), bekeken op
+ * 9 augustus 2026 — `null` als daar geen prijs onder de Expert-prijs is
+ * gevonden (gelijk, duurder, niet leverbaar of niet verkocht in Nederland).
+ *
+ * `award` is een optioneel lintje voor een onafhankelijke test/erkenning
+ * (bv. Consumentenbond) — los van de automatisch berekende badges
+ * (Stilst/Zuinigst/Meeste inhoud).
  */
 
 const STROOMPRIJS = 0.40; /* euro per kWh, indicatief variabel tarief incl. belastingen, 2026 */
@@ -30,6 +39,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 829,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties uit het AEG-datasheet',
+    cheaper: null,
     rating: { score: 4.8, count: 6 },
     energy: 'E',
     energyKwh: 248,
@@ -80,6 +90,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 849,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties uit het AEG-datasheet',
+    cheaper: null,
     rating: { score: 4.3, count: 4 },
     energy: 'E',
     energyKwh: 248,
@@ -131,6 +142,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 838,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; afmetingen en geluidsniveau uit het Whirlpool-datasheet',
+    cheaper: null,
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -179,6 +191,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 889,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; afmetingen en geluidsniveau uit het Whirlpool-datasheet',
+    cheaper: null,
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -227,6 +240,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 659,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; overige specificaties uit publieke Whirlpool-productinformatie, niet Expert-specifiek geverifieerd',
+    cheaper: null,
     energy: 'E',
     energyKwh: 240,
     heightCm: 171.4,
@@ -274,6 +288,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 729,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; overige specificaties uit publieke Whirlpool-productinformatie, niet Expert-specifiek geverifieerd',
+    cheaper: null,
     energy: 'D',
     energyKwh: 193,
     heightCm: 170.5,
@@ -319,6 +334,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 827,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties van dezelfde productpagina',
+    cheaper: null,
     rating: { score: 4.7, count: 3 },
     energy: 'E',
     energyKwh: 249,
@@ -368,6 +384,12 @@ const VRIEZERS = [
     source: 'expert',
     price: 849,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    cheaper: {
+      shop: 'Bol.com',
+      price: 699,
+      savings: 150,
+      url: 'https://www.bol.com/nl/p/beko-rfne448e35w-vrieskast-nofrost/9300000010315248/'
+    },
     energy: 'E',
     energyKwh: 292,
     heightCm: 192,
@@ -415,6 +437,12 @@ const VRIEZERS = [
     source: 'expert',
     price: 699,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    cheaper: {
+      shop: 'Bol.com',
+      price: 632.90,
+      savings: 66.10,
+      url: 'https://www.bol.com/nl/nl/p/inventum-vr1850w-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-wit/9300000170962043/'
+    },
     energy: 'C',
     energyKwh: 157,
     heightCm: 185,
@@ -462,6 +490,12 @@ const VRIEZERS = [
     source: 'expert',
     price: 665,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    cheaper: {
+      shop: 'Bol.com',
+      price: 632,
+      savings: 33,
+      url: 'https://www.bol.com/nl/nl/p/inventum-vr1850b-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-zwart-rvs/9300000170962041/'
+    },
     energy: 'C',
     energyKwh: 157,
     heightCm: 185,
@@ -510,6 +544,7 @@ const VRIEZERS = [
     source: 'expert',
     price: 649,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    cheaper: null,
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -519,7 +554,7 @@ const VRIEZERS = [
     capacityL: 286,
     tagline: 'Goedkoopste model dat ook nog eens tot de stilste behoort: € 649, 34 dB.',
     highlights: [
-      'Laagste prijs van alle elf modellen: € 649',
+      'Laagste prijs van alle twaalf modellen op Expert.nl: € 649',
       'Stilst samen met de Whirlpool 6312-serie: 34 dB',
       'SmoothFit-deur opent 90° zonder uit te steken — ideaal in een hoek',
       '3 geharde glazen platen, elk tot 25 kg'
@@ -545,6 +580,62 @@ const VRIEZERS = [
     photoUrl: 'https://www.beko.com/nl-nl/producten/vrijstaande-vriezers/plaats-instellingen-vrijstaand-afwasmachine-b5rfne315g',
     photoLabel: 'Foto’s op Beko.com',
     expertUrl: 'https://www.expert.nl/beko-b5rfne315g-zwart-372649839'
+  },
+  {
+    id: 'etna-vv172nrvs',
+    brand: 'ETNA',
+    model: 'VV172NRVS',
+    series: 'Multi Flow 360',
+    kleur: 'Rvs',
+    group: 'vriezer',
+    accent: '#0f6e5c',
+    source: 'expert',
+    price: 694,
+    priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
+    cheaper: {
+      shop: 'Bol.com',
+      price: 639,
+      savings: 55,
+      url: 'https://www.bol.com/nl/nl/p/etna-vv172nrvs-vrijstaande-vriezer-172-cm-hoog-rvs-energielabel-c-multi-flow-360-technologie-fastfreeze-5-lades-2-schappen/9300000179590382/'
+    },
+    award: 'Hoogst beoordeeld door de Consumentenbond',
+    energy: 'C',
+    energyKwh: 150,
+    heightCm: 172,
+    widthCm: 59.5,
+    depthCm: 60,
+    noiseDb: 36,
+    capacityL: 240,
+    tagline: 'Als enige in dit overzicht getest en aanbevolen door de Consumentenbond.',
+    highlights: [
+      'Consumentenbond: Beste koop (jan 2026) én Beste uit de test (feb 2026)',
+      'Duurzaamheidsscore 8,4 bij de Consumentenbond',
+      'Zuinigste model: 150 kWh/jaar, label C',
+      'Werkt door tot -15°C — ook geschikt voor de schuur'
+    ],
+    description:
+      'De ETNA VV172NRVS is het enige model in dit overzicht met een Consumentenbond-test erbij: Beste koop in januari 2026 én Beste uit de test in februari 2026, met een duurzaamheidsscore van 8,4. Met 150 kWh per jaar bij energielabel C is het ook het zuinigste model van de twaalf. Multi Flow 360-technologie houdt de temperatuur gelijkmatig, FastFreeze vriest nieuwe boodschappen snel in, en dankzij de compressor die tot -15°C omgevingstemperatuur blijft werken kan hij ook in een onverwarmde schuur of garage staan. Met 240 liter over 5 lades en 2 schappen is de inhoud wel de kleinste van de vergelijking.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '240 liter'],
+      ['Afmetingen (h×b×d)', '172 × 59,5 × 60 cm'],
+      ['Energielabel', 'C — 150 kWh/jaar'],
+      ['Geluidsniveau', '36 dB(A)'],
+      ['Lades', '5 lades + 2 schappen'],
+      ['Snelvriezen', 'FastFreeze'],
+      ['Luchtcirculatie', 'Multi Flow 360'],
+      ['Omgevingstemperatuur', 'Tot -15°C'],
+      ['Ontdooiing', 'NoFrost'],
+      ['Test', 'Consumentenbond: Beste koop (jan 2026), Beste uit de test (feb 2026), duurzaamheidsscore 8,4 (feb 2026)']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/etna-vv172nrvs/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/etna-vv172nrvs/02-open.jpg', label: 'Open — indeling' }
+    ],
+    photoCredit: 'Productfoto: ETNA, via Expert.nl.',
+    photoUrl: 'https://etna.nl/keukenapparatuur/vv172nrvs/',
+    photoLabel: 'Foto’s op Etna.nl',
+    expertUrl: 'https://www.expert.nl/etna-vv172nrvs-rvs-372640470'
   }
 ];
 

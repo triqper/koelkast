@@ -17,7 +17,7 @@
            'en geschatte stroomkosten staan direct op de kaart.'
   };
 
-  let activeSort = 'default';
+  let activeSort = 'price';
 
   const NOTES_KEY = 'vriezer-notities-v1';
   const AUTHORS = { robbin: 'Robbin', anne: 'Anne' };
@@ -135,6 +135,7 @@
         '<div class="card-media">' +
           cardMedia(f) +
           '<span class="badge-type">' + f.kleur + '</span>' +
+          (f.award ? '<span class="badge-award">' + f.award + '</span>' : '') +
           (badge ? '<span class="badge-best">' + badge + '</span>' : '') +
           favButton(f) +
           '<span class="card-zoom" aria-hidden="true">Foto vergroten</span>' +
@@ -149,6 +150,7 @@
                 '<span class="price-value">' + euro.format(f.price) + '</span>' +
                 sourceTag(f) +
               '</p>' +
+              cheaperHtml(f, 'card-cheaper') +
             '</div>' +
             '<div class="card-head-badges">' +
               energyPill(f.energy) +
@@ -327,6 +329,20 @@
       t.label + '</span>';
   }
 
+  /* Prijs bij een andere NL-webshop, als die goedkoper is dan Expert.nl.
+     `cls` bepaalt de plek: op de kaart of in het detailvenster. */
+  function cheaperHtml(f, cls) {
+    if (!f.cheaper) {
+      return '<p class="' + cls + ' is-none">Geen goedkopere prijs gevonden bij andere NL-webshops.</p>';
+    }
+    const c = f.cheaper;
+    return '<p class="' + cls + '">' +
+      '<a href="' + c.url + '" target="_blank" rel="noopener noreferrer">' +
+        c.shop + ': ' + euro.format(c.price) +
+      '</a> — ' + euro.format(c.savings) + ' goedkoper dan Expert.nl' +
+    '</p>';
+  }
+
   function favoriteFreezers() {
     return sorted(VRIEZERS.filter(function (f) { return FAVORITES[f.id]; }));
   }
@@ -374,8 +390,16 @@
           f.noiseDb + ' dB</td>' +
         '<td class="num' + (f.capacityL === BEST.capacityL ? ' best' : '') + '">' +
           f.capacityL + ' l</td>' +
+        '<td class="num' + (f.cheaper ? ' best' : '') + '">' + tableCheaper(f) + '</td>' +
       '</tr>';
     }).join('');
+  }
+
+  function tableCheaper(f) {
+    if (!f.cheaper) return '<span class="table-cheaper-none">—</span>';
+    const c = f.cheaper;
+    return '<a href="' + c.url + '" target="_blank" rel="noopener noreferrer">' +
+      c.shop + ': ' + euro.format(c.price) + '</a> (&minus;' + euro.format(c.savings) + ')';
   }
 
   /* ---------- modal ---------- */
@@ -401,6 +425,8 @@
       stat('Geluid', f.noiseDb + ' dB') +
       stat('Maten', f.heightCm + '×' + f.widthCm + '×' + f.depthCm + ' cm') +
       stat('Stroomkosten', '&plusmn; ' + euro.format(yearlyCost(f)) + '/jr');
+
+    document.getElementById('modal-cheaper').innerHTML = cheaperHtml(f, 'modal-cheaper');
 
     document.getElementById('modal-features').innerHTML =
       f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('');

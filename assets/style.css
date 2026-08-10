@@ -17,6 +17,8 @@
   --check-bg: #e6edfd;
   --bad: #b42318;
   --bad-bg: #fdeceb;
+  --award: #92620a;
+  --award-bg: #fff3d6;
   --shadow-sm: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
   --shadow-md: 0 4px 12px rgba(16, 24, 40, .08), 0 12px 28px rgba(16, 24, 40, .10);
   --shadow-lg: 0 24px 60px rgba(16, 24, 40, .28);
@@ -41,6 +43,8 @@
     --check-bg: #182642;
     --bad: #ff9a90;
     --bad-bg: #3a1a17;
+    --award: #f5c451;
+    --award-bg: #3a2c0a;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, .45), 0 16px 32px rgba(0, 0, 0, .35);
     --shadow-lg: 0 24px 70px rgba(0, 0, 0, .7);
@@ -341,6 +345,23 @@ h1 {
   background: var(--good-bg);
   color: var(--good);
 }
+/* Onderscheiding van een externe testorganisatie (bv. Consumentenbond) —
+   staat los van de automatisch berekende badges hierboven. */
+.badge-award {
+  position: absolute;
+  top: 44px;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--award-bg);
+  color: var(--award);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
 .card-brand {
@@ -368,6 +389,22 @@ h1 {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
+
+/* Prijsvergelijking met andere NL-webshops, direct onder de Expert-prijs. */
+.card-cheaper {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--good);
+}
+.card-cheaper a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.card-cheaper.is-none { color: var(--ink-3); }
+.modal-cheaper {
+  margin: -6px 0 16px;
+  font-size: 13.5px;
+  color: var(--good);
+}
+.modal-cheaper a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.modal-cheaper.is-none { color: var(--ink-3); }
 
 /* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
    een aparte statsrij verderop. */
@@ -584,6 +621,7 @@ tbody tr { cursor: pointer; }
 tbody tr:hover { background: var(--surface-2); }
 td.num { font-variant-numeric: tabular-nums; }
 td.best { color: var(--good); font-weight: 700; }
+.table-cheaper-none { color: var(--ink-3); font-weight: 400; }
 .row-model { font-weight: 650; }
 .row-model small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; }
 .table-note { font-size: 13px; color: var(--ink-3); margin: 10px 2px 0; }
