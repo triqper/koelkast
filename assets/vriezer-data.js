@@ -712,10 +712,12 @@ const VRIEZERS = [
     ],
     photos: [
       { src: 'assets/photos-vriezer/inventum-vr1850b/01-gesloten.webp', label: 'Dicht' },
-      { src: 'assets/photos-vriezer/inventum-vr1850b/02-open.jpg', label: 'Open — indeling' }
+      { src: 'assets/photos-vriezer/inventum-vr1850b/02-open.jpg', label: 'Open — indeling' },
+      { src: 'assets/photos-vriezer/inventum-vr1850b/03-klantfoto-buitenkant.jpg', label: 'Klantfoto — geplaatst' },
+      { src: 'assets/photos-vriezer/inventum-vr1850b/04-klantfoto-interieur.jpg', label: 'Klantfoto — gevuld' }
     ],
-    photoCredit: 'Productfoto: Inventum, via Expert.nl.',
-    photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/vriezers/vr1850b/',
+    photoCredit: 'Productfoto: Inventum, via Expert.nl. Klantfoto’s: Pieter Andela (Aalten), via een review op Inventum.eu.',
+    photoUrl: 'https://www.inventum.eu/vrijstaande-apparaten/vriezers/vr1850b/#comment-images-2',
     photoLabel: 'Foto’s op Inventum.eu',
     expertUrl: 'https://www.expert.nl/inventum-vr1850b-zwart-372636896'
   },
