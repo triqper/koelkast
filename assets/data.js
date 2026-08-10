@@ -43,10 +43,10 @@ const FRIDGES = [
     price: 905,
     priceNote: 'webshopprijs Expert.nl, 8 augustus 2026',
     cheaper: {
-      shop: '123apparatuur.nl',
-      price: 844,
-      savings: 61,
-      url: 'https://www.123apparatuur.nl/siemens-ki81rnse0-siem/'
+      shop: 'Bemmel & Kroon',
+      price: 838,
+      savings: 67,
+      url: 'https://www.bemmelenkroon.nl/merken/siemens/ki81rnse0-siem/'
     },
     energy: 'E',
     energyKwh: 114,

@@ -39,7 +39,12 @@ const VRIEZERS = [
     source: 'expert',
     price: 829,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties uit het AEG-datasheet',
-    cheaper: null,
+    cheaper: {
+      shop: 'Bemmel & Kroon',
+      price: 779,
+      savings: 50,
+      url: 'https://www.bemmelenkroon.nl/merken/aeg/oag7m281ew-aego/'
+    },
     reviews: {
       status: 'none',
       checked: '10 augustus 2026'
@@ -500,10 +505,10 @@ const VRIEZERS = [
     price: 699,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
     cheaper: {
-      shop: 'Bol.com',
-      price: 632.90,
-      savings: 66.10,
-      url: 'https://www.bol.com/nl/nl/p/inventum-vr1850w-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-wit/9300000170962043/'
+      shop: 'Keukenloods.nl',
+      price: 600,
+      savings: 99,
+      url: 'https://www.keukenloods.nl/vr1850w.html'
     },
     reviews: {
       status: 'found',
@@ -571,10 +576,10 @@ const VRIEZERS = [
     price: 665,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
     cheaper: {
-      shop: 'Bol.com',
-      price: 632,
-      savings: 33,
-      url: 'https://www.bol.com/nl/nl/p/inventum-vr1850b-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-zwart-rvs/9300000170962041/'
+      shop: 'Keukenloods.nl',
+      price: 600,
+      savings: 65,
+      url: 'https://www.keukenloods.nl/vr1850b.html'
     },
     reviews: {
       status: 'found',
