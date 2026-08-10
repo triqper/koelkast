@@ -178,6 +178,7 @@
             '</div>' +
           '</div>' +
           reviewsHtml(f) +
+          buildQualityHtml(f) +
           notesHtml(f.id) +
           specStrip(f) +
           '<ul class="card-features">' +
@@ -416,6 +417,26 @@
       link +
       (r.note ? '<p class="rev-note">' + esc(r.note) + '</p>' : '') +
       '<p class="pc-checked">' + checked + '</p>' +
+    '</div>';
+  }
+
+  /* Bouwkwaliteit-ervaringen van gebruikers (lades, legplanken, plastic
+     onderdelen), grotendeels merkbreed of bij vergelijkbare modellen van
+     hetzelfde merk onderzocht — niet apart getest per model, dat staat er
+     expliciet bij. */
+  function buildQualityHtml(f) {
+    const bq = f.buildQuality;
+    if (!bq) return '';
+    return '<div class="quality-block">' +
+      '<p class="quality-title">Bouwkwaliteit — ervaringen van gebruikers</p>' +
+      '<ul class="quality-list">' +
+        '<li><strong>Lades:</strong> ' + esc(bq.drawers) + '</li>' +
+        '<li><strong>Legplanken:</strong> ' + esc(bq.shelves) + '</li>' +
+        '<li><strong>Plastic onderdelen:</strong> ' + esc(bq.plastic) + '</li>' +
+      '</ul>' +
+      (bq.lifespan ? '<p class="quality-lifespan">' + esc(bq.lifespan) + '</p>' : '') +
+      (bq.note ? '<p class="rev-note">' + esc(bq.note) + '</p>' : '') +
+      '<p class="pc-checked">' + esc(bq.scope) + ' · gecontroleerd ' + bq.checked + '</p>' +
     '</div>';
   }
 

@@ -49,6 +49,15 @@ const VRIEZERS = [
       status: 'none',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Merkbreed (AEG-vriezers) — niet apart getest voor dit model',
+      drawers: 'Vriesladen zijn van kunststof; reviews van AEG-vriezers in het algemeen noemen dat ze bij onvoorzichtig hanteren (bijvoorbeeld met natte handen) kunnen scheuren of afbreken.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Verder geen brede klachten gevonden buiten de kwetsbaarheid van de ladeplastic hierboven.',
+      lifespan: 'Qasa.nl: gemiddelde score voor AEG-vriezers 8,7/10 — overwegend tevreden gebruikers, met incidentele klachten over geluid en ijsvorming.',
+      note: 'Gebaseerd op reviews van AEG-vriezers in het algemeen, niet specifiek bevestigd voor dit model.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 248,
     heightCm: 186,
@@ -116,6 +125,15 @@ const VRIEZERS = [
       note: 'Reviews van AO.com, een Britse webshop — hetzelfde model, maar geen Nederlandse bron. Bol.com toont voor dit model nog geen reviews.',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Merkbreed (AEG-vriezers) — niet apart getest voor dit model',
+      drawers: 'Vriesladen zijn van kunststof; reviews van AEG-vriezers in het algemeen noemen dat ze bij onvoorzichtig hanteren (bijvoorbeeld met natte handen) kunnen scheuren of afbreken.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Verder geen brede klachten gevonden buiten de kwetsbaarheid van de ladeplastic hierboven.',
+      lifespan: 'Qasa.nl: gemiddelde score voor AEG-vriezers 8,7/10 — overwegend tevreden gebruikers, met incidentele klachten over geluid en ijsvorming.',
+      note: 'Gebaseerd op reviews van AEG-vriezers in het algemeen, niet specifiek bevestigd voor dit model.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 248,
     heightCm: 186,
@@ -171,6 +189,14 @@ const VRIEZERS = [
       status: 'none',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Merkbreed (Whirlpool-vriezers) — niet apart getest voor dit model',
+      drawers: 'Gebruikers melden dat het bovenste vriesvakklepje kwetsbaar is en dat plastic lades kunnen scheuren bij oneigenlijk gebruik.',
+      shelves: 'Dezelfde kwetsbaarheid wordt genoemd voor legplanken/platen als voor de lades.',
+      plastic: 'De bredere merkreputatie (niet vriezer-specifiek) wijst op kostenbesparing op plastic onderdelen; ervaringen lopen sterk uiteen, van tevreden gebruikers na jarenlang gebruik tot mensen die het "de slechtste vriezer ooit" noemen.',
+      note: 'Ervaringen sterk wisselend en niet specifiek bevestigd voor dit exacte model — gebaseerd op Whirlpool-vriezers in het algemeen.',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -222,6 +248,14 @@ const VRIEZERS = [
     cheaper: null,
     reviews: {
       status: 'none',
+      checked: '10 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Whirlpool-vriezers) — niet apart getest voor dit model',
+      drawers: 'Gebruikers melden dat het bovenste vriesvakklepje kwetsbaar is en dat plastic lades kunnen scheuren bij oneigenlijk gebruik.',
+      shelves: 'Dezelfde kwetsbaarheid wordt genoemd voor legplanken/platen als voor de lades.',
+      plastic: 'De bredere merkreputatie (niet vriezer-specifiek) wijst op kostenbesparing op plastic onderdelen; ervaringen lopen sterk uiteen, van tevreden gebruikers na jarenlang gebruik tot mensen die het "de slechtste vriezer ooit" noemen.',
+      note: 'Ervaringen sterk wisselend en niet specifiek bevestigd voor dit exacte model — gebaseerd op Whirlpool-vriezers in het algemeen.',
       checked: '10 augustus 2026'
     },
     energy: 'D',
@@ -282,6 +316,14 @@ const VRIEZERS = [
       status: 'none',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Merkbreed (Whirlpool-vriezers) — niet apart getest voor dit model',
+      drawers: 'Gebruikers melden dat het bovenste vriesvakklepje kwetsbaar is en dat plastic lades kunnen scheuren bij oneigenlijk gebruik.',
+      shelves: 'Dezelfde kwetsbaarheid wordt genoemd voor legplanken/platen als voor de lades.',
+      plastic: 'De bredere merkreputatie (niet vriezer-specifiek) wijst op kostenbesparing op plastic onderdelen; ervaringen lopen sterk uiteen, van tevreden gebruikers na jarenlang gebruik tot mensen die het "de slechtste vriezer ooit" noemen.',
+      note: 'Ervaringen sterk wisselend en niet specifiek bevestigd voor dit exacte model — gebaseerd op Whirlpool-vriezers in het algemeen.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 240,
     heightCm: 171.4,
@@ -334,6 +376,14 @@ const VRIEZERS = [
       status: 'none',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Merkbreed (Whirlpool-vriezers) — niet apart getest voor dit model',
+      drawers: 'Gebruikers melden dat het bovenste vriesvakklepje kwetsbaar is en dat plastic lades kunnen scheuren bij oneigenlijk gebruik.',
+      shelves: 'Dezelfde kwetsbaarheid wordt genoemd voor legplanken/platen als voor de lades.',
+      plastic: 'De bredere merkreputatie (niet vriezer-specifiek) wijst op kostenbesparing op plastic onderdelen; ervaringen lopen sterk uiteen, van tevreden gebruikers na jarenlang gebruik tot mensen die het "de slechtste vriezer ooit" noemen.',
+      note: 'Ervaringen sterk wisselend en niet specifiek bevestigd voor dit exacte model — gebaseerd op Whirlpool-vriezers in het algemeen.',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 193,
     heightCm: 170.5,
@@ -382,6 +432,14 @@ const VRIEZERS = [
     cheaper: null,
     reviews: {
       status: 'none',
+      checked: '10 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Smeg-koelkasten en -vriezers) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden dat een groente- of vrieslade broos is en na korte tijd breekt; één gebruiker kocht vervangende bakjes bij een budgetwinkel omdat die steviger bleken.',
+      shelves: 'Klachten over plastic vriesdeurtjes/klepjes die breken, gemeld door meerdere gebruikers.',
+      plastic: 'Rubberen afdichtingen raakten bij sommige gebruikers defect, met ijsvorming tot gevolg. Reacties lopen sterk uiteen, van "prachtig en stevig" tot "duur prul".',
+      note: 'Klachten gaan over Smeg-koelkasten en -vriezers in het algemeen; niet specifiek bevestigd voor de FF18EN2HX. Bij de hoge prijsklasse van Smeg verwachten sommige reviewers meer van de bouwkwaliteit.',
       checked: '10 augustus 2026'
     },
     energy: 'E',
@@ -457,6 +515,14 @@ const VRIEZERS = [
       note: 'Kleine steekproef (13 reviews) die opvallend positief is — geen enkele review onder de 4 sterren.',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Merkbreed (Beko-vriezers) — niet apart getest voor dit model',
+      drawers: 'De bouwkwaliteit wordt als middenklasse en robuust voor dagelijks gebruik omschreven; deur en lades worden wel aangeraden voorzichtig te behandelen.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Eén gebruiker meldde dat een Beko-vriezer na 3 jaar kapotging, met problemen bij het registreren van de garantie — geen structurele klacht over plastic onderdelen specifiek.',
+      note: 'Overwegend positieve ervaringen over prijs-kwaliteitverhouding; geen klachten specifiek voor dit model gevonden.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 292,
     heightCm: 192,
@@ -526,6 +592,14 @@ const VRIEZERS = [
       cons: [
         'Bijgeleverd ijsblokjesbakje is breekbaar — meldingen dat het brak bij het uithalen van blokjes'
       ],
+      checked: '10 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Gebaseerd op vergelijkbare Inventum-modellen (VR1680, VR550/VR550B) — niet apart bevestigd voor de VR1850-serie zelf, al is deze bouwkundig vergelijkbaar',
+      drawers: 'Reviews van vergelijkbare modellen noemen de lades consistent stevig — "geen goedkoop plastic" — met een luxe ogende transparante uitvoering.',
+      shelves: 'Geen aparte legplanken bij dit type (volledig ladesysteem); geen klachten gevonden.',
+      plastic: 'Los van het bijgeleverde ijsblokjesbakje (zie hierboven) geen klachten gevonden over kunststof onderdelen; gebruikers benadrukken juist de prijs-kwaliteitverhouding.',
+      note: 'Voor déze modellen (VR1850W/B) is vooral het ijsblokjesbakje een terugkerend puntje; de algemene ladekwaliteit van het merk wordt in reviews van verwante modellen steevast positief genoemd.',
       checked: '10 augustus 2026'
     },
     energy: 'C',
@@ -600,6 +674,14 @@ const VRIEZERS = [
       note: 'Exact dezelfde score en 25 reviews als de witte VR1850W — mogelijk een gedeelde reviewpool, met enige onzekerheid over het exacte aantal.',
       checked: '10 augustus 2026'
     },
+    buildQuality: {
+      scope: 'Gebaseerd op vergelijkbare Inventum-modellen (VR1680, VR550/VR550B) — niet apart bevestigd voor de VR1850-serie zelf, al is deze bouwkundig vergelijkbaar',
+      drawers: 'Reviews van vergelijkbare modellen noemen de lades consistent stevig — "geen goedkoop plastic" — met een luxe ogende transparante uitvoering.',
+      shelves: 'Geen aparte legplanken bij dit type (volledig ladesysteem); geen klachten gevonden.',
+      plastic: 'Los van het bijgeleverde ijsblokjesbakje (zie hierboven) geen klachten gevonden over kunststof onderdelen; gebruikers benadrukken juist de prijs-kwaliteitverhouding.',
+      note: 'Voor déze modellen (VR1850W/B) is vooral het ijsblokjesbakje een terugkerend puntje; de algemene ladekwaliteit van het merk wordt in reviews van verwante modellen steevast positief genoemd.',
+      checked: '10 augustus 2026'
+    },
     energy: 'C',
     energyKwh: 157,
     heightCm: 185,
@@ -656,6 +738,14 @@ const VRIEZERS = [
       count: 1,
       source: 'Coolblue.nl',
       url: 'https://www.coolblue.nl/product/968692/beko-b5rfne315g.html',
+      checked: '10 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Beko-vriezers) — niet apart getest voor dit model',
+      drawers: 'De bouwkwaliteit wordt als middenklasse en robuust voor dagelijks gebruik omschreven; deur en lades worden wel aangeraden voorzichtig te behandelen.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Eén gebruiker meldde dat een Beko-vriezer na 3 jaar kapotging, met problemen bij het registreren van de garantie — geen structurele klacht over plastic onderdelen specifiek.',
+      note: 'Overwegend positieve ervaringen over prijs-kwaliteitverhouding; geen klachten specifiek voor dit model gevonden.',
       checked: '10 augustus 2026'
     },
     energy: 'D',
@@ -734,6 +824,14 @@ const VRIEZERS = [
         'Lades kunnen lastig te bewegen zijn als de vriezer volgeladen is'
       ],
       note: 'Score en aantal ook bevestigd via een tweede bron (Coolblue.nl: 9,0/10 bij 44 reviews).',
+      checked: '10 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Combinatie van reviews voor dit model en vergelijkbare Etna-vriezers/koelkasten',
+      drawers: 'Reviewers beschrijven de telescopische lades als stevig en soepel lopend op kleine wieltjes/lagers.',
+      shelves: 'Enkele gebruikers van vergelijkbare Etna-modellen hadden liever iets stevigere glasplaten gezien — de enige concrete kritiek die gevonden is.',
+      plastic: 'Materiaal maakt over het algemeen een stevige indruk, met een deur op zachte rubbers; dit sluit aan bij het "sommige kunststof onderdelen voelen minder premium aan" dat in de reviewsamenvatting hierboven staat.',
+      note: 'Grotendeels in lijn met de reviewsamenvatting hierboven; aangevuld met bevindingen van vergelijkbare Etna-modellen voor de lades en legplanken.',
       checked: '10 augustus 2026'
     },
     energy: 'C',
