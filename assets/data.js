@@ -48,6 +48,15 @@ const FRIDGES = [
       savings: 67,
       url: 'https://www.bemmelenkroon.nl/merken/siemens/ki81rnse0-siem/'
     },
+    buildQuality: {
+      scope: 'Merkbreed (Siemens/Bosch, zelfde BSH-fabriek) — niet apart getest voor dit model',
+      drawers: 'Geen concrete klachten gevonden over de vershoudlades; gebruikers zijn overwegend positief over de indeling.',
+      shelves: 'Eén gemelde klacht op Trustpilot: het plastic randje van de bovenste glasplaat brak binnen 2 jaar, waarna de hele glasplaat vervangen moest worden — niet gedekt door garantie.',
+      plastic: 'Gebruikers noemen dat Bosch de laatste jaren meer plastic gebruikt aan de buitenkant; geen meldingen van scheuren of breuk in het binnenwerk.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar — Siemens en Bosch behoren tot de betrouwbaarste merken in de test.',
+      note: 'De Trustpilot-klacht over de glasplaat kon niet nogmaals rechtstreeks worden geverifieerd (de site blokkeert automatisch bezoek); gebaseerd op een zoekresultaatfragment.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 114,
     heightCm: 177.5,
@@ -113,6 +122,15 @@ const FRIDGES = [
       price: 849,
       savings: 100,
       url: 'https://123apparatuur.nl/KIR81NSE0-BOSCH-koelkast/item/111324'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Siemens/Bosch, zelfde BSH-fabriek) — niet apart getest voor dit model',
+      drawers: 'Geen concrete klachten gevonden over de vershoudlades; gebruikers zijn overwegend positief over de indeling.',
+      shelves: 'Eén gemelde klacht op Trustpilot (voor het merk Siemens, techniek identiek): het plastic randje van de bovenste glasplaat brak binnen 2 jaar, waarna de hele glasplaat vervangen moest worden — niet gedekt door garantie.',
+      plastic: 'Gebruikers noemen dat Bosch de laatste jaren meer plastic gebruikt aan de buitenkant; geen meldingen van scheuren of breuk in het binnenwerk.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar — Siemens en Bosch behoren tot de betrouwbaarste merken in de test.',
+      note: 'De Trustpilot-klacht over de glasplaat kon niet nogmaals rechtstreeks worden geverifieerd (de site blokkeert automatisch bezoek); gebaseerd op een zoekresultaatfragment.',
+      checked: '10 augustus 2026'
     },
     energy: 'E',
     energyKwh: 114,
@@ -180,6 +198,14 @@ const FRIDGES = [
       savings: 83,
       url: 'https://www.123apparatuur.nl/liebherr-irbsd512022-lieb/'
     },
+    buildQuality: {
+      scope: 'Merkbreed — niet apart getest voor dit model',
+      drawers: 'Geen concrete klachten gevonden over de BioFresh-lades; de algemene reputatie is een stevig, net afgewerkt interieur.',
+      shelves: 'Geen concrete klachten gevonden over legplanken.',
+      plastic: 'Geen concrete klachten gevonden over plastic onderdelen.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur 11 jaar en 9 maanden — de kortste van de grote merken in de test, ondanks dat Liebherr vaak als topkeuze geldt vanwege BioFresh en NoFrost.',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 125,
     heightCm: 177,
@@ -244,6 +270,15 @@ const FRIDGES = [
     source: 'offerte',
     price: 1049,
     priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 91,
     heightCm: 177.2,
@@ -313,6 +348,15 @@ const FRIDGES = [
     source: 'offerte',
     price: 1329,
     priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 172,
     heightCm: 188.4,
@@ -385,6 +429,15 @@ const FRIDGES = [
     source: 'offerte',
     price: 1069,
     priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 215,
     heightCm: 188.4,
@@ -454,6 +507,15 @@ const FRIDGES = [
     source: 'offerte',
     price: 1099,
     priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 173,
     heightCm: 177.2,
