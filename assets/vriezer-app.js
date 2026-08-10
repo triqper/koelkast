@@ -558,8 +558,14 @@
     modal.querySelector('.modal-close').focus();
   }
 
+  /* Een item is meestal een foto ({src, label}), maar kan ook een YouTube-
+     video zijn ({type: 'video', videoId, label}) — bijvoorbeeld voor een
+     kleurreferentie die met een foto alleen niet goed te laten zien is. */
   function galleryItems(f) {
     return (f.photos || []).map(function (p, i) {
+      if (typeof p === 'object' && p.type === 'video') {
+        return { id: 'photo-' + i, label: p.label || 'Video', type: 'video', videoId: p.videoId };
+      }
       const src = typeof p === 'string' ? p : p.src;
       const label = (typeof p === 'string' ? null : p.label) || 'Foto ' + (i + 1);
       return { id: 'photo-' + i, label: label, src: src };
@@ -570,8 +576,23 @@
     return f.brand + ' ' + f.model + ' — ' + item.label;
   }
 
-  function renderItem(f, item) {
+  /* `context` is 'thumb' of 'stage': een video toont in de thumb een
+     YouTube-voorbeeldplaatje met afspeelknopje, en pas in de stage de
+     werkelijke embed — anders spelen er in de duimnagelrij ongewild
+     meerdere video's tegelijk af. */
+  function renderItem(f, item, context) {
     if (!item) return '';
+    if (item.type === 'video') {
+      if (context === 'thumb') {
+        return '<img class="fridge-photo" src="https://img.youtube.com/vi/' + item.videoId +
+          '/hqdefault.jpg" loading="lazy" alt="' + altFor(f, item) + '">' +
+          '<span class="video-play-badge" aria-hidden="true">&#9654;</span>';
+      }
+      return '<div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/' +
+        item.videoId + '" title="' + altFor(f, item) + '" loading="lazy" ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+        'allowfullscreen></iframe></div>';
+    }
     return '<img class="fridge-photo" src="' + item.src + '" loading="lazy" alt="' +
       altFor(f, item) + '">';
   }
@@ -581,7 +602,7 @@
     thumbs.innerHTML = items.map(function (v) {
       return '<button class="thumb' + (v.id === currentView ? ' is-active' : '') +
         '" data-view="' + v.id + '" role="tab" aria-selected="' + (v.id === currentView) + '">' +
-        renderItem(currentFreezer, v) + '<span>' + v.label + '</span></button>';
+        renderItem(currentFreezer, v, 'thumb') + '<span>' + v.label + '</span></button>';
     }).join('');
   }
 
@@ -590,11 +611,16 @@
     return items.filter(function (v) { return v.id === currentView; })[0] || items[0];
   }
 
+  /* Een video is al interactief in de stage zelf — geen vergrootknop of
+     klik-naar-lightbox nodig (en een iframe binnenin een lightbox-<img>
+     zou toch niet werken). */
   function renderStage() {
     const item = currentItem();
-    stage.innerHTML = (item ? renderItem(currentFreezer, item) :
+    const isVideo = item && item.type === 'video';
+    stage.classList.toggle('is-video', !!isVideo);
+    stage.innerHTML = (item ? renderItem(currentFreezer, item, 'stage') :
         '<div class="photo-placeholder" aria-hidden="true"><span>Geen foto beschikbaar</span></div>') +
-      '<span class="stage-zoom" aria-hidden="true">Vergroten</span>';
+      (isVideo ? '' : '<span class="stage-zoom" aria-hidden="true">Vergroten</span>');
   }
 
   function setView(id) {
@@ -616,6 +642,9 @@
     const items = galleryItems(currentFreezer);
     const item = currentItem();
     if (!item) return;
+    /* Doorstappen (pijltjestoetsen) kan de lightbox op een video-item laten
+       uitkomen — die hoort daar niet thuis, dus sluit hem dan gewoon. */
+    if (item.type === 'video') { closeLightbox(); return; }
     const nr = items.map(function (v) { return v.id; }).indexOf(item.id) + 1;
     lightboxImg.src = item.src;
     lightboxImg.alt = altFor(currentFreezer, item);
@@ -628,7 +657,8 @@
   }
 
   function openLightbox(origin) {
-    if (!currentItem()) return;
+    const item = currentItem();
+    if (!item || item.type === 'video') return;
     lightboxOrigin = origin || stage;
     syncLightbox();
     lightbox.hidden = false;
