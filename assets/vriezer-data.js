@@ -780,7 +780,10 @@ const VRIEZERS = [
     ],
     photos: [
       { src: 'assets/photos-vriezer/beko-b5rfne315g/01-gesloten.webp', label: 'Dicht' },
-      { src: 'assets/photos-vriezer/beko-b5rfne315g/02-open.jpg', label: 'Open — indeling' }
+      { src: 'assets/photos-vriezer/beko-b5rfne315g/02-open.jpg', label: 'Open — indeling' },
+      { src: 'assets/photos-vriezer/beko-b5rfne315g/03-screenshot-lade.png', label: 'Screenshot — MaxStore-lade' },
+      { src: 'assets/photos-vriezer/beko-b5rfne315g/04-screenshot-video.png', label: 'Screenshot — video' },
+      { type: 'video', videoId: 'CvjlSggcbRE', label: 'Kleur referentie (video)' }
     ],
     photoCredit: 'Productfoto: Beko, via Expert.nl.',
     photoUrl: 'https://www.beko.com/nl-nl/producten/vrijstaande-vriezers/plaats-instellingen-vrijstaand-afwasmachine-b5rfne315g',
