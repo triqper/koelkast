@@ -229,6 +229,7 @@
               '<span class="noise-badge">' + f.noiseDb + ' dB</span>' +
             '</div>' +
           '</div>' +
+          buildQualityHtml(f) +
           notesHtml(f.id) +
           capacityBlock(f) +
           '<ul class="card-features">' +
@@ -459,6 +460,25 @@
         c.shop + ': ' + euro.format(c.price) +
       '</a> — ' + euro.format(c.savings) + ' goedkoper dan Expert.nl' +
     '</p>';
+  }
+
+  /* Bouwkwaliteit-ervaringen van gebruikers (lades, legplanken, plastic
+     onderdelen), grotendeels merkbreed onderzocht — niet apart getest per
+     model, dat staat er expliciet bij. */
+  function buildQualityHtml(f) {
+    const bq = f.buildQuality;
+    if (!bq) return '';
+    return '<div class="quality-block">' +
+      '<p class="quality-title">Bouwkwaliteit — ervaringen van gebruikers</p>' +
+      '<ul class="quality-list">' +
+        '<li><strong>Lades:</strong> ' + esc(bq.drawers) + '</li>' +
+        '<li><strong>Legplanken:</strong> ' + esc(bq.shelves) + '</li>' +
+        '<li><strong>Plastic onderdelen:</strong> ' + esc(bq.plastic) + '</li>' +
+      '</ul>' +
+      (bq.lifespan ? '<p class="quality-lifespan">' + esc(bq.lifespan) + '</p>' : '') +
+      (bq.note ? '<p class="rev-note">' + esc(bq.note) + '</p>' : '') +
+      '<p class="pc-checked">' + esc(bq.scope) + ' · gecontroleerd ' + bq.checked + '</p>' +
+    '</div>';
   }
 
   /* Favoriete modellen, ongeacht sectie — elk model telt apart mee, ook de

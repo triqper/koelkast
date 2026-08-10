@@ -505,6 +505,40 @@ h1 {
   .rev-cols { grid-template-columns: 1fr; }
 }
 
+/* Bouwkwaliteit-ervaringen (koelkastpagina): lades, legplanken en plastic
+   onderdelen, grotendeels merkbreed onderzocht. Zelfde neutrale kaartstijl
+   als de prijsvergelijking en reviews. */
+.quality-block {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.quality-title {
+  margin: 0 0 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.quality-list {
+  margin: 0;
+  padding: 0 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.quality-list li + li { margin-top: 5px; }
+.quality-lifespan {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
 /* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
    een aparte statsrij verderop. */
 .card-head { display: flex; align-items: flex-start; gap: 10px; }
