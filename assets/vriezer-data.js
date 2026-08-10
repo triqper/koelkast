@@ -40,7 +40,10 @@ const VRIEZERS = [
     price: 829,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties uit het AEG-datasheet',
     cheaper: null,
-    rating: { score: 4.8, count: 6 },
+    reviews: {
+      status: 'none',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 248,
     heightCm: 186,
@@ -91,7 +94,23 @@ const VRIEZERS = [
     price: 849,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties uit het AEG-datasheet',
     cheaper: null,
-    rating: { score: 4.3, count: 4 },
+    reviews: {
+      status: 'found',
+      score: 4.9,
+      scale: 5,
+      count: 21,
+      source: 'AO.com',
+      url: 'https://ao.com/p/reviews/oag7m281ex-aeg-7000-series-upright-freezer-silver-101427-34',
+      pros: [
+        'Erg stil in gebruik',
+        'Vriest effectief zonder ijsvorming (NoFrost werkt zoals beloofd)',
+        'Ruime, overzichtelijke lades',
+        'Eenvoudig in gebruik'
+      ],
+      cons: [],
+      note: 'Reviews van AO.com, een Britse webshop — hetzelfde model, maar geen Nederlandse bron. Bol.com toont voor dit model nog geen reviews.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 248,
     heightCm: 186,
@@ -143,6 +162,10 @@ const VRIEZERS = [
     price: 838,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; afmetingen en geluidsniveau uit het Whirlpool-datasheet',
     cheaper: null,
+    reviews: {
+      status: 'none',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -192,6 +215,10 @@ const VRIEZERS = [
     price: 889,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; afmetingen en geluidsniveau uit het Whirlpool-datasheet',
     cheaper: null,
+    reviews: {
+      status: 'none',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -240,7 +267,16 @@ const VRIEZERS = [
     source: 'expert',
     price: 659,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; overige specificaties uit publieke Whirlpool-productinformatie, niet Expert-specifiek geverifieerd',
-    cheaper: null,
+    cheaper: {
+      shop: 'bol.com (verkoper Art & Craft)',
+      price: 499,
+      savings: 160,
+      url: 'https://www.bol.com/nl/nl/p/whirlpool-whmff-1292-w4e-diepvriezer-vrieskast-vrijstaand-256-l-wit/9300000269024650/'
+    },
+    reviews: {
+      status: 'none',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 240,
     heightCm: 171.4,
@@ -289,6 +325,10 @@ const VRIEZERS = [
     price: 729,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; overige specificaties uit publieke Whirlpool-productinformatie, niet Expert-specifiek geverifieerd',
     cheaper: null,
+    reviews: {
+      status: 'none',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 193,
     heightCm: 170.5,
@@ -335,7 +375,10 @@ const VRIEZERS = [
     price: 827,
     priceNote: 'prijs Expert.nl, 9 augustus 2026; specificaties van dezelfde productpagina',
     cheaper: null,
-    rating: { score: 4.7, count: 3 },
+    reviews: {
+      status: 'none',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 249,
     heightCm: 186,
@@ -390,6 +433,25 @@ const VRIEZERS = [
       savings: 150,
       url: 'https://www.bol.com/nl/p/beko-rfne448e35w-vrieskast-nofrost/9300000010315248/'
     },
+    reviews: {
+      status: 'found',
+      score: 9.0,
+      scale: 10,
+      count: 13,
+      source: 'Coolblue.nl',
+      url: 'https://www.coolblue.nl/product/900412/beko-rfne448e35w.html',
+      pros: [
+        'Groot, zuinig en stil ten opzichte van oudere vriezers',
+        'Rustige werking (geluidsscore 8,0/10 bij Coolblue)',
+        'Handige deurgreep met klik-systeem',
+        'Overzichtelijke indeling van de lades en fijn digitaal display'
+      ],
+      cons: [
+        'Eén reviewer noemde de bezorging tot aan de deur, niet naar binnen gedragen'
+      ],
+      note: 'Kleine steekproef (13 reviews) die opvallend positief is — geen enkele review onder de 4 sterren.',
+      checked: '10 augustus 2026'
+    },
     energy: 'E',
     energyKwh: 292,
     heightCm: 192,
@@ -442,6 +504,24 @@ const VRIEZERS = [
       price: 632.90,
       savings: 66.10,
       url: 'https://www.bol.com/nl/nl/p/inventum-vr1850w-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-wit/9300000170962043/'
+    },
+    reviews: {
+      status: 'found',
+      score: 4.3,
+      scale: 5,
+      count: 25,
+      source: 'bol.com',
+      url: 'https://www.bol.com/nl/nl/p/inventum-vr1850w-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-wit/9300000170962043/',
+      pros: [
+        'Bereikt de ingestelde temperatuur snel',
+        'Lades en deur schuiven soepel',
+        'Werkt rustig',
+        'Goede LED-verlichting, oogt ruim van binnen'
+      ],
+      cons: [
+        'Bijgeleverd ijsblokjesbakje is breekbaar — meldingen dat het brak bij het uithalen van blokjes'
+      ],
+      checked: '10 augustus 2026'
     },
     energy: 'C',
     energyKwh: 157,
@@ -496,6 +576,25 @@ const VRIEZERS = [
       savings: 33,
       url: 'https://www.bol.com/nl/nl/p/inventum-vr1850b-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-zwart-rvs/9300000170962041/'
     },
+    reviews: {
+      status: 'found',
+      score: 4.3,
+      scale: 5,
+      count: 25,
+      source: 'bol.com',
+      url: 'https://www.bol.com/nl/nl/p/inventum-vr1850b-vrijstaande-vriezer-kastmodel-no-frost-272-liter-8-lades-vakken-zwart-rvs/9300000170962041/',
+      pros: [
+        'Zuinig in gebruik (~0,5 kWh per dag bij -20°C, volgens een reviewer)',
+        'NoFrost werkt effectief',
+        'Fraaie zwarte afwerking',
+        'Deur/handgreep opent met weinig kracht'
+      ],
+      cons: [
+        'Zelfde breekbare ijsblokjesbakje als de witte VR1850W'
+      ],
+      note: 'Exact dezelfde score en 25 reviews als de witte VR1850W — mogelijk een gedeelde reviewpool, met enige onzekerheid over het exacte aantal.',
+      checked: '10 augustus 2026'
+    },
     energy: 'C',
     energyKwh: 157,
     heightCm: 185,
@@ -545,6 +644,15 @@ const VRIEZERS = [
     price: 649,
     priceNote: 'prijs en specificaties van de productpagina op Expert.nl, 9 augustus 2026',
     cheaper: null,
+    reviews: {
+      status: 'insufficient',
+      score: 8.5,
+      scale: 10,
+      count: 1,
+      source: 'Coolblue.nl',
+      url: 'https://www.coolblue.nl/product/968692/beko-b5rfne315g.html',
+      checked: '10 augustus 2026'
+    },
     energy: 'D',
     energyKwh: 200,
     heightCm: 186.5,
@@ -599,6 +707,30 @@ const VRIEZERS = [
       url: 'https://www.bol.com/nl/nl/p/etna-vv172nrvs-vrijstaande-vriezer-172-cm-hoog-rvs-energielabel-c-multi-flow-360-technologie-fastfreeze-5-lades-2-schappen/9300000179590382/'
     },
     award: 'Hoogst beoordeeld door de Consumentenbond',
+    reviews: {
+      status: 'found',
+      score: 9.3,
+      scale: 10,
+      count: 59,
+      source: 'Kieskeurig.nl',
+      url: 'https://www.kieskeurig.nl/vriezer/product/50903015-etna-vv172nrvs-diepvriezer-vrieskast-vrijstaand-240-l-roestvrijstaal/reviews',
+      pros: [
+        'Bijna geluidloos in gebruik',
+        'Geen handmatig ontdooien nodig',
+        'Ruime, overzichtelijke lades',
+        'Fast Freeze-functie werkt goed',
+        'Sterke prijs-kwaliteitverhouding, bevestigd door de Consumentenbond-titels'
+      ],
+      cons: [
+        'Sommige kunststof onderdelen voelen minder premium aan',
+        'Deur vraagt net iets meer kracht om direct na sluiten weer te openen',
+        'Kort aansluitsnoer',
+        'Geen los temperatuuralarm',
+        'Lades kunnen lastig te bewegen zijn als de vriezer volgeladen is'
+      ],
+      note: 'Score en aantal ook bevestigd via een tweede bron (Coolblue.nl: 9,0/10 bij 44 reviews).',
+      checked: '10 augustus 2026'
+    },
     energy: 'C',
     energyKwh: 150,
     heightCm: 172,

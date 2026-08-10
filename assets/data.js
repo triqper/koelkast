@@ -42,6 +42,12 @@ const FRIDGES = [
     source: 'expert',
     price: 905,
     priceNote: 'webshopprijs Expert.nl, 8 augustus 2026',
+    cheaper: {
+      shop: '123apparatuur.nl',
+      price: 844,
+      savings: 61,
+      url: 'https://www.123apparatuur.nl/siemens-ki81rnse0-siem/'
+    },
     energy: 'E',
     energyKwh: 114,
     heightCm: 177.5,
@@ -102,6 +108,12 @@ const FRIDGES = [
     source: 'web',
     price: 949,
     priceNote: 'indicatie; Expert voert dit model niet',
+    cheaper: {
+      shop: '123apparatuur.nl',
+      price: 849,
+      savings: 100,
+      url: 'https://123apparatuur.nl/KIR81NSE0-BOSCH-koelkast/item/111324'
+    },
     energy: 'E',
     energyKwh: 114,
     heightCm: 177,
@@ -162,6 +174,12 @@ const FRIDGES = [
     source: 'expert',
     price: 1649,
     priceNote: 'webshopprijs Expert.nl (IRBSd 5120-22), 8 augustus 2026',
+    cheaper: {
+      shop: '123apparatuur.nl',
+      price: 1566,
+      savings: 83,
+      url: 'https://www.123apparatuur.nl/liebherr-irbsd512022-lieb/'
+    },
     energy: 'D',
     energyKwh: 125,
     heightCm: 177,
