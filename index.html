@@ -22,7 +22,8 @@
       de Bosch delen één kaart — ze rollen van dezelfde band — met een schakelaar
       om tussen de twee merken te wisselen. Elke kaart zet de inhoud af tegen de
       kast die er nu staat (210 l koel + 70 l vries), en onderin kun je je eigen
-      plus- en minpunten kwijt.
+      plus- en minpunten kwijt. Onder de prijs staat ook meteen of een andere
+      NL-webshop goedkoper is, met een directe link.
     </p>
     <p class="lede-note">
       De vier AEG-modellen staan op de offerte van Expert Twello
@@ -48,7 +49,8 @@
       <span>Sorteer binnen elke sectie op</span>
       <select id="sort">
         <option value="default">Merk</option>
-        <option value="price">Prijs (laag → hoog)</option>
+        <option value="price">Prijs op deze site (laag → hoog)</option>
+        <option value="cheapest">Goedkoopste prijs uit onderzoek (laag → hoog)</option>
         <option value="noise">Geluidsniveau (stil → luid)</option>
         <option value="energy">Energieverbruik (zuinig → onzuinig)</option>
         <option value="height">Hoogte (laag → hoog)</option>
@@ -72,6 +74,7 @@
             <th scope="col">Hoogte</th>
             <th scope="col">Geluid</th>
             <th scope="col">Inhoud</th>
+            <th scope="col">Elders goedkoper</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -81,7 +84,8 @@
       Groen gemarkeerd = beste waarde in die kolom. Prijzen met het label
       <em>offerte</em> komen uit de Expert-offerte, <em>expert.nl</em> is de webshopprijs
       van 8 augustus 2026, en <em>indicatie</em> is een schatting die niet één-op-één met
-      de andere twee te vergelijken is.
+      de andere twee te vergelijken is. "Elders goedkoper" vergelijkt de hier vermelde
+      prijs met andere grote NL-webshops, zie de toelichting hieronder.
     </p>
   </section>
 
@@ -142,6 +146,18 @@
       daarom een indicatie en draagt het label <em>indicatie</em>.
     </p>
     <p>
+      <strong>"Elders goedkoper" is gecontroleerd bij 123apparatuur.nl en EP.nl</strong>,
+      bekeken op 10 augustus 2026. Bij de Siemens, de Bosch en de Liebherr bleek
+      123apparatuur.nl goedkoper dan de hier vermelde prijs — dat staat er met een directe
+      link bij, inclusief het prijsverschil. Bij de vier AEG-modellen was er geen echte
+      besparing te vinden: de TK6FS181DS staat bij EP.nl voor exact dezelfde prijs, de
+      NSC7C191DS is bij vakhandels alleen op aanvraag te bestellen (geen vergelijkbare
+      prijs), en bij de NSC6M191ES en de OSC7C181DS stond er wel een prijs bij een andere
+      winkel maar was die niet leverbaar — in geen van deze gevallen was er dus een
+      webshop waar je het model daadwerkelijk goedkoper kon afrekenen. Prijzen bij andere
+      webshops kunnen inmiddels gewijzigd zijn — de link gaat naar de productpagina zelf.
+    </p>
+    <p>
       <strong>Afbeeldingen.</strong> Alle zeven modellen tonen echte productfoto's van de
       fabrikant. Klik een foto aan om hem op volledige schermgrootte te bekijken; met de
       pijltjestoetsen blader je door de reeks. De schematische tekeningen die hier eerder
@@ -184,6 +200,7 @@
         <h2 id="modal-title"></h2>
         <p class="modal-tagline" id="modal-tagline"></p>
         <div class="modal-keys" id="modal-keys"></div>
+        <div id="modal-cheaper"></div>
         <p class="modal-desc" id="modal-desc"></p>
         <h3>Unieke features</h3>
         <ul class="feature-list" id="modal-features"></ul>

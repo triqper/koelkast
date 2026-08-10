@@ -128,6 +128,31 @@ h1 {
   color: var(--bg);
 }
 
+/* Kleurfilter (vriezerpagina): zelfde pil-vormgeving als de notitiefilter,
+   maar een eigen klasse zodat de click-handlers niet door elkaar lopen. */
+.color-filter { display: flex; align-items: center; gap: 9px; font-size: 14px; }
+.color-filter-label { color: var(--ink-2); }
+.color-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.color-btn + .color-btn { margin-left: -1px; }
+.color-btn:hover { border-color: var(--ink-3); }
+.color-btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
 .sort { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--ink-2); }
 .sort select {
   font: inherit;
@@ -405,6 +430,80 @@ h1 {
 }
 .modal-cheaper a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 .modal-cheaper.is-none { color: var(--ink-3); }
+
+.pc-link {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+.pc-link:hover { text-decoration: underline; }
+.pc-checked {
+  margin: 3px 0 0;
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* Reviewsamenvatting van externe webshops: score + plus/minpunten in twee
+   kolommen. Dezelfde neutrale kaartstijl als de prijsvergelijking. */
+.reviews-block {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.reviews-block.is-empty { opacity: .8; }
+.rev-line {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.rev-line + .rev-line { margin-top: 2px; }
+.rev-score { font-weight: 700; color: var(--ink); }
+.rev-count { color: var(--ink-3); }
+.rev-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+.rev-col-title {
+  margin: 0 0 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.rev-col.is-pro .rev-col-title { color: var(--good); }
+.rev-col.is-con .rev-col-title { color: var(--bad); }
+.rev-col ul {
+  margin: 0;
+  padding: 0 0 0 14px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+.rev-col li + li { margin-top: 3px; }
+.rev-col-empty {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-3);
+  font-style: italic;
+}
+.rev-note {
+  margin: 6px 0 0;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+@media (max-width: 480px) {
+  .rev-cols { grid-template-columns: 1fr; }
+}
 
 /* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
    een aparte statsrij verderop. */

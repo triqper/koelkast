@@ -47,6 +47,17 @@
   let authorFilter = 'all';
   let currentAuthor = 'robbin';
 
+  /* 'all', 'wit' of 'niet-wit' — filtert op het kleurveld dat elk model al
+     heeft (Wit, Rvs, Zwart, Grijs...). Alles wat niet letterlijk 'Wit' is
+     valt in 'niet-wit'. */
+  let colorFilter = 'all';
+
+  function colorMatches(f) {
+    if (colorFilter === 'all') return true;
+    const isWhite = f.kleur === 'Wit';
+    return colorFilter === 'wit' ? isWhite : !isWhite;
+  }
+
   const FAV_KEY = 'vriezer-favorieten-v1';
 
   function loadFavorites() {
@@ -111,9 +122,16 @@
     return null;
   }
 
+  /* Laagste prijs uit het prijsonderzoek bij andere NL-webshops; zonder
+     goedkopere vondst valt dit terug op de prijs die hier vermeld staat. */
+  function cheapestFound(f) {
+    return f.cheaper ? f.cheaper.price : f.price;
+  }
+
   function sorted(list) {
     const cmp = {
       price: function (a, b) { return a.price - b.price; },
+      cheapest: function (a, b) { return cheapestFound(a) - cheapestFound(b); },
       noise: function (a, b) { return a.noiseDb - b.noiseDb; },
       energy: function (a, b) { return a.energyKwh - b.energyKwh; },
       capacity: function (a, b) { return b.capacityL - a.capacityL; },
@@ -123,7 +141,7 @@
   }
 
   function freezersIn() {
-    return sorted(VRIEZERS);
+    return sorted(VRIEZERS.filter(colorMatches));
   }
 
   /* ---------- kaarten ---------- */
@@ -159,6 +177,7 @@
               '<span class="noise-badge">' + costLabel(f) + '</span>' +
             '</div>' +
           '</div>' +
+          reviewsHtml(f) +
           notesHtml(f.id) +
           specStrip(f) +
           '<ul class="card-features">' +
@@ -341,6 +360,63 @@
         c.shop + ': ' + euro.format(c.price) +
       '</a> — ' + euro.format(c.savings) + ' goedkoper dan Expert.nl' +
     '</p>';
+  }
+
+  function reviewScoreText(r) {
+    return r.score.toFixed(1).replace('.', ',') + '/' + r.scale;
+  }
+
+  /* Reviews van bol.com, Coolblue, Kieskeurig e.d. — alleen als plus- en
+     minpunten daadwerkelijk uit meerdere reviews te halen waren. Bij te
+     weinig reviews (status 'insufficient') tonen we het cijfer wel, maar
+     geen verzonnen plus-/minpuntenlijst; bij status 'none' alleen een
+     duidelijke melding dat er niets gevonden is. */
+  function reviewsHtml(f) {
+    const r = f.reviews;
+    if (!r) return '';
+    const checked = 'Gecontroleerd ' + r.checked;
+
+    if (r.status === 'none') {
+      return '<div class="reviews-block is-empty">' +
+        '<p class="rev-line">Nog geen (betrouwbare) reviews gevonden bij Nederlandse webshops.</p>' +
+        '<p class="pc-checked">' + checked + '</p>' +
+      '</div>';
+    }
+
+    const scoreLine = '<span class="rev-score">&#9733; ' + reviewScoreText(r) + '</span> ' +
+      '<span class="rev-count">(' + r.count + ' review' + (r.count === 1 ? '' : 's') +
+      ' bij ' + esc(r.source) + ')</span>';
+    const link = r.url
+      ? '<a class="pc-link" href="' + r.url + '" target="_blank" rel="noopener noreferrer">' +
+          'Bekijk reviews bij ' + esc(r.source) + ' &rarr;</a>'
+      : '';
+
+    if (r.status === 'insufficient') {
+      return '<div class="reviews-block">' +
+        '<p class="rev-line">' + scoreLine + '</p>' +
+        '<p class="rev-line">Te weinig reviews om plus- en minpunten uit te halen.</p>' +
+        link +
+        '<p class="pc-checked">' + checked + '</p>' +
+      '</div>';
+    }
+
+    const prosHtml = (r.pros && r.pros.length)
+      ? '<ul>' + r.pros.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>'
+      : '<p class="rev-col-empty">Geen pluspunten gevonden.</p>';
+    const consHtml = (r.cons && r.cons.length)
+      ? '<ul>' + r.cons.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>'
+      : '<p class="rev-col-empty">Geen minpunten gevonden.</p>';
+
+    return '<div class="reviews-block">' +
+      '<p class="rev-line">' + scoreLine + '</p>' +
+      '<div class="rev-cols">' +
+        '<div class="rev-col is-pro"><p class="rev-col-title">Wat bevalt</p>' + prosHtml + '</div>' +
+        '<div class="rev-col is-con"><p class="rev-col-title">Minder goed</p>' + consHtml + '</div>' +
+      '</div>' +
+      link +
+      (r.note ? '<p class="rev-note">' + esc(r.note) + '</p>' : '') +
+      '<p class="pc-checked">' + checked + '</p>' +
+    '</div>';
   }
 
   function favoriteFreezers() {
@@ -581,6 +657,20 @@
       b.classList.toggle('is-on', on);
       b.setAttribute('aria-pressed', String(on));
     });
+    renderSections();
+  });
+
+  document.querySelector('.color-filter').addEventListener('click', function (e) {
+    const btn = e.target.closest('.color-btn');
+    if (!btn) return;
+    colorFilter = btn.dataset.color;
+    document.querySelectorAll('.color-btn').forEach(function (b) {
+      const on = b === btn;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    /* De vergelijktabel ('Alles op een rij') blijft alle twaalf modellen
+       tonen, ongeacht het kleurfilter — alleen de kaarten erboven filteren. */
     renderSections();
   });
 

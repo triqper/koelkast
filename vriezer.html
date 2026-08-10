@@ -20,7 +20,10 @@
       maten (hoogte × breedte × diepte), energielabel en geschatte
       stroomkosten per jaar staan direct op elke kaart — geen klikken nodig om
       ze te zien. Onder de Expert-prijs staat ook meteen of een andere
-      NL-webshop goedkoper is, met een directe link. Klik op een foto om hem
+      NL-webshop goedkoper is, met een directe link, en waar te vinden een
+      samenvatting van wat reviewers goed en minder goed vinden. Filter op
+      kleur (wit / niet wit) of sorteer op de goedkoopste prijs uit het
+      onderzoek in plaats van de prijs op deze site. Klik op een foto om hem
       groot te bekijken, of ergens anders op de kaart voor de beschrijving en
       de volledige specificatielijst. Onderin kun je je eigen plus- en
       minpunten kwijt, net als bij de koelkasten.
@@ -38,7 +41,13 @@
 
 <main class="wrap">
 
-  <section class="controls" aria-label="Sorteren en notities">
+  <section class="controls" aria-label="Filteren, sorteren en notities">
+    <div class="color-filter" role="group" aria-label="Kleur">
+      <span class="color-filter-label">Kleur</span>
+      <button type="button" class="color-btn is-on" data-color="all" aria-pressed="true">Alle</button>
+      <button type="button" class="color-btn" data-color="wit" aria-pressed="false">Wit</button>
+      <button type="button" class="color-btn" data-color="niet-wit" aria-pressed="false">Niet wit</button>
+    </div>
     <div class="author-filter" role="group" aria-label="Notities van">
       <span class="author-filter-label">Notities van</span>
       <button type="button" class="author-btn" data-author="robbin">Robbin</button>
@@ -49,7 +58,8 @@
       <span>Sorteer op</span>
       <select id="sort">
         <option value="default">Merk</option>
-        <option value="price" selected>Prijs (laag → hoog)</option>
+        <option value="price" selected>Prijs op deze site (laag → hoog)</option>
+        <option value="cheapest">Goedkoopste prijs uit onderzoek (laag → hoog)</option>
         <option value="capacity">Inhoud (groot → klein)</option>
         <option value="noise">Geluidsniveau (stil → luid)</option>
         <option value="energy">Energieverbruik (zuinig → onzuinig)</option>
@@ -132,6 +142,19 @@
       Consumentenbond</strong>: Beste koop in januari 2026, Beste uit de test
       in februari 2026 en een duurzaamheidsscore van 8,4 (feb 2026) — te zien
       als badge op de kaart en in de kleine lettertjes van het detailvenster.
+    </p>
+    <p>
+      <strong>Reviewsamenvatting.</strong> Onder de prijsvergelijking staat, waar te vinden,
+      de score en het aantal reviews van bol.com, Coolblue.nl of Kieskeurig.nl, met de meest
+      genoemde plus- en minpunten uit die reviews. Dit is niet voor elk model mogelijk: zes
+      modellen (de AEG OAG7M281EW, beide Whirlpool 6312-varianten, de Whirlpool WHMFF 1292 W4E,
+      de Whirlpool WHLF 1292 W5E en de Smeg FF18EN2HX) hebben nergens bij een Nederlandse
+      webshop reviews staan — dat staat er dan expliciet bij in plaats van verzonnen
+      plus-/minpunten. Bij de Beko B5RFNE315G was er maar één review bij Coolblue.nl, te weinig
+      om een betrouwbare samenvatting uit te halen. Bij de AEG OAG7M281EX komen de reviews van
+      AO.com, een Britse in plaats van Nederlandse webshop — hetzelfde model, wel apart vermeld.
+      De ETNA VV172NRVS heeft de meeste en breedst bevestigde reviews (Kieskeurig.nl en
+      Coolblue.nl komen onafhankelijk op vergelijkbare scores uit).
     </p>
     <p>
       <strong>Afbeeldingen.</strong> Alle twaalf modellen tonen een echte

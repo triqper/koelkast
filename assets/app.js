@@ -140,9 +140,16 @@
     return null;
   }
 
+  /* Laagste prijs uit het prijsonderzoek bij andere NL-webshops; zonder
+     goedkopere vondst valt dit terug op de prijs die hier vermeld staat. */
+  function cheapestFound(f) {
+    return f.cheaper ? f.cheaper.price : f.price;
+  }
+
   function sorted(list) {
     const cmp = {
       price: function (a, b) { return a.price - b.price; },
+      cheapest: function (a, b) { return cheapestFound(a) - cheapestFound(b); },
       noise: function (a, b) { return a.noiseDb - b.noiseDb; },
       energy: function (a, b) { return a.energyKwh - b.energyKwh; },
       height: function (a, b) { return a.heightCm - b.heightCm; }
@@ -215,6 +222,7 @@
                   : '<span class="price-value">' + euro.format(f.price) + '</span>') +
                 sourceTag(f) +
               '</p>' +
+              cheaperHtml(f, 'card-cheaper') +
             '</div>' +
             '<div class="card-head-badges">' +
               energyPill(f.energy) +
@@ -439,6 +447,20 @@
       t.label + '</span>';
   }
 
+  /* Prijs bij een andere NL-webshop, als die goedkoper is dan Expert.nl.
+     `cls` bepaalt de plek: op de kaart of in het detailvenster. */
+  function cheaperHtml(f, cls) {
+    if (!f.cheaper) {
+      return '<p class="' + cls + ' is-none">Geen goedkopere prijs gevonden bij andere NL-webshops.</p>';
+    }
+    const c = f.cheaper;
+    return '<p class="' + cls + '">' +
+      '<a href="' + c.url + '" target="_blank" rel="noopener noreferrer">' +
+        c.shop + ': ' + euro.format(c.price) +
+      '</a> — ' + euro.format(c.savings) + ' goedkoper dan Expert.nl' +
+    '</p>';
+  }
+
   /* Favoriete modellen, ongeacht sectie — elk model telt apart mee, ook de
      kant van een tweeling die nu niet in het overzicht staat. */
   function favoriteFridges() {
@@ -501,8 +523,16 @@
         '<td class="num' + (f.noiseDb === BEST.noiseDb ? ' best' : '') + '">' +
           f.noiseDb + ' dB</td>' +
         '<td>' + capacityText(f) + '</td>' +
+        '<td class="num' + (f.cheaper ? ' best' : '') + '">' + tableCheaper(f) + '</td>' +
       '</tr>';
     }).join('');
+  }
+
+  function tableCheaper(f) {
+    if (!f.cheaper) return '<span class="table-cheaper-none">—</span>';
+    const c = f.cheaper;
+    return '<a href="' + c.url + '" target="_blank" rel="noopener noreferrer">' +
+      c.shop + ': ' + euro.format(c.price) + '</a> (&minus;' + euro.format(c.savings) + ')';
   }
 
   /* ---------- modal ---------- */
@@ -529,6 +559,8 @@
       stat('Hoogte', f.heightLabel) +
       stat('Geluid', f.noiseDb + ' dB') +
       stat('Inhoud', (f.capacityFridge + f.capacityFreezer) + ' l');
+
+    document.getElementById('modal-cheaper').innerHTML = cheaperHtml(f, 'modal-cheaper');
 
     document.getElementById('modal-features').innerHTML =
       f.highlights.map(function (h) { return '<li>' + h + '</li>'; }).join('');
