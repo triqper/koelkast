@@ -1,0 +1,1353 @@
+/* Koelkast-keuzehulp — stylesheet */
+
+:root {
+  --bg: #f4f5f7;
+  --bg-soft: #eaecf0;
+  --surface: #ffffff;
+  --surface-2: #f8f9fb;
+  --ink: #14181f;
+  --ink-2: #4a5361;
+  --ink-3: #7c8797;
+  --line: #dfe3e9;
+  --line-soft: #ebeef3;
+  --brand: #1d4ed8;
+  --good: #12854a;
+  --good-bg: #e3f6ec;
+  --check: #1d4ed8;
+  --check-bg: #e6edfd;
+  --bad: #b42318;
+  --bad-bg: #fdeceb;
+  --award: #92620a;
+  --award-bg: #fff3d6;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
+  --shadow-md: 0 4px 12px rgba(16, 24, 40, .08), 0 12px 28px rgba(16, 24, 40, .10);
+  --shadow-lg: 0 24px 60px rgba(16, 24, 40, .28);
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1116;
+    --bg-soft: #151a21;
+    --surface: #171c24;
+    --surface-2: #1e242e;
+    --ink: #eef1f6;
+    --ink-2: #b3bcc9;
+    --ink-3: #7f8b9b;
+    --line: #2a323d;
+    --line-soft: #232a34;
+    --brand: #7aa2ff;
+    --good: #4ade80;
+    --good-bg: #10331f;
+    --check: #9db9ff;
+    --check-bg: #182642;
+    --bad: #ff9a90;
+    --bad-bg: #3a1a17;
+    --award: #f5c451;
+    --award-bg: #3a2c0a;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, .45), 0 16px 32px rgba(0, 0, 0, .35);
+    --shadow-lg: 0 24px 70px rgba(0, 0, 0, .7);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+
+/* ---------- header ---------- */
+
+.site-header {
+  background: linear-gradient(180deg, var(--surface), var(--bg));
+  border-bottom: 1px solid var(--line);
+  padding: 56px 0 40px;
+}
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+h1 {
+  margin: 0 0 14px;
+  font-size: clamp(30px, 4.6vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -.022em;
+}
+.lede {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+/* ---------- controls ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 8px;
+}
+
+/* Geldt voor alle kaarten tegelijk — vandaar in de controls-balk, niet per
+   kaart. Zelfde pil-vormgeving als de merkschakelaar op de foto. */
+.author-filter { display: flex; align-items: center; gap: 9px; font-size: 14px; }
+.author-filter-label { color: var(--ink-2); }
+.author-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.author-btn + .author-btn { margin-left: -1px; }
+.author-btn:hover { border-color: var(--ink-3); }
+.author-btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+/* Kleurfilter (vriezerpagina): zelfde pil-vormgeving als de notitiefilter,
+   maar een eigen klasse zodat de click-handlers niet door elkaar lopen. */
+.color-filter { display: flex; align-items: center; gap: 9px; font-size: 14px; }
+.color-filter-label { color: var(--ink-2); }
+.color-btn {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.color-btn + .color-btn { margin-left: -1px; }
+.color-btn:hover { border-color: var(--ink-3); }
+.color-btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.sort { display: flex; align-items: center; gap: 9px; font-size: 14px; color: var(--ink-2); }
+.sort select {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 11px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ---------- secties ---------- */
+
+.model-section { margin-top: 34px; }
+.model-section:first-child { margin-top: 8px; }
+.section-head {
+  border-top: 2px solid var(--ink);
+  padding-top: 14px;
+  margin-bottom: 20px;
+}
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: -.015em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-3);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-variant-numeric: tabular-nums;
+}
+.section-blurb {
+  margin: 6px 0 0;
+  max-width: 68ch;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+/* ---------- grid & kaarten ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.card:hover, .card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--ink-3);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--accent);
+}
+
+.card-media {
+  position: relative;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 12px 12px 4px;
+  display: flex;
+  justify-content: center;
+  cursor: zoom-in;
+}
+/* Coverbeeld 640 px hoog; de breedte blijft die van de kaart. */
+.card-media .fridge-photo { height: 640px; width: 100%; }
+
+/* Vriezerpagina: dicht en open naast elkaar in plaats van één coverbeeld. */
+.card-media-photos {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+.card-media-photo {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: zoom-in;
+}
+.card-media-photo .fridge-photo,
+.card-media-photo .photo-placeholder {
+  height: 460px;
+  width: 100%;
+  object-fit: contain;
+}
+.card-media-photo-label {
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+@media (max-width: 560px) {
+  .card-media-photo .fridge-photo,
+  .card-media-photo .photo-placeholder { height: 260px; }
+}
+.card-zoom {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
+}
+.card-media:hover .card-zoom { opacity: 1; }
+
+/* Hartje rechtsonder: favoriet markeren voor de vergelijkingssectie
+   onderaan. Altijd zichtbaar (niet pas bij hover) — anders is de knop op
+   een telefoon niet te vinden. */
+.fav-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: border-color .15s, background .15s, transform .1s;
+}
+.fav-btn svg { display: block; overflow: visible; }
+.fav-btn svg path {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.9;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: fill .15s, stroke .15s;
+}
+.fav-btn:hover svg path { stroke: var(--bad); }
+.fav-btn:active { transform: scale(.92); }
+.fav-btn.is-fav { border-color: transparent; background: var(--bad-bg); }
+.fav-btn.is-fav svg path { fill: var(--bad); stroke: var(--bad); }
+
+/* Speelse bevestiging bij het favoriet maken zelf; verwijderen blijft rustig. */
+@keyframes fav-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.32); }
+  65%  { transform: scale(.92); }
+  100% { transform: scale(1); }
+}
+.fav-btn.just-set svg { animation: fav-pop .4s cubic-bezier(.34, 1.56, .64, 1); }
+
+/* Op een telefoon vult 640 px bijna het hele scherm; daar iets lager. */
+@media (max-width: 560px) {
+  .card-media .fridge-photo { height: 460px; }
+}
+
+.badge-type {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.badge-best {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--good-bg);
+  color: var(--good);
+}
+/* Onderscheiding van een externe testorganisatie (bv. Consumentenbond) —
+   staat los van de automatisch berekende badges hierboven. */
+.badge-award {
+  position: absolute;
+  top: 44px;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--award-bg);
+  color: var(--award);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+.card-brand {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 2px;
+}
+.card-model { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+.card-series { margin: 2px 0 0; font-size: 13px; color: var(--ink-3); }
+
+.card-price {
+  margin: 14px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.price-value { font-size: 27px; font-weight: 700; letter-spacing: -.02em; }
+.price-original {
+  font-size: 14px;
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Prijsvergelijking met andere NL-webshops, direct onder de Expert-prijs. */
+.card-cheaper {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--good);
+}
+.card-cheaper a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.card-cheaper.is-none { color: var(--ink-3); }
+.modal-cheaper {
+  margin: -6px 0 16px;
+  font-size: 13.5px;
+  color: var(--good);
+}
+.modal-cheaper a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.modal-cheaper.is-none { color: var(--ink-3); }
+
+.pc-link {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+.pc-link:hover { text-decoration: underline; }
+.pc-checked {
+  margin: 3px 0 0;
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* Reviewsamenvatting van externe webshops: score + plus/minpunten in twee
+   kolommen. Dezelfde neutrale kaartstijl als de prijsvergelijking. */
+.reviews-block {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.reviews-block.is-empty { opacity: .8; }
+.rev-line {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.rev-line + .rev-line { margin-top: 2px; }
+.rev-score { font-weight: 700; color: var(--ink); }
+.rev-count { color: var(--ink-3); }
+.rev-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+.rev-col-title {
+  margin: 0 0 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.rev-col.is-pro .rev-col-title { color: var(--good); }
+.rev-col.is-con .rev-col-title { color: var(--bad); }
+.rev-col ul {
+  margin: 0;
+  padding: 0 0 0 14px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+.rev-col li + li { margin-top: 3px; }
+.rev-col-empty {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-3);
+  font-style: italic;
+}
+.rev-note {
+  margin: 6px 0 0;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+@media (max-width: 480px) {
+  .rev-cols { grid-template-columns: 1fr; }
+}
+
+/* Bouwkwaliteit-ervaringen (koelkastpagina): lades, legplanken en plastic
+   onderdelen, grotendeels merkbreed onderzocht. Zelfde neutrale kaartstijl
+   als de prijsvergelijking en reviews. */
+.quality-block {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.quality-title {
+  margin: 0 0 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.quality-list {
+  margin: 0;
+  padding: 0 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.quality-list li + li { margin-top: 5px; }
+.quality-lifespan {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+/* Label en geluid staan rechtsboven naast merk/model/prijs, in plaats van in
+   een aparte statsrij verderop. */
+.card-head { display: flex; align-items: flex-start; gap: 10px; }
+.card-head-text { min-width: 0; flex: 1; }
+.card-head-badges {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.noise-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 5px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.src-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.src-tag.is-quoted {
+  background: var(--good-bg);
+  border-color: transparent;
+  color: var(--good);
+}
+.src-tag.is-checked {
+  background: var(--check-bg);
+  border-color: transparent;
+  color: var(--check);
+}
+
+.card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 16px 0 0;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.stat { background: var(--surface); padding: 9px 8px; text-align: center; }
+.stat-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 3px;
+}
+.stat-value { font-size: 15px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.stat-note {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-top: 2px;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.energy-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 14px;
+  color: #10131a;
+}
+
+.card-features {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.card-features li {
+  font-size: 12px;
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-2);
+}
+
+/* De detailknop is de plek waar het toetsenbord de kaart binnenkomt. */
+.card-open {
+  margin-top: auto;
+  padding: 16px 0 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--brand);
+  cursor: pointer;
+}
+.card-open:hover { text-decoration: underline; }
+
+/* ---------- twee merken op één kaart ---------- */
+
+/* De schakelaar zelf ligt op de cover foto, rechtsboven; badge-best staat op
+   dezelfde hoek en schuift bij een tweeling naar beneden om niet te overlappen. */
+.media-twin-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.card.is-twin .badge-best { top: 54px; }
+
+.twin-toggle {
+  display: inline-flex;
+  padding: 3px;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+.twin-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.twin-btn:hover { color: var(--ink); }
+.twin-btn.is-on {
+  background: var(--ink);
+  color: var(--bg);
+}
+.twin-note-title {
+  margin: 14px 0 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.twin-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+/* ---------- vergelijktabel ---------- */
+
+.compare { margin: 56px 0 48px; }
+.compare h2, .disclosure h2 {
+  font-size: 22px;
+  letter-spacing: -.015em;
+  margin: 0 0 14px;
+}
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 14px; }
+thead th {
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+tbody td { padding: 12px 14px; border-bottom: 1px solid var(--line-soft); }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--surface-2); }
+td.num { font-variant-numeric: tabular-nums; }
+td.best { color: var(--good); font-weight: 700; }
+.table-cheaper-none { color: var(--ink-3); font-weight: 400; }
+.row-model { font-weight: 650; }
+.row-model small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; }
+.table-note { font-size: 13px; color: var(--ink-3); margin: 10px 2px 0; }
+
+.lede-note {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  font-size: 14px;
+  color: var(--ink-3);
+  padding-left: 14px;
+  border-left: 3px solid var(--good);
+}
+
+/* ---------- offerte ---------- */
+
+.offerte { margin-bottom: 48px; }
+.offerte-meta { margin: 0 0 14px; font-size: 13.5px; color: var(--ink-3); }
+.offerte-table { min-width: 620px; }
+.offerte-table tr.total td {
+  font-weight: 700;
+  border-top: 2px solid var(--line);
+  background: var(--surface-2);
+}
+.offerte-table tbody tr { cursor: default; }
+.offerte-note {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: var(--ink-2);
+  max-width: 78ch;
+}
+.offerte-note strong { color: var(--ink); }
+
+/* ---------- verantwoording ---------- */
+
+.disclosure {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 56px;
+  box-shadow: var(--shadow-sm);
+}
+.disclosure p { margin: 0 0 12px; font-size: 14.5px; color: var(--ink-2); max-width: 78ch; }
+.disclosure p:last-child { margin-bottom: 0; }
+.disclosure strong { color: var(--ink); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 24px 0 40px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.site-footer p { margin: 0; }
+
+/* ---------- modal ---------- */
+
+.modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 20px; }
+.modal[hidden] { display: none; }
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 13, 18, .62);
+  backdrop-filter: blur(3px);
+}
+.modal-panel {
+  position: relative;
+  width: min(1020px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  animation: pop .18s ease-out;
+}
+@keyframes pop { from { transform: translateY(10px) scale(.985); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .modal-panel { animation: none; }
+  .card { transition: none; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-close:hover { background: var(--surface-2); color: var(--ink); }
+
+.modal-body { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); }
+@media (max-width: 860px) { .modal-body { grid-template-columns: 1fr; } }
+
+.modal-gallery {
+  background: var(--surface-2);
+  border-right: 1px solid var(--line-soft);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+@media (max-width: 860px) {
+  .modal-gallery { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+}
+/* De grote weergave is een knop: klikken opent de foto op schermgrootte. */
+.stage {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: zoom-in;
+  transition: border-color .15s;
+}
+.stage:hover { border-color: var(--ink-3); }
+.stage-zoom {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+  opacity: 0;
+  transition: opacity .15s;
+  pointer-events: none;
+}
+.stage:hover .stage-zoom,
+.stage:focus-visible .stage-zoom { opacity: 1; }
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.thumb {
+  position: relative;
+  padding: 6px 2px 2px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: border-color .15s, background .15s;
+}
+.thumb:hover { border-color: var(--ink-3); }
+.thumb.is-active { border-color: var(--ink); background: var(--surface-2); }
+.thumb span { font-size: 10.5px; color: var(--ink-3); font-weight: 600; }
+.thumb.is-active span { color: var(--ink); }
+
+/* Video-item in de galerij (bv. een YouTube-embed als kleurreferentie):
+   duimnagel toont een voorbeeldplaatje met afspeelknopje, de stage zelf
+   toont de werkelijke embed. Geen vergroot-cursor of lightbox voor video. */
+.video-play-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .65);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  pointer-events: none;
+}
+.stage.is-video { cursor: default; }
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+.modal-info { padding: 26px 28px 30px; min-width: 0; }
+.modal-eyebrow {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+#modal-title { margin: 0; font-size: 26px; letter-spacing: -.02em; }
+.modal-tagline { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
+
+.modal-keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 1px;
+  margin: 18px 0 20px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.modal-keys .stat { padding: 10px 8px; }
+
+.modal-desc { font-size: 15px; color: var(--ink-2); margin: 0 0 22px; }
+.modal-info h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 10px;
+}
+.feature-list { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 7px; }
+.feature-list li { position: relative; padding-left: 24px; font-size: 14.5px; }
+.feature-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .58em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.spec-table { width: 100%; min-width: 0; font-size: 14px; margin-bottom: 24px; }
+.spec-table td { padding: 8px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+.spec-table td:first-child { color: var(--ink-3); width: 44%; padding-right: 14px; }
+
+.modal-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-expert, .btn-photos {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 650;
+  font-size: 14.5px;
+  text-decoration: none;
+}
+.btn-expert { background: var(--ink); color: var(--bg); }
+.btn-photos {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.btn-expert:hover { opacity: .88; }
+.btn-photos:hover { border-color: var(--ink-3); }
+.btn-photos[hidden] { display: none; }
+
+.fridge-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.stage .fridge-photo { height: min(52vh, 420px); }
+.thumb .fridge-photo { height: 62px; }
+.modal-fineprint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); }
+
+
+
+/* ---------- foto op volle schermgrootte ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox[hidden] { display: none; }
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 11, 18, .92);
+  cursor: zoom-out;
+}
+.lightbox-figure {
+  position: relative;
+  margin: 0;
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.lightbox-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 130px);
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+}
+.lightbox-figure figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #f4f6fa;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: center;
+}
+.lightbox-count { color: rgba(244, 246, 250, .62); font-weight: 500; }
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, .28);
+  background: rgba(20, 25, 35, .72);
+  color: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, border-color .15s;
+}
+.lightbox-close:hover,
+.lightbox-nav:hover { background: rgba(50, 58, 74, .95); border-color: rgba(255, 255, 255, .5); }
+.lightbox-close {
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  font-size: 26px;
+  line-height: 1;
+}
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  font-size: 30px;
+  line-height: 1;
+  padding-bottom: 4px;
+}
+.lightbox-nav.is-prev { left: 18px; }
+.lightbox-nav.is-next { right: 18px; }
+.lightbox-nav[hidden] { display: none; }
+
+@media (max-width: 640px) {
+  .lightbox { padding: 12px; }
+  .lightbox-nav { width: 40px; height: 40px; font-size: 26px; }
+  .lightbox-nav.is-prev { left: 8px; }
+  .lightbox-nav.is-next { right: 8px; }
+  .lightbox-figure img { max-height: calc(100vh - 150px); }
+}
+
+/* ---------- eigen notities per kaart ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Staat nu onder de prijs, niet meer als laatste element van de kaart —
+   daarom een kader zoals .cap, niet meer edge-to-edge tot de kaartrand. */
+.card-notes {
+  margin: 14px 0 0;
+  padding: 12px 12px 11px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--surface-2);
+  cursor: default;
+}
+.notes-title {
+  margin: 0 0 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.note-list { list-style: none; margin: 0 0 10px; padding: 0; }
+.note-empty { font-size: 12.5px; color: var(--ink-3); font-style: italic; }
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.note-mark {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+.note.is-pro .note-mark { background: var(--good-bg); color: var(--good); }
+.note.is-con .note-mark { background: var(--bad-bg); color: var(--bad); }
+.note-text { flex: 1; min-width: 0; overflow-wrap: anywhere; color: var(--ink); }
+/* Alleen nuttig als je 'Beiden' bekijkt, maar staat er altijd bij -- anders
+   springt de tekst opzij zodra je van filter wisselt. */
+.note-author {
+  flex: none;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-3);
+}
+.note-del {
+  flex: none;
+  border: 0;
+  background: none;
+  padding: 0 2px;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink-3);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .15s, color .15s;
+}
+.note:hover .note-del,
+.note-del:focus-visible { opacity: 1; }
+.note-del:hover { color: var(--bad); }
+
+.note-form { display: flex; gap: 6px; align-items: center; }
+.note-kind {
+  display: inline-flex;
+  flex: none;
+  padding: 2px;
+  gap: 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.note-kind-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.note-kind-btn[data-kind="pro"].is-on { background: var(--good-bg); color: var(--good); }
+.note-kind-btn[data-kind="con"].is-on { background: var(--bad-bg); color: var(--bad); }
+
+.note-input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.note-input::placeholder { color: var(--ink-3); }
+.note-add {
+  flex: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.note-add:hover { border-color: var(--ink-3); color: var(--ink); }
+
+/* ---------- inhoud tegenover de huidige kast ---------- */
+
+.cap {
+  margin: 14px 0 0;
+  padding: 11px 12px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.cap-title {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.cap-title span {
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 11px;
+  opacity: .85;
+}
+/* Koel en vries op één regel, alleen het verschil met de huidige kast. */
+.cap-line {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.cap-item { display: inline-flex; align-items: baseline; gap: 5px; white-space: nowrap; }
+.cap-item-label { color: var(--ink-2); }
+.cap-item-value { font-weight: 700; }
+.cap-item-value.is-up { color: var(--good); }
+.cap-item-value.is-down { color: var(--bad); }
+.cap-item-value.is-same { color: var(--ink-3); }
+.cap-item-value.is-none { color: var(--ink-3); }
+
+/* ---------- vriezerpagina: sterrenscore en foto-placeholder ---------- */
+
+.card-rating {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.card-rating span[aria-hidden] { color: #f0b429; }
+.card-rating-count { color: var(--ink-3); }
+
+.spec-strip { row-gap: 8px; }
+
+/* Modellen zonder productfoto krijgen een rustige placeholder in plaats van
+   een lege kaart. */
+.photo-placeholder {
+  height: 640px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--ink-3);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+@media (max-width: 560px) {
+  .photo-placeholder { height: 300px; }
+}
+.stage .photo-placeholder { height: min(52vh, 420px); }

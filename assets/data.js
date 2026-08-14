@@ -1,0 +1,602 @@
+/* Koelkasten dataset
+ *
+ * Herkomst van de gegevens staat per model in `source`:
+ *  - 'offerte'  : prijs uit de Expert Twello-offerte 2601004099 (06-08-2026,
+ *                 incl. btw) en specificaties uit het AEG-datasheet.
+ *  - 'expert'   : prijs afgelezen van de productpagina op expert.nl
+ *                 (08-08-2026, incl. btw); specificaties uit publieke
+ *                 productinformatie.
+ *  - 'web'      : specificaties uit publieke productinformatie, prijs is een
+ *                 indicatieve straatprijs. Niet bij Expert verkrijgbaar.
+ *
+ * `group` bepaalt in welke sectie het model op de pagina komt:
+ * 'koelkast', 'combi-hoog' (nis 189,4 cm) of 'combi-nis178' (nis 178 cm).
+ */
+
+/* De kast die er nu staat. Elke kaart zet zijn inhoud hiertegen af. */
+const HUIDIG = {
+  fridge: 210,
+  freezer: 70
+};
+
+const OFFERTE = {
+  nummer: '2601004099',
+  datum: '6 augustus 2026',
+  geldigTot: '20 augustus 2026',
+  vestiging: 'Expert Twello B.V.',
+  verkoper: 'Peter',
+  installatie: 149,
+  plankAanpassing: 50,
+  totaal: 4745
+};
+
+const FRIDGES = [
+  {
+    id: 'siemens-ki81rnse0',
+    brand: 'Siemens',
+    model: 'KI81RNSE0',
+    series: 'iQ100',
+    category: 'koelkast',
+    group: 'koelkast',
+    accent: '#00a6a6',
+    source: 'expert',
+    price: 905,
+    priceNote: 'webshopprijs Expert.nl, 8 augustus 2026',
+    cheaper: {
+      shop: 'Bemmel & Kroon',
+      price: 838,
+      savings: 67,
+      url: 'https://www.bemmelenkroon.nl/merken/siemens/ki81rnse0-siem/'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Siemens/Bosch, zelfde BSH-fabriek) — niet apart getest voor dit model',
+      drawers: 'Geen concrete klachten gevonden over de vershoudlades; gebruikers zijn overwegend positief over de indeling.',
+      shelves: 'Eén gemelde klacht op Trustpilot: het plastic randje van de bovenste glasplaat brak binnen 2 jaar, waarna de hele glasplaat vervangen moest worden — niet gedekt door garantie.',
+      plastic: 'Gebruikers noemen dat Bosch de laatste jaren meer plastic gebruikt aan de buitenkant; geen meldingen van scheuren of breuk in het binnenwerk.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar — Siemens en Bosch behoren tot de betrouwbaarste merken in de test.',
+      note: 'De Trustpilot-klacht over de glasplaat kon niet nogmaals rechtstreeks worden geverifieerd (de site blokkeert automatisch bezoek); gebaseerd op een zoekresultaatfragment.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'E',
+    energyKwh: 114,
+    heightCm: 177.5,
+    heightLabel: '177,5 cm',
+    nicheLabel: 'nis 178 cm',
+    noiseDb: 35,
+    noiseClass: null,
+    capacityFridge: 310,
+    capacityFreezer: 0,
+    widthCm: 56,
+    depthCm: 55,
+    climate: 'SN-ST',
+    mounting: 'Sleepdeur',
+    tagline: 'De prijsbewuste klassieker met superCooling.',
+    highlights: [
+      'superCooling snelkoelfunctie',
+      '2 vershoudlades voor groente & fruit',
+      'Heldere LED-verlichting',
+      'Veiligheidsglas plateaus'
+    ],
+    description:
+      'De Siemens KI81RNSE0 is een volledig integreerbare koelkast van 178 cm nishoogte zonder vriesvak, met 310 liter netto koelruimte. Met de superCooling-functie koel je verse boodschappen versneld terug zonder dat de rest van je voorraad opwarmt. De twee vershoudlades houden groente en fruit langer knapperig en de LED-verlichting verlicht elke hoek van de kast. Zes plateaus van veiligheidsglas (vijf in hoogte verstelbaar) maken de indeling flexibel en makkelijk schoon te maken. De temperatuur regel je elektronisch met led-indicatie. Montage gebeurt met het sleepdeursysteem.',
+    specs: [
+      ['Type', 'Inbouwkoelkast zonder vriesvak'],
+      ['Netto inhoud', '310 liter'],
+      ['Inbouwmaten (h×b×d)', '177,5 × 56 × 55 cm'],
+      ['Nishoogte', '178 cm'],
+      ['Energielabel', 'E — 114 kWh/jaar'],
+      ['Geluidsniveau', '35 dB(A)'],
+      ['Klimaatklasse', 'SN-ST'],
+      ['Plateaus', '6 van veiligheidsglas, 5 verstelbaar'],
+      ['Groentelades', '2 vershoudlades'],
+      ['Verlichting', 'LED'],
+      ['Bediening', 'Elektronisch met led-indicatie'],
+      ['Montage', 'Sleepdeursysteem'],
+      ['Deurscharnier', 'Rechts (verwisselbaar)']
+    ],
+    photos: [
+      { src: 'assets/photos/siemens-ki81rnse0/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/siemens-ki81rnse0/02-interieur.webp', label: 'Plateaus' },
+      { src: 'assets/photos/siemens-ki81rnse0/03-vershoudlades.webp', label: 'Vershoudlades' },
+      { src: 'assets/photos/siemens-ki81rnse0/04-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/siemens-ki81rnse0/05-maatschets.webp', label: 'Maatschets' }
+    ],
+    photoCredit: 'Productfoto’s: Siemens Home (BSH Home Appliances).',
+    photoUrl: 'https://www.siemens-home.bsh-group.com/nl/nl/product/koelen-en-vriezen/inbouw-koelkasten-en-vriezers/inbouw-koelkasten/KI81RNSE0',
+    photoLabel: 'Foto’s op Siemens.nl',
+    expertUrl: 'https://www.expert.nl/siemens-ki81rnse0-372629860'
+  },
+  {
+    id: 'bosch-kir81nse0',
+    brand: 'Bosch',
+    model: 'KIR81NSE0',
+    series: 'Serie 4',
+    category: 'koelkast',
+    group: 'koelkast',
+    accent: '#e2001a',
+    source: 'web',
+    price: 949,
+    priceNote: 'indicatie; Expert voert dit model niet',
+    cheaper: {
+      shop: '123apparatuur.nl',
+      price: 849,
+      savings: 100,
+      url: 'https://123apparatuur.nl/KIR81NSE0-BOSCH-koelkast/item/111324'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Siemens/Bosch, zelfde BSH-fabriek) — niet apart getest voor dit model',
+      drawers: 'Geen concrete klachten gevonden over de vershoudlades; gebruikers zijn overwegend positief over de indeling.',
+      shelves: 'Eén gemelde klacht op Trustpilot (voor het merk Siemens, techniek identiek): het plastic randje van de bovenste glasplaat brak binnen 2 jaar, waarna de hele glasplaat vervangen moest worden — niet gedekt door garantie.',
+      plastic: 'Gebruikers noemen dat Bosch de laatste jaren meer plastic gebruikt aan de buitenkant; geen meldingen van scheuren of breuk in het binnenwerk.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar — Siemens en Bosch behoren tot de betrouwbaarste merken in de test.',
+      note: 'De Trustpilot-klacht over de glasplaat kon niet nogmaals rechtstreeks worden geverifieerd (de site blokkeert automatisch bezoek); gebaseerd op een zoekresultaatfragment.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'E',
+    energyKwh: 114,
+    heightCm: 177,
+    heightLabel: '177 cm',
+    nicheLabel: 'nis 177,5 cm',
+    noiseDb: 35,
+    noiseClass: null,
+    capacityFridge: 310,
+    capacityFreezer: 0,
+    widthCm: 54,
+    depthCm: 55,
+    climate: 'SN-ST',
+    mounting: 'Sleepdeur',
+    tagline: 'Technische tweelingbroer van de Siemens, ander merkje.',
+    highlights: [
+      '2 MultiBox groentelades',
+      'Automatische ontdooiing',
+      '5 deurvakken',
+      'LED-verlichting'
+    ],
+    description:
+      'De Bosch KIR81NSE0 deelt zijn techniek met de Siemens KI81RNSE0 — beide komen uit dezelfde BSH-fabriek — en biedt dus dezelfde 310 liter netto koelruimte, hetzelfde energielabel E en dezelfde 35 dB. Het verschil zit in de afwerking en de indeling: twee MultiBox-lades met deksel houden groente en fruit op de juiste vochtigheid en er zijn vijf deurvakken voor flessen en potjes. Zes plateaus van veiligheidsglas, waarvan vijf in hoogte verstelbaar, geven je vrijheid in de indeling. Ontdooien hoeft niet: dat gebeurt automatisch.',
+    specs: [
+      ['Type', 'Inbouwkoelkast zonder vriesvak'],
+      ['Netto inhoud', '310 liter'],
+      ['Inbouwmaten (h×b×d)', '177,5 × 56 × 55 cm'],
+      ['Buitenmaten (h×b×d)', '177 × 54 × 55 cm'],
+      ['Energielabel', 'E — 114 kWh/jaar'],
+      ['Geluidsniveau', '35 dB(A)'],
+      ['Klimaatklasse', 'SN-ST'],
+      ['Plateaus', '6 van veiligheidsglas, 5 verstelbaar'],
+      ['Lades', '2 MultiBox groentelades'],
+      ['Deurvakken', '5'],
+      ['Ontdooiing', 'Automatisch'],
+      ['Verlichting', 'LED'],
+      ['Montage', 'Sleepdeursysteem']
+    ],
+    photos: [
+      { src: 'assets/photos/bosch-kir81nse0/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/bosch-kir81nse0/02-plateaus.webp', label: 'Plateaus' },
+      { src: 'assets/photos/bosch-kir81nse0/03-vershoudlades.webp', label: 'Vershoudlades' },
+      { src: 'assets/photos/bosch-kir81nse0/04-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/bosch-kir81nse0/05-maatschets.webp', label: 'Maatschets' }
+    ],
+    photoCredit: 'Productfoto’s: Bosch (BSH Home Appliances).',
+    photoUrl: 'https://www.bosch-home.nl/product/KIR81NSE0',
+    photoLabel: 'Foto’s op Bosch.nl',
+    expertUrl: 'https://www.expert.nl/zoeken?q=KIR81NSE0'
+  },
+  {
+    id: 'liebherr-irbsd-5120',
+    brand: 'Liebherr',
+    model: 'IRBSd 5120',
+    series: 'Plus BioFresh',
+    category: 'koelkast',
+    group: 'koelkast',
+    accent: '#e0a800',
+    source: 'expert',
+    price: 1649,
+    priceNote: 'webshopprijs Expert.nl (IRBSd 5120-22), 8 augustus 2026',
+    cheaper: {
+      shop: '123apparatuur.nl',
+      price: 1566,
+      savings: 83,
+      url: 'https://www.123apparatuur.nl/liebherr-irbsd512022-lieb/'
+    },
+    buildQuality: {
+      scope: 'Merkbreed — niet apart getest voor dit model',
+      drawers: 'Geen concrete klachten gevonden over de BioFresh-lades; de algemene reputatie is een stevig, net afgewerkt interieur.',
+      shelves: 'Geen concrete klachten gevonden over legplanken.',
+      plastic: 'Geen concrete klachten gevonden over plastic onderdelen.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur 11 jaar en 9 maanden — de kortste van de grote merken in de test, ondanks dat Liebherr vaak als topkeuze geldt vanwege BioFresh en NoFrost.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'D',
+    energyKwh: 125,
+    heightCm: 177,
+    heightLabel: '177 cm',
+    nicheLabel: 'nis 178,8 cm',
+    noiseDb: 33,
+    noiseClass: null,
+    capacityFridge: 294,
+    capacityFreezer: 0,
+    widthCm: 54,
+    depthCm: 54.5,
+    climate: 'SN-T',
+    mounting: 'Sleepdeur',
+    tagline: 'Drie BioFresh-lades op 0°C — groente blijft 3× langer vers.',
+    highlights: [
+      'BioFresh 0°C, 3× langer vers',
+      '3 lades op telescooprails',
+      'LCD touch-display',
+      'Flessenrek meegeleverd'
+    ],
+    description:
+      'De Liebherr IRBSd 5120 Plus is de versbewaarder van dit rijtje. Onderin zitten drie BioFresh-lades die rond 0°C worden gehouden met een gelijkmatige temperatuurverdeling: groente, fruit, vlees en vis blijven daarin tot drie keer langer vers dan in een gewone groentelade. De lades lopen op telescooprails, dus ze schuiven soepel uit tot achterin. Boven de verszone liggen zeven plateaus in het koelgedeelte, en er wordt een flessenrek meegeleverd. Je stelt de temperatuur in via een monochroom LCD-display met touch-bediening. Met 33 dB en energielabel D is dit één van de stillere en zuinigere modellen in de vergelijking.',
+    specs: [
+      ['Type', 'Inbouwkoelkast met BioFresh'],
+      ['Netto inhoud', '294 liter'],
+      ['Buitenmaten (h×b×d)', '177 × 54 × 54,5 cm'],
+      ['Nismaten (h×b×d)', '178,8 × 56 × 55 cm'],
+      ['Energielabel', 'D — 125 kWh/jaar'],
+      ['Geluidsniveau', '33 dB(A)'],
+      ['BioFresh', '3 lades op telescooprails, ca. 0°C'],
+      ['Plateaus', '7 in het koelgedeelte'],
+      ['Display', 'Monochroom LCD met touch-bediening'],
+      ['Extra', 'Flessenrek meegeleverd'],
+      ['Montage', 'Sleepdeursysteem, zelf te monteren']
+    ],
+    photos: [
+      { src: 'assets/photos/liebherr-irbsd-5120/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/liebherr-irbsd-5120/02-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/liebherr-irbsd-5120/03-biofresh-lades.webp', label: 'BioFresh-lades' },
+      { src: 'assets/photos/liebherr-irbsd-5120/04-biofresh-zone.webp', label: 'BioFresh 0°C' },
+      { src: 'assets/photos/liebherr-irbsd-5120/05-plateaus.webp', label: 'Plateaus' },
+      { src: 'assets/photos/liebherr-irbsd-5120/06-deurvakken.webp', label: 'Deurvakken' },
+      { src: 'assets/photos/liebherr-irbsd-5120/07-eierhouder.webp', label: 'Eierhouder' },
+      { src: 'assets/photos/liebherr-irbsd-5120/08-powercooling.webp', label: 'PowerCooling' },
+      { src: 'assets/photos/liebherr-irbsd-5120/09-bediening.webp', label: 'Bediening' },
+      { src: 'assets/photos/liebherr-irbsd-5120/10-maatschets.webp', label: 'Maatschets' },
+      { src: 'assets/photos/liebherr-irbsd-5120/11-versheidstabel.webp', label: 'Versheidstabel' }
+    ],
+    photoCredit: 'Productfoto’s: Liebherr-Hausgeräte; de detailopnames via Bemmel en Kroon.',
+    photoUrl: 'https://www.liebherr.com/nl-nl/p/irbsd-5120-3093352',
+    photoLabel: 'Foto’s op Liebherr.nl',
+    expertUrl: 'https://www.expert.nl/liebherr-irbsd-5120-22-372636963'
+  },
+  {
+    id: 'aeg-tk6fs181ds',
+    brand: 'AEG',
+    model: 'TK6FS181DS',
+    series: '6000 CustomFlex®',
+    category: 'koelkast',
+    group: 'koelkast',
+    accent: '#c1121f',
+    source: 'offerte',
+    price: 1049,
+    priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'D',
+    energyKwh: 91,
+    heightCm: 177.2,
+    heightLabel: '177,2 cm',
+    nicheLabel: 'nis 178 cm',
+    noiseDb: 32,
+    noiseClass: 'B',
+    capacityFridge: 307,
+    capacityFreezer: 0,
+    widthCm: 54.6,
+    depthCm: 54.9,
+    climate: 'SN-N-ST-T',
+    mounting: 'Sleepscharnier',
+    tagline: 'Stilste én zuinigste van allemaal: 32 dB, 91 kWh.',
+    highlights: [
+      'Slechts 32 dB — stilste model',
+      '91 kWh/jaar — zuinigste model',
+      'DynamicAir luchtcirculatie',
+      'CustomFlex® + ExtraZone-lade'
+    ],
+    description:
+      'De AEG TK6FS181DS wint dit vergelijk op twee punten tegelijk: met 32 dB is het de stilste kast en met 91 kWh per jaar veruit de zuinigste, ondanks label D. DynamicAir houdt een constante luchtstroom in stand, zodat elk schap van boven tot onder even koud is en er geen warmere zones ontstaan. In de deur zit CustomFlex®: de bakjes klik je los en zet je terug waar je ze wilt. De ExtraZone-lade op telescopische geleiders houdt verschillende soorten voedsel gescheiden. Verder een Coolmatic-snelkoelfunctie, een hoorbaar en zichtbaar deuralarm en een binnenwand van 70% gerecycled kunststof. AEG geeft tien jaar garantie op de compressor.',
+    specs: [
+      ['Type', 'Inbouwkoelkast zonder vriesvak'],
+      ['Netto inhoud koelruimte', '307 liter'],
+      ['Buitenmaten (h×b×d)', '177,2 × 54,6 × 54,9 cm'],
+      ['Inbouwmaten (h×b×d)', '178 × 56 × 55 cm'],
+      ['Energielabel', 'D — 91 kWh/jaar'],
+      ['Geluidsniveau', '32 dB(A) — geluidsklasse B'],
+      ['Klimaatklasse', 'SN-N-ST-T'],
+      ['Luchtcirculatie', 'DynamicAir'],
+      ['Deurindeling', 'CustomFlex®, verplaatsbare bakjes'],
+      ['Lades', 'ExtraZone op telescopische geleiders'],
+      ['Legplateaus', '3 Full Width + 1 Flexishelf'],
+      ['Snelkoelen', 'Coolmatic'],
+      ['Ontdooiing', 'Automatisch'],
+      ['Alarm', 'Akoestisch en visueel bij open deur'],
+      ['Bediening', 'Elektronisch met LED-indicatie (TouchControl)'],
+      ['Duurzaamheid', 'Binnenbekleding 70% gerecycled kunststof'],
+      ['Garantie', '10 jaar op de compressor'],
+      ['Gewicht', '63 kg'],
+      ['Montage', 'Sleepscharnier'],
+      ['Productnummer', '923 581 344']
+    ],
+    photos: [
+      { src: 'assets/photos/aeg-tk6fs181ds/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-tk6fs181ds/02-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/aeg-tk6fs181ds/03-customflex.webp', label: 'CustomFlex' },
+      { src: 'assets/photos/aeg-tk6fs181ds/04-extrazone.webp', label: 'ExtraZone' },
+      { src: 'assets/photos/aeg-tk6fs181ds/05-groentelade.webp', label: 'Groentelade' },
+      { src: 'assets/photos/aeg-tk6fs181ds/06-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/aeg-tk6fs181ds/07-energielabel.webp', label: 'Energielabel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG, via Expert.nl.',
+    photoUrl: 'https://www.aeg.nl/kitchen/cooling/refrigerators/built-in-refrigerator/tk6fs181ds/',
+    photoLabel: 'Foto’s op AEG.nl',
+    expertUrl: 'https://www.expert.nl/aeg-tk6fs181ds-372643156'
+  },
+  {
+    id: 'aeg-nsc7c191ds',
+    brand: 'AEG',
+    model: 'NSC7C191DS',
+    series: '7000 NoFrost CoolAssist®',
+    category: 'combi',
+    group: 'combi-hoog',
+    accent: '#c1121f',
+    source: 'offerte',
+    price: 1329,
+    priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'D',
+    energyKwh: 172,
+    heightCm: 188.4,
+    heightLabel: '188,4 cm',
+    nicheLabel: 'nis 189,4 cm',
+    noiseDb: 34,
+    noiseClass: 'B',
+    capacityFridge: 207,
+    capacityFreezer: 62,
+    widthCm: 54.6,
+    depthCm: 54.9,
+    climate: 'SN-N-ST',
+    mounting: 'Sleepscharnier',
+    tagline: 'De enige met AI CoolAssist en Cooling 360°.',
+    highlights: [
+      'AI CoolAssist — leert je gewoonten',
+      'Cooling 360° gelijkmatige koeling',
+      'TwinTech® NoFrost, 2 circuits',
+      'Label D · 172 kWh · 34 dB'
+    ],
+    description:
+      'De AEG NSC7C191DS is de best uitgeruste van de drie combi’s. AI CoolAssist leert je dagelijkse routine kennen en stemt de koeling daarop af — bij weinig gebruik, bijvoorbeeld tijdens vakantie, scheelt dat tot 14% energie. Cooling 360° verdeelt de koude lucht via meerdere kanalen, zodat ingrediënten achterin niet bevriezen. Net als de andere AEG-combi’s werkt hij met TwinTech® NoFrost: twee gescheiden koelcircuits houden de vriezer vorstvrij en de koelkast op de juiste luchtvochtigheid, zodat groente niet uitdroogt en geuren niet overtrekken. Verder een ExtraChill-lade voor kaas en vleeswaren, MultiFlow-luchtcirculatie, CustomFlex® in de deur en de MultiSpace-indeling die de hoogte tot bovenin benut. Tegenover de 6000-serie staat een beter label (D tegen E), 43 kWh minder verbruik per jaar en 3 dB minder geluid.',
+    specs: [
+      ['Type', 'Inbouw koel-vriescombinatie, vries onder'],
+      ['Netto inhoud', '269 liter (207 l koel + 62 l vries)'],
+      ['Buitenmaten (h×b×d)', '188,4 × 54,6 × 54,9 cm'],
+      ['Inbouwmaten (h×b×d)', '189,4 × 56 × 55 cm'],
+      ['Energielabel', 'D — 172 kWh/jaar'],
+      ['Geluidsniveau', '34 dB(A) — geluidsklasse B'],
+      ['Klimaatklasse', 'SN-N-ST'],
+      ['Vriestechnologie', 'TwinTech® NoFrost, 2 gescheiden circuits'],
+      ['Slimme koeling', 'AI CoolAssist® — tot 14% besparing'],
+      ['Luchtverdeling', 'Cooling 360° + MultiFlow'],
+      ['Verszone', 'ExtraChill uittrekbare lade'],
+      ['Snelvriezen', 'Frostmatic'],
+      ['Indeling', 'MultiSpace + CustomFlex®'],
+      ['Legplateaus koelruimte', '3'],
+      ['Vrieslades', '3 volledige breedte, transparant + 2 glasplateaus'],
+      ['Bewaartijd bij stroomuitval', '11,5 uur'],
+      ['Invriescapaciteit', '5 kg/24 uur'],
+      ['Bediening', 'Elektronisch met LED-indicatie'],
+      ['Duurzaamheid', 'Binnenbekleding 70% gerecycled kunststof'],
+      ['Garantie', '10 jaar op de compressor'],
+      ['Gewicht', '70 kg'],
+      ['Montage', 'Sleepscharnier'],
+      ['Productnummer', '925 954 041']
+    ],
+    photos: [
+      { src: 'assets/photos/aeg-nsc7c191ds/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-nsc7c191ds/02-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/aeg-nsc7c191ds/03-extrachill.webp', label: 'ExtraChill' },
+      { src: 'assets/photos/aeg-nsc7c191ds/04-extrazone.webp', label: 'ExtraZone' },
+      { src: 'assets/photos/aeg-nsc7c191ds/05-luchtcirculatie.webp', label: 'Luchtcirculatie' },
+      { src: 'assets/photos/aeg-nsc7c191ds/06-multiflow.webp', label: 'MultiFlow' },
+      { src: 'assets/photos/aeg-nsc7c191ds/07-bedieningspaneel.webp', label: 'Bedieningspaneel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG. Enkele beelden dragen AEG’s eigen bijschrift.',
+    photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/nsc7c191ds/',
+    photoLabel: 'Foto’s op AEG.nl',
+    expertUrl: 'https://www.expert.nl/zoeken?q=NSC7C191DS'
+  },
+  {
+    id: 'aeg-nsc6m191es',
+    brand: 'AEG',
+    model: 'NSC6M191ES',
+    series: '6000 TwinTech® No Frost',
+    category: 'combi',
+    group: 'combi-hoog',
+    accent: '#c1121f',
+    source: 'offerte',
+    price: 1069,
+    priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'E',
+    energyKwh: 215,
+    heightCm: 188.4,
+    heightLabel: '188,4 cm',
+    nicheLabel: 'nis 189,4 cm',
+    noiseDb: 37,
+    noiseClass: 'C',
+    capacityFridge: 207,
+    capacityFreezer: 62,
+    widthCm: 54.6,
+    depthCm: 54.9,
+    climate: 'SN-N-ST-T',
+    mounting: 'Sleepscharnier',
+    tagline: 'Zelfde inhoud en indeling als de 7000, € 260 goedkoper.',
+    highlights: [
+      'TwinTech® NoFrost, 2 circuits',
+      'ExtraChill lade',
+      'Zelfde 269 l indeling als de 7000',
+      'Wel label E · 215 kWh · 37 dB'
+    ],
+    description:
+      'De AEG NSC6M191ES is de instapper onder de combi’s en lijkt sterk op de NSC7C191DS: dezelfde kastmaat, dezelfde verdeling van 207 liter koelen en 62 liter vriezen, dezelfde TwinTech® NoFrost met twee gescheiden koelcircuits, dezelfde ExtraChill-lade, MultiFlow, CustomFlex® en MultiSpace-indeling. Zelfs één plateau meer in de koelruimte (vier tegen drie). Wat je inlevert zit in de zuinigheid en de stilte: label E in plaats van D, 215 kWh per jaar tegen 172, en 37 dB tegen 34 — geluidsklasse C tegen B. Ook AI CoolAssist en Cooling 360° ontbreken. Daar staat € 260 minder tegenover; bij het huidige stroomtarief loopt het verbruiksverschil van 43 kWh per jaar op tot ruwweg € 15 per jaar.',
+    specs: [
+      ['Type', 'Inbouw koel-vriescombinatie, vries onder'],
+      ['Netto inhoud', '269 liter (207 l koel + 62 l vries)'],
+      ['Buitenmaten (h×b×d)', '188,4 × 54,6 × 54,9 cm'],
+      ['Inbouwmaten (h×b×d)', '189,4 × 56 × 55 cm'],
+      ['Energielabel', 'E — 215 kWh/jaar'],
+      ['Geluidsniveau', '37 dB(A) — geluidsklasse C'],
+      ['Klimaatklasse', 'SN-N-ST-T'],
+      ['Vriestechnologie', 'TwinTech® NoFrost, 2 gescheiden circuits'],
+      ['Slimme koeling', 'Geen AI CoolAssist'],
+      ['Luchtverdeling', 'MultiFlow'],
+      ['Verszone', 'ExtraChill uittrekbare lade'],
+      ['Snelvriezen', 'Frostmatic'],
+      ['Indeling', 'MultiSpace + CustomFlex®'],
+      ['Legplateaus koelruimte', '4'],
+      ['Vrieslades', '3 volledige breedte + 2 glasplateaus'],
+      ['Bewaartijd bij stroomuitval', '10 uur'],
+      ['Invriescapaciteit', '5 kg/24 uur'],
+      ['Bediening', 'Elektronisch met LED-indicatie'],
+      ['Duurzaamheid', 'Binnenbekleding 70% gerecycled kunststof'],
+      ['Garantie', '10 jaar op de compressor'],
+      ['Gewicht', '64 kg'],
+      ['Montage', 'Sleepscharnier'],
+      ['Productnummer', '925 954 000']
+    ],
+    photos: [
+      { src: 'assets/photos/aeg-nsc6m191es/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-nsc6m191es/02-groentelade.webp', label: 'Groentelade' },
+      { src: 'assets/photos/aeg-nsc6m191es/03-interieur.webp', label: 'Interieur' },
+      { src: 'assets/photos/aeg-nsc6m191es/04-bedieningspaneel.webp', label: 'Bedieningspaneel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG.',
+    photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/nsc6m191es/',
+    photoLabel: 'Foto’s op AEG.nl',
+    expertUrl: 'https://www.expert.nl/zoeken?q=NSC6M191ES'
+  },
+  {
+    id: 'aeg-osc7c181ds',
+    brand: 'AEG',
+    model: 'OSC7C181DS',
+    series: '7000 NoFrost CoolAssist®',
+    category: 'combi',
+    group: 'combi-nis178',
+    accent: '#c1121f',
+    source: 'offerte',
+    price: 1099,
+    priceNote: 'offerteprijs Expert Twello, incl. btw',
+    buildQuality: {
+      scope: 'Merkbreed (AEG) — niet apart getest voor dit model',
+      drawers: 'Meerdere gebruikers melden op Trustpilot dat een ladehandvat afbrak — "erg zwak en buigzaam plastic", aldus één review.',
+      shelves: 'Meldingen van scheuren in de opbergvakken van zowel het koel- als het vriesgedeelte, los van deze lade-klacht.',
+      plastic: 'Rubberen deurafdichting scheurde bij één gebruiker binnen een half jaar; AEG/Electrolux wees garantiedekking voor deze klachten af.',
+      lifespan: 'Consumentenbond: gemiddelde levensduur ruim 14 jaar, vergelijkbaar met Siemens en Bosch — dat contrasteert met de losse plastic-klachten hierboven.',
+      note: 'AEG Nederland scoort met 1,3–1,4/5 erg laag op Trustpilot, maar dat cijfer gaat over AEG in het algemeen (alle producten en klantenservice), niet specifiek over dit koelkastmodel. Geen van de gevonden klachten was voor dit exacte model te herleiden.',
+      checked: '10 augustus 2026'
+    },
+    energy: 'D',
+    energyKwh: 173,
+    heightCm: 177.2,
+    heightLabel: '177,2 cm',
+    nicheLabel: 'nis 178 cm',
+    noiseDb: 34,
+    noiseClass: 'B',
+    capacityFridge: 186,
+    capacityFreezer: 62,
+    widthCm: 54.6,
+    depthCm: 54.9,
+    climate: 'SN-N-ST',
+    mounting: 'Sleepscharnier',
+    tagline: 'Zelfde 7000-techniek, maar in een nis van 178 cm.',
+    highlights: [
+      'Past in een nis van 178 cm',
+      'AI CoolAssist + Cooling 360°',
+      'TwinTech® NoFrost, 2 circuits',
+      'Direct te plaatsen, geen plank aanpassen'
+    ],
+    description:
+      'De AEG OSC7C181DS is de korte broer van de NSC7C191DS: dezelfde 7000-techniek — AI CoolAssist, Cooling 360°, TwinTech® NoFrost met twee gescheiden circuits, ExtraChill-lade, MultiFlow en Frostmatic — maar in een kast die past in een nis van 178 cm. Dat is het praktische verschil: hij kan direct in de bestaande kolomkast, terwijl de 189,4 cm modellen vragen om het verwijderen en terugplaatsen van de plank erboven. Je levert er 20 liter koelruimte op in: 186 in plaats van 207 liter, bij een gelijk vriesvolume van 62 liter. Verbruik (173 kWh) en geluid (34 dB) zijn praktisch gelijk aan de hoge versie. MultiSpace en CustomFlex® staan niet in de specificatie van dit model.',
+    specs: [
+      ['Type', 'Inbouw koel-vriescombinatie, vries onder'],
+      ['Netto inhoud', '249 liter (186 l koel + 62 l vries)'],
+      ['Buitenmaten (h×b×d)', '177,2 × 54,6 × 54,9 cm'],
+      ['Inbouwmaten (h×b×d)', '178 × 56 × 55 cm'],
+      ['Energielabel', 'D — 173 kWh/jaar'],
+      ['Geluidsniveau', '34 dB(A) — geluidsklasse B'],
+      ['Klimaatklasse', 'SN-N-ST'],
+      ['Vriestechnologie', 'TwinTech® NoFrost, 2 gescheiden circuits'],
+      ['Slimme koeling', 'AI CoolAssist® — tot 14% besparing'],
+      ['Luchtverdeling', 'Cooling 360° + MultiFlow'],
+      ['Verszone', 'ExtraChill uittrekbare lade'],
+      ['Snelvriezen', 'Frostmatic'],
+      ['Legplateaus koelruimte', '3'],
+      ['Vrieslades', '3 volledige breedte, transparant + 2 glasplateaus'],
+      ['Bewaartijd bij stroomuitval', '11 uur'],
+      ['Invriescapaciteit', '5 kg/24 uur'],
+      ['Bediening', 'Elektronisch met LED-indicatie'],
+      ['Duurzaamheid', 'Binnenbekleding 70% gerecycled kunststof'],
+      ['Garantie', '10 jaar op de compressor'],
+      ['Gewicht', '66 kg'],
+      ['Montage', 'Sleepscharnier'],
+      ['Productnummer', '925 555 054']
+    ],
+    photos: [
+      { src: 'assets/photos/aeg-osc7c181ds/01-productfoto.webp', label: 'Productfoto' },
+      { src: 'assets/photos/aeg-osc7c181ds/02-in-de-keuken.webp', label: 'In de keuken' },
+      { src: 'assets/photos/aeg-osc7c181ds/03-plateaus.webp', label: 'Plateaus' },
+      { src: 'assets/photos/aeg-osc7c181ds/04-vrieslades.webp', label: 'Vrieslades' },
+      { src: 'assets/photos/aeg-osc7c181ds/05-koelruimte.webp', label: 'Koelruimte' },
+      { src: 'assets/photos/aeg-osc7c181ds/06-bedieningspaneel.webp', label: 'Bedieningspaneel' },
+      { src: 'assets/photos/aeg-osc7c181ds/07-maatschets.webp', label: 'Maatschets' },
+      { src: 'assets/photos/aeg-osc7c181ds/08-energielabel.webp', label: 'Energielabel' }
+    ],
+    photoCredit: 'Productfoto’s: AEG, via Expert.nl.',
+    photoUrl: 'https://www.aeg.nl/kitchen/cooling/fridge-freezers/built-in-fridge-freezer/osc7c181ds/',
+    photoLabel: 'Foto’s op AEG.nl',
+    expertUrl: 'https://www.expert.nl/zoeken?q=OSC7C181DS'
+  }
+];
+
+/* Modellen die op één kaart samenkomen met een merkschakelaar. De Siemens en
+ * de Bosch rollen van dezelfde BSH-band: gelijke inhoud, label, verbruik en
+ * geluidsniveau. Wat verschilt staat in `differs`; de kaart begint verder
+ * hetzelfde als elke andere kaart. */
+const TWINS = [
+  {
+    id: 'bsh-310',
+    members: ['siemens-ki81rnse0', 'bosch-kir81nse0'],
+    differs: 'Verschil zit in merk, prijs, breedte/nis en de indeling van lades en deurvakken.'
+  }
+];
+
+const ENERGY_COLORS = {
+  A: '#00a651',
+  B: '#4cb847',
+  C: '#bfd730',
+  D: '#f7e400',
+  E: '#f9b233',
+  F: '#ef7d00',
+  G: '#e30613'
+};

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koelkasten vergelijken — visueel overzicht</title>
+<meta name="description" content="Visueel overzicht van zes inbouwkoelkasten en koel-vriescombinaties: prijs, energielabel, hoogte, geluidsniveau en unieke features.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧊</text></svg>">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="eyebrow">Keuzehulp · augustus 2026</p>
+    <h1>Welke koelkast wordt het?</h1>
+    <p class="lede">
+      Zeven inbouwmodellen, verdeeld over drie secties: volledige koelkasten,
+      koelvries combi's die een hogere nis vragen, en de combi die in de huidige
+      nis past. Klik op een foto om hem groot te bekijken, of ergens anders op de
+      kaart voor de beschrijving en de volledige specificatielijst. De Siemens en
+      de Bosch delen één kaart — ze rollen van dezelfde band — met een schakelaar
+      om tussen de twee merken te wisselen. Elke kaart zet de inhoud af tegen de
+      kast die er nu staat (210 l koel + 70 l vries), en onderin kun je je eigen
+      plus- en minpunten kwijt. Onder de prijs staat ook meteen of een andere
+      NL-webshop goedkoper is, met een directe link.
+    </p>
+    <p class="lede-note">
+      De vier AEG-modellen staan op de offerte van Expert Twello
+      (nr. 2601004099, 6 augustus 2026) — die prijzen en specificaties komen
+      rechtstreeks uit de offerte en de AEG-datasheets. De prijzen van de Siemens
+      en de Liebherr zijn nagekeken op expert.nl; de Bosch verkoopt Expert niet,
+      dus die prijs blijft een indicatie.
+    </p>
+    <p class="lede-note"><a href="vriezer.html">Bekijk ook de vergelijking van losse vriezers &rarr;</a></p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="controls" aria-label="Sorteren en notities">
+    <div class="author-filter" role="group" aria-label="Notities van">
+      <span class="author-filter-label">Notities van</span>
+      <button type="button" class="author-btn" data-author="robbin">Robbin</button>
+      <button type="button" class="author-btn" data-author="anne">Anne</button>
+      <button type="button" class="author-btn is-on" data-author="all" aria-pressed="true">Beiden</button>
+    </div>
+    <label class="sort">
+      <span>Sorteer binnen elke sectie op</span>
+      <select id="sort">
+        <option value="default">Merk</option>
+        <option value="price">Prijs Expert (laag → hoog)</option>
+        <option value="cheapest">Goedkoopste prijs uit onderzoek (laag → hoog)</option>
+        <option value="noise">Geluidsniveau (stil → luid)</option>
+        <option value="energy">Energieverbruik (zuinig → onzuinig)</option>
+        <option value="height">Hoogte (laag → hoog)</option>
+      </select>
+    </label>
+  </section>
+
+  <div id="sections"></div>
+
+  <section class="compare" aria-labelledby="compare-title">
+    <h2 id="compare-title">Alles op een rij</h2>
+    <div class="table-scroll">
+      <table id="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Model</th>
+            <th scope="col">Type</th>
+            <th scope="col">Prijs</th>
+            <th scope="col">Label</th>
+            <th scope="col">kWh/jr</th>
+            <th scope="col">Hoogte</th>
+            <th scope="col">Geluid</th>
+            <th scope="col">Inhoud</th>
+            <th scope="col">Elders goedkoper</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="table-note">
+      Groen gemarkeerd = beste waarde in die kolom. Prijzen met het label
+      <em>offerte</em> komen uit de Expert-offerte, <em>expert.nl</em> is de webshopprijs
+      van 8 augustus 2026, en <em>indicatie</em> is een schatting die niet één-op-één met
+      de andere twee te vergelijken is. "Elders goedkoper" vergelijkt de hier vermelde
+      prijs met andere grote NL-webshops, zie de toelichting hieronder.
+    </p>
+  </section>
+
+  <section class="offerte" aria-labelledby="offerte-title">
+    <h2 id="offerte-title">De offerte van Expert Twello</h2>
+    <p class="offerte-meta">
+      Offerte 2601004099 · 6 augustus 2026 · geldig tot 20 augustus 2026 ·
+      verkoper Peter · alle bedragen inclusief btw
+    </p>
+    <div class="table-scroll">
+      <table class="offerte-table">
+        <thead>
+          <tr>
+            <th scope="col">Regel</th>
+            <th scope="col">Toelichting uit de offerte</th>
+            <th scope="col">Bedrag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>AEG NSC6M191ES</td><td>Nis 189,4 cm</td><td class="num">€ 1.069</td></tr>
+          <tr><td>AEG NSC7C191DS</td><td>Nis 189,4 cm · verwacht 14-08-2026</td><td class="num">€ 1.329</td></tr>
+          <tr><td>AEG TK6FS181DS</td><td>Grote inbouwkoeler nis 178 cm · deuren koppelen</td><td class="num">€ 1.049</td></tr>
+          <tr><td>AEG OSC7C181DS</td><td>Koel/vriescombinatie 178 cm · direct te plaatsen</td><td class="num">€ 1.099</td></tr>
+          <tr><td>Meerprijs plank</td><td>Oude plank verwijderen en nieuwe plaatsen</td><td class="num">€ 50</td></tr>
+          <tr><td>Installatie</td><td>Expert Thuis Installatie inbouw koelkast</td><td class="num">€ 149</td></tr>
+          <tr class="total"><td colspan="2">Totaal offerte inclusief btw</td><td class="num">€ 4.745</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="offerte-note">
+      <strong>Let op de nishoogte.</strong> De offerte vermeldt dat bij de modellen van
+      189,4 cm de huidige plank aan de bovenzijde verwijderd moet worden en een nieuwe
+      teruggeplaatst — vandaar de meerprijs van € 50. De modellen van 178 cm
+      (TK6FS181DS en OSC7C181DS) zijn direct te plaatsen.
+    </p>
+  </section>
+
+  <section class="disclosure" aria-labelledby="bron-title">
+    <h2 id="bron-title">Over de gegevens en de afbeeldingen</h2>
+    <p>
+      <strong>De vier AEG-modellen zijn geverifieerd.</strong> Prijs, nishoogte en
+      levertijd komen uit de offerte van Expert Twello; energielabel, verbruik,
+      geluidsniveau, maten, inhoud en features komen rechtstreeks uit de
+      AEG-productdatasheets. Deze modellen dragen het label <em>offerte</em> bij de prijs.
+    </p>
+    <p>
+      <strong>Siemens, Bosch en Liebherr staan niet op de offerte.</strong> Hun
+      specificaties komen uit publieke productinformatie. De prijzen van de Siemens en de
+      Liebherr zijn op 8 augustus 2026 nagekeken op expert.nl en dragen het label
+      <em>expert.nl</em>: de Siemens KI81RNSE0 staat daar voor € 905 (de eerdere schatting
+      van € 869 was te laag) en de Liebherr voor € 1.649, onder de naam IRBSd 5120-22.
+      Dat zijn webshopprijzen, geen offerteprijzen — vraag ze na bij Expert Twello voordat
+      je ze naast de offerte legt.
+    </p>
+    <p>
+      <strong>De Bosch KIR81NSE0 verkoopt Expert niet.</strong> Expert voert wel de
+      KIR41NSE0 en de KIR81VFE0, maar dat zijn andere modellen. De prijs van € 949 blijft
+      daarom een indicatie en draagt het label <em>indicatie</em>.
+    </p>
+    <p>
+      <strong>"Elders goedkoper" is gecontroleerd bij Keukenloods.nl, 123apparatuur.nl,
+      Veldkamp Keukens, Bemmel &amp; Kroon en EP.nl</strong>, opnieuw bekeken op 10 augustus
+      2026. Bij de Siemens bleek Bemmel &amp; Kroon het goedkoopst (Keukenloods.nl en
+      123apparatuur.nl zaten daar net iets boven); bij de Bosch en de Liebherr kwamen
+      Keukenloods.nl, 123apparatuur.nl en Bemmel &amp; Kroon allemaal op precies hetzelfde
+      laagste bedrag uit, dan staat de eerst gecontroleerde winkel vermeld. Veldkamp Keukens
+      blokkeert geautomatiseerd bezoek, dus die prijzen konden niet apart geverifieerd worden.
+      Bij de vier AEG-modellen was er geen echte besparing te vinden: de TK6FS181DS wordt
+      niet gevoerd bij deze vier winkels en staat bij EP.nl voor exact dezelfde prijs, de
+      NSC7C191DS en de NSC6M191ES zijn bij deze winkels alleen op aanvraag te bestellen
+      (geen vergelijkbare prijs), en de OSC7C181DS wordt door geen van de vier gevoerd — in
+      geen van deze gevallen was er dus een webshop waar je het model daadwerkelijk
+      goedkoper kon afrekenen. Prijzen bij andere webshops kunnen inmiddels gewijzigd zijn —
+      de link gaat naar de productpagina zelf.
+    </p>
+    <p>
+      <strong>Bouwkwaliteit.</strong> Onder de prijsvergelijking staat een samenvatting van
+      gebruikerservaringen met de stevigheid van lades, legplanken en plastic onderdelen,
+      gebaseerd op Trustpilot, Consumentenbond-cijfers en consumentenforums. Dit is grotendeels
+      merkbreed onderzocht, niet apart getest per model — dat staat er expliciet bij. Siemens en
+      Bosch delen dezelfde BSH-techniek en dus dezelfde bevindingen. Voor AEG zijn concrete
+      klachten gevonden over een afgebroken ladehandvat en scheuren in opbergvakken, terwijl de
+      gemiddelde levensduur volgens de Consumentenbond juist tot de langste van de vergelijking
+      behoort — beide feiten staan naast elkaar. Voor Liebherr zijn geen concrete klachten
+      gevonden over lades of plastic, maar is de gemiddelde levensduur bij de Consumentenbond
+      wel de kortste van de grote merken in de test.
+    </p>
+    <p>
+      <strong>Afbeeldingen.</strong> Alle zeven modellen tonen echte productfoto's van de
+      fabrikant. Klik een foto aan om hem op volledige schermgrootte te bekijken; met de
+      pijltjestoetsen blader je door de reeks. De schematische tekeningen die hier eerder
+      stonden zijn vervallen.
+    </p>
+    <p class="fineprint-sources">
+      <strong>Herkomst van de foto's.</strong> Siemens en Bosch komen van de mediaserver van
+      BSH Home Appliances, Liebherr van de eigen asset-CDN van Liebherr-Hausgeräte. De vier
+      AEG-modellen komen uit AEG's eigen productbeeld: TK6FS181DS en OSC7C181DS via Expert.nl,
+      NSC7C191DS en NSC6M191ES via de vakhandel — aeg.nl zelf is vanuit deze bouwomgeving niet
+      bereikbaar. Bij de NSC7C191DS is het aanbod aan schone productfotografie beperkt; een
+      deel van die beelden draagt AEG's eigen tekst in de afbeelding. Alle foto's zijn
+      auteursrechtelijk beschermd materiaal van de fabrikanten en staan hier alleen als
+      keuzehulp.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Gemaakt als keuzehulp · specificaties augustus 2026 · prijzen indicatief, geen aanbieding.</p>
+  </div>
+</footer>
+
+<!-- Detailvenster -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" data-close aria-label="Sluiten">&times;</button>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <button class="stage" id="stage" type="button" aria-label="Foto vergroten">
+          <span class="stage-zoom" aria-hidden="true">Vergroten</span>
+        </button>
+        <div class="thumbs" id="thumbs" role="tablist" aria-label="Afbeeldingen"></div>
+      </div>
+      <div class="modal-info">
+        <p class="modal-eyebrow" id="modal-eyebrow"></p>
+        <h2 id="modal-title"></h2>
+        <p class="modal-tagline" id="modal-tagline"></p>
+        <div class="modal-keys" id="modal-keys"></div>
+        <div id="modal-cheaper"></div>
+        <p class="modal-desc" id="modal-desc"></p>
+        <h3>Unieke features</h3>
+        <ul class="feature-list" id="modal-features"></ul>
+        <h3>Alle specificaties</h3>
+        <table class="spec-table"><tbody id="modal-specs"></tbody></table>
+        <div class="modal-actions">
+          <a class="btn-expert" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">
+            Bekijk op Expert.nl &rarr;
+          </a>
+          <a class="btn-photos" id="modal-photo-link" href="#" target="_blank" rel="noopener noreferrer">
+            Foto's bij de fabrikant &rarr;
+          </a>
+        </div>
+        <p class="modal-fineprint" id="modal-fineprint"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Foto op volle schermgrootte -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-backdrop" data-lightbox-close></div>
+  <button class="lightbox-close" data-lightbox-close aria-label="Sluiten">&times;</button>
+  <button class="lightbox-nav is-prev" id="lightbox-prev" aria-label="Vorige foto">&#8249;</button>
+  <button class="lightbox-nav is-next" id="lightbox-next" aria-label="Volgende foto">&#8250;</button>
+  <figure class="lightbox-figure" role="dialog" aria-modal="true" aria-label="Foto op ware grootte">
+    <img id="lightbox-img" alt="">
+    <figcaption>
+      <span id="lightbox-caption"></span>
+      <span class="lightbox-count" id="lightbox-count"></span>
+    </figcaption>
+  </figure>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
