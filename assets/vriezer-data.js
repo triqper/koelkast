@@ -13,7 +13,9 @@
  *
  * Stroomkosten per jaar zijn berekend als jaarverbruik (kWh) x aangenomen
  * stroomprijs, zie STROOMPRIJS hieronder — geen offerte- of contractprijs,
- * alleen een indicatie om modellen onderling te vergelijken.
+ * alleen een indicatie om modellen onderling te vergelijken. Op de kaart
+ * staat daarnaast een tweede bedrag "met zonnepanelen", zie ZON_DEKKING
+ * hieronder voor de aannames daarachter.
  *
  * `cheaper` is de goedkoopste vondst bij een andere grote NL-webshop (bol.com,
  * Coolblue, MediaMarkt, of via de prijsvergelijking op BCC.nl), bekeken op
@@ -25,7 +27,32 @@
  * (Stilst/Zuinigst/Meeste inhoud).
  */
 
-const STROOMPRIJS = 0.40; /* euro per kWh, indicatief variabel tarief incl. belastingen, 2026 */
+const STROOMPRIJS = 0.30; /* euro per kWh, indicatief variabel tarief incl. belastingen, 2026 */
+
+/* Zonnepanelen op dit huishouden: gedurende 5 van de 12 maanden (aangenomen
+ * april t/m augustus, de zonnigste helft van het jaar) wordt er over de
+ * hele maand gerekend meer teruggeleverd dan verbruikt — in die maanden
+ * draait een continu apparaat als een vriezer in de praktijk vrijwel
+ * volledig op eigen zonnestroom. In de overige 7 maanden (september t/m
+ * maart) is dat alleen zo tijdens daglichturen; 's nachts komt de stroom
+ * van het net. Een vriezer trekt maar zo'n 20-30 W gemiddeld (jaarverbruik
+ * / 8760 uur) — ruim minder dan zelfs een bewolkte dag oplevert (zie de
+ * meegestuurde schermafbeeldingen: een goede zonnedag haalt 20,8 kWh,
+ * een bewolkte dag nog altijd 11,1 kWh, allebei over zo'n 13-15 uur
+ * gemeten productie) — dus zodra de zon iets van productie geeft, dekt dat
+ * ruimschoots het verbruik van de vriezer.
+ *
+ * Rekensom: gemiddelde daglichtlengte in Nederland (± 52° NB) over
+ * sept–mrt ≈ 9,9 uur/dag x 212 dagen ≈ 2100 zonne-uren, plus 153 dagen x
+ * 24 uur volledig op zon in de vijf overschotmaanden ≈ 3670 uur. Samen
+ * zo'n 5770 van de 8760 uur per jaar (≈ 66%) op zonnestroom, de
+ * resterende ≈ 34% van het net. Zelf opgewekte stroom rekenen we hier als
+ * gratis; in werkelijkheid geldt bij salderen een lagere
+ * terugleververgoeding voor het exportoverschot, geen offerte of
+ * belastingadvies.
+ */
+const ZON_DEKKING = 0.66; /* geschat aandeel van het jaar dat op zonnestroom draait */
+const ZON_NET_AANDEEL = 1 - ZON_DEKKING; /* aandeel dat tegen STROOMPRIJS van het net komt */
 
 const VRIEZERS = [
   {

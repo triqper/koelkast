@@ -106,6 +106,13 @@
     return Math.round(f.energyKwh * STROOMPRIJS);
   }
 
+  /* Kosten per jaar als het aandeel dat naar schatting op eigen zonnestroom
+     draait (ZON_DEKKING, zie vriezer-data.js) niets kost — alleen het
+     resterende net-aandeel wordt tegen STROOMPRIJS gerekend. */
+  function yearlyCostSolar(f) {
+    return Math.round(f.energyKwh * STROOMPRIJS * ZON_NET_AANDEEL);
+  }
+
   function costLabel(f) {
     return '€' + yearlyCost(f) + ' p.j.';
   }
@@ -316,14 +323,16 @@
       '<span class="stat-value">' + value + '</span></div>';
   }
 
-  /* De vijf dingen die direct in het overzicht moeten staan: inhoud,
-     geluid, maten, energielabel en geschatte stroomkosten per jaar. */
+  /* De dingen die direct in het overzicht moeten staan: maten, jaarverbruik
+     en de stroomkosten per jaar, met en zonder zonnepanelen. */
   function specStrip(f) {
     return '<div class="cap">' +
       '<p class="cap-title">Kernspecs</p>' +
       '<p class="cap-line spec-strip">' +
         specItem('Maten (h×b×d)', f.heightCm + '×' + f.widthCm + '×' + f.depthCm + ' cm') +
         specItem('Jaarverbruik', f.energyKwh + ' kWh/jr') +
+        specItem('Stroomkosten', euro.format(yearlyCost(f)) + '/jr') +
+        specItem('Met zonnepanelen', euro.format(yearlyCostSolar(f)) + '/jr') +
       '</p>' +
     '</div>';
   }
@@ -493,6 +502,7 @@
         '<td class="num' + (f.energyKwh === BEST.energyKwh ? ' best' : '') + '">' +
           f.energyKwh + '</td>' +
         '<td class="num">&plusmn; ' + euro.format(yearlyCost(f)) + '</td>' +
+        '<td class="num">&plusmn; ' + euro.format(yearlyCostSolar(f)) + '</td>' +
         '<td class="num">' + f.heightCm + '×' + f.widthCm + '×' + f.depthCm + '</td>' +
         '<td class="num' + (f.noiseDb === BEST.noiseDb ? ' best' : '') + '">' +
           f.noiseDb + ' dB</td>' +
@@ -532,7 +542,8 @@
       stat('Inhoud', f.capacityL + ' l') +
       stat('Geluid', f.noiseDb + ' dB') +
       stat('Maten', f.heightCm + '×' + f.widthCm + '×' + f.depthCm + ' cm') +
-      stat('Stroomkosten', '&plusmn; ' + euro.format(yearlyCost(f)) + '/jr');
+      stat('Stroomkosten', '&plusmn; ' + euro.format(yearlyCost(f)) + '/jr') +
+      stat('Met zonnepanelen', '&plusmn; ' + euro.format(yearlyCostSolar(f)) + '/jr');
 
     document.getElementById('modal-cheaper').innerHTML = cheaperHtml(f, 'modal-cheaper');
 
@@ -559,7 +570,9 @@
 
     document.getElementById('modal-fineprint').textContent = f.priceNote +
       (f.photoCredit ? ' ' + f.photoCredit : '') +
-      ' Stroomkosten zijn een schatting bij ' + euro.format(STROOMPRIJS) + '/kWh, geen offerte.';
+      ' Stroomkosten zijn een schatting bij ' + euro.format(STROOMPRIJS) + '/kWh, geen offerte. ' +
+      '"Met zonnepanelen" gaat uit van ' + Math.round(ZON_DEKKING * 100) + '% van het jaar op eigen ' +
+      'zonnestroom (zie de toelichting onderaan de pagina) — ook een schatting, geen offerte.';
 
     modal.querySelector('.modal-panel').style.setProperty('--accent', f.accent);
     renderThumbs();
