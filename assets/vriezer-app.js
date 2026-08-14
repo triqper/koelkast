@@ -90,6 +90,16 @@
     maximumFractionDigits: 0
   });
 
+  /* Voor bedragen onder de €1 (zoals de kWh-prijs): de gewone `euro`
+     formatter rondt naar hele euro's af, waardoor € 0,30 als "€ 0" zou
+     tonen. */
+  const euroCents = new Intl.NumberFormat('nl-NL', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
   function best(key, lowerIsBetter) {
     const values = VRIEZERS.map(function (f) { return f[key]; });
     return lowerIsBetter ? Math.min.apply(null, values) : Math.max.apply(null, values);
@@ -570,7 +580,7 @@
 
     document.getElementById('modal-fineprint').textContent = f.priceNote +
       (f.photoCredit ? ' ' + f.photoCredit : '') +
-      ' Stroomkosten zijn een schatting bij ' + euro.format(STROOMPRIJS) + '/kWh, geen offerte. ' +
+      ' Stroomkosten zijn een schatting bij ' + euroCents.format(STROOMPRIJS) + '/kWh, geen offerte. ' +
       '"Met zonnepanelen" gaat uit van ' + Math.round(ZON_DEKKING * 100) + '% van het jaar op eigen ' +
       'zonnestroom (zie de toelichting onderaan de pagina) — ook een schatting, geen offerte.';
 

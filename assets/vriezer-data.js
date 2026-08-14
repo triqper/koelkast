@@ -29,29 +29,34 @@
 
 const STROOMPRIJS = 0.30; /* euro per kWh, indicatief variabel tarief incl. belastingen, 2026 */
 
-/* Zonnepanelen op dit huishouden: gedurende 5 van de 12 maanden (aangenomen
- * april t/m augustus, de zonnigste helft van het jaar) wordt er over de
- * hele maand gerekend meer teruggeleverd dan verbruikt — in die maanden
- * draait een continu apparaat als een vriezer in de praktijk vrijwel
- * volledig op eigen zonnestroom. In de overige 7 maanden (september t/m
- * maart) is dat alleen zo tijdens daglichturen; 's nachts komt de stroom
- * van het net. Een vriezer trekt maar zo'n 20-30 W gemiddeld (jaarverbruik
- * / 8760 uur) — ruim minder dan zelfs een bewolkte dag oplevert (zie de
- * meegestuurde schermafbeeldingen: een goede zonnedag haalt 20,8 kWh,
- * een bewolkte dag nog altijd 11,1 kWh, allebei over zo'n 13-15 uur
- * gemeten productie) — dus zodra de zon iets van productie geeft, dekt dat
- * ruimschoots het verbruik van de vriezer.
+/* Zonnepanelen op dit huishouden: 5 van de 12 maanden (aangenomen april t/m
+ * augustus) levert het huishouden over de hele maand gerekend meer terug
+ * dan het verbruikt. Dat is een boekhoudkundig/financieel gegeven (saldering
+ * over de maand), geen bewijs dat de vriezer in die maanden dag én nacht op
+ * zon draait: 's nachts leveren de panelen niets op, ook niet in juli — dan
+ * komt de stroom altijd van het net, wat er die maand per saldo ook wordt
+ * teruggeleverd. De enige fysiek juiste graadmeter is dus daglicht vs. nacht,
+ * ongeacht het seizoen of de maandbalans.
  *
- * Rekensom: gemiddelde daglichtlengte in Nederland (± 52° NB) over
- * sept–mrt ≈ 9,9 uur/dag x 212 dagen ≈ 2100 zonne-uren, plus 153 dagen x
- * 24 uur volledig op zon in de vijf overschotmaanden ≈ 3670 uur. Samen
- * zo'n 5770 van de 8760 uur per jaar (≈ 66%) op zonnestroom, de
- * resterende ≈ 34% van het net. Zelf opgewekte stroom rekenen we hier als
+ * Een vriezer trekt maar zo'n 20-30 W gemiddeld (jaarverbruik / 8760 uur) —
+ * ruim minder dan zelfs een bewolkte dag oplevert (zie de meegestuurde
+ * schermafbeeldingen: een goede zonnedag haalt 20,8 kWh, een bewolkte dag
+ * nog altijd 11,1 kWh, allebei over zo'n 13-15 uur gemeten productie, wat
+ * ongeveer overeenkomt met de volledige daglichtlengte op die dagen). Zodra
+ * er dus daglicht is, dekt de zon ruimschoots het verbruik van de vriezer;
+ * in het donker (altijd, elke maand) komt de stroom van het net.
+ *
+ * Rekensom: gemiddelde daglichtlengte in Nederland (± 52° NB), gemiddeld
+ * over alle twaalf maanden (van ≈ 7,6 uur/dag rond de winterzonnewende tot
+ * ≈ 16,5 uur/dag rond de zomerzonnewende) ≈ 12,2 uur/dag. Op jaarbasis:
+ * 12,2 x 365 ≈ 4440 van de 8760 uur (≈ 51%) overdag/op zon, de resterende
+ * ≈ 49% 's nachts/op het net — in alle maanden, ook de vijf
+ * "overschotmaanden". Zelf opgewekte stroom rekenen we tijdens daglicht als
  * gratis; in werkelijkheid geldt bij salderen een lagere
  * terugleververgoeding voor het exportoverschot, geen offerte of
  * belastingadvies.
  */
-const ZON_DEKKING = 0.66; /* geschat aandeel van het jaar dat op zonnestroom draait */
+const ZON_DEKKING = 0.51; /* geschat aandeel van het jaar (daglicht) dat op zonnestroom draait */
 const ZON_NET_AANDEEL = 1 - ZON_DEKKING; /* aandeel dat tegen STROOMPRIJS van het net komt */
 
 const VRIEZERS = [
