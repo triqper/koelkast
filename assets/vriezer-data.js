@@ -1072,7 +1072,7 @@ const VRIEZERS = [
     ],
     photos: [
       { src: 'assets/photos-vriezer/samsung-rz70h32ketef/01-gesloten.png', label: 'Dicht' },
-      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/02-open.png', label: 'Open — gevuld' }
+      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/02-open.jpg', label: 'Open — gevuld' }
     ],
     photoCredit: 'Productfoto: Samsung, via Samsung.com/nl.',
     photoUrl: 'https://www.samsung.com/nl/refrigerators/one-door/ri80h-24-rz70h32hdtef-323l-silver-rz70h32ketef/',
