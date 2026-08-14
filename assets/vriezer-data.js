@@ -878,6 +878,204 @@ const VRIEZERS = [
     photoUrl: 'https://etna.nl/keukenapparatuur/vv172nrvs/',
     photoLabel: 'Foto’s op Etna.nl',
     expertUrl: 'https://www.expert.nl/etna-vv172nrvs-rvs-372640470'
+  },
+  {
+    id: 'heinner-hffm272nfcxe',
+    brand: 'Heinner',
+    model: 'HFF-M272NFCXE',
+    series: 'Convertible Super Freeze',
+    kleur: 'Rvs',
+    group: 'vriezer',
+    accent: '#f2792e',
+    source: 'pro-witgoed',
+    price: 485,
+    priceNote: 'prijs pro-witgoed.com, 14 augustus 2026 (afgeprijsd van € 539)',
+    linkLabel: 'Bekijk op pro-witgoed.com',
+    cheaper: null,
+    reviews: {
+      status: 'insufficient',
+      score: 5.0,
+      scale: 5,
+      count: 2,
+      source: 'bol.com',
+      url: 'https://www.bol.com/nl/nl/p/heinner-hff-m272nfcxe-vrieskast-272-l-no-frost-convertible-koel-vriesfunctie-led-display-super-cooling-freezing-inox-5-jaar-garantie/9300000247772879/',
+      checked: '14 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Heinner koel-vriescombinaties en vriezers) — niet apart getest voor dit model',
+      drawers: 'Reviews van vergelijkbare Heinner-modellen noemen transparante lades die soepel schuiven; geen klachten over breekbaarheid gevonden.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Geen brede klachten gevonden over kunststof onderdelen; gebruikers noemen vooral de stille werking en de goede verlichting.',
+      note: 'Gebaseerd op reviews van Heinner koel-vriesapparatuur in het algemeen, niet specifiek bevestigd voor dit model.',
+      checked: '14 augustus 2026'
+    },
+    energy: 'E',
+    energyKwh: 245,
+    heightCm: 185,
+    widthCm: 59.5,
+    depthCm: 61.8,
+    noiseDb: 41,
+    capacityL: 272,
+    tagline: 'Convertible: schakelt om tussen vriezer en koelkast, en het goedkoopst van de drie nieuwkomers.',
+    highlights: [
+      'Convertible — ook te gebruiken als koelkast',
+      '7 vrieslades met LED-display',
+      'Super Freeze snelvriesfunctie',
+      '5 jaar garantie'
+    ],
+    description:
+      'De Heinner HFF-M272NFCXE is een vrijstaande vrieskast van 272 liter met een convertible-functie: met één druk op de knop schakelt hij om naar koelkastmodus, handig bij een feestje of verhuizing. No Frost voorkomt ijsvorming in de 7 lades, en Super Freeze vriest nieuwe boodschappen snel in zonder de rest op te laten warmen. Een LED-display met elektronische bediening en een deuralarm maken hem verder vergelijkbaar met de andere modellen in dit overzicht.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '272 liter'],
+      ['Afmetingen (h×b×d)', '185 × 59,5 × 61,8 cm'],
+      ['Energielabel', 'E — 245 kWh/jaar'],
+      ['Geluidsniveau', '41 dB(A)'],
+      ['Lades', '7'],
+      ['Snelvriezen', 'Super Freeze'],
+      ['Ontdooiing', 'NoFrost, automatisch'],
+      ['Bijzonderheid', 'Convertible — omschakelbaar naar koelkastfunctie'],
+      ['Alarm', 'Deuralarm'],
+      ['Garantie', '5 jaar']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/heinner-hffm272nfcxe/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/heinner-hffm272nfcxe/02-open.jpg', label: 'Open — koelkastmodus, gevuld' }
+    ],
+    photoCredit: 'Productfoto: Heinner, via pro-witgoed.com.',
+    expertUrl: 'https://pro-witgoed.com/products/heinner-hff-m272nfcxe-vriezer-272-l-no-frost-convertible-super-freeze'
+  },
+  {
+    id: 'sharp-sjsc11cmxideu',
+    brand: 'Sharp',
+    model: 'SJSC11CMXIDEU',
+    series: '',
+    kleur: 'Rvs',
+    group: 'vriezer',
+    accent: '#c00000',
+    source: 'bol',
+    price: 680,
+    priceNote: 'prijs bol.com, 14 augustus 2026',
+    linkLabel: 'Bekijk op bol.com',
+    cheaper: {
+      shop: 'Correct.nl',
+      price: 645,
+      savings: 35,
+      url: 'https://www.correct.nl/products/sharp-sjsc11cmxideu-vrieskast'
+    },
+    reviews: {
+      status: 'insufficient',
+      score: 5.0,
+      scale: 5,
+      count: 1,
+      source: 'bol.com',
+      url: 'https://www.bol.com/nl/nl/p/sharp-sjsc11cmxideu-kastmodel-vriezer-186cm-energie-label-d-no-frost-zilver/9300000176590485/',
+      checked: '14 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Sharp koel-vriescombinaties en vriezers) — niet apart getest voor dit model',
+      drawers: 'Reviews van vergelijkbare Sharp-modellen noemen diepe lades die soepel schuiven, met een aanpasbare vochtigheidsinstelling bij de groente-/fruitlade van verwante modellen.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Gebruikers noemen de afwerking, zowel binnen als buiten, doorgaans van goede kwaliteit — geen brede klachten over kunststof onderdelen gevonden.',
+      note: 'Gebaseerd op reviews van Sharp koel-vriesapparatuur in het algemeen, niet specifiek bevestigd voor dit model.',
+      checked: '14 augustus 2026'
+    },
+    energy: 'D',
+    energyKwh: 199,
+    heightCm: 186,
+    widthCm: 59.5,
+    depthCm: 65,
+    noiseDb: 39,
+    capacityL: 280,
+    tagline: 'Beste energielabel van de nieuwkomers: D bij 199 kWh/jaar, en goedkoper te vinden bij Correct.nl.',
+    highlights: [
+      'Zuinigste van de drie nieuwkomers: 199 kWh/jaar, label D',
+      '5 lades + 2 vakken met klep',
+      'Vingervlekvrij roestvrijstaal',
+      'Omkeerbaar deurscharnier'
+    ],
+    description:
+      'De Sharp SJSC11CMXIDEU is een vrijstaande vrieskast van 280 liter in vingervlekvrij roestvrijstaal, met energielabel D en 199 kWh per jaar — het zuinigst van de drie nieuw toegevoegde modellen. No Frost-technologie met geavanceerde luchtcirculatie voorkomt ijsvorming, een digitaal display regelt de temperatuur, en een deuralarm waarschuwt als de deur openstaat. Bij stroomuitval blijft de inhoud volgens Sharp nog 15 uur op temperatuur.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '280 liter'],
+      ['Afmetingen (h×b×d)', '186 × 59,5 × 65 cm'],
+      ['Energielabel', 'D — 199 kWh/jaar'],
+      ['Geluidsniveau', '39 dB(A)'],
+      ['Lades', '5 + 2 vakken met klep'],
+      ['Invriescapaciteit', '13 kg/24 uur'],
+      ['Ontdooiing', 'NoFrost, automatisch'],
+      ['Deurscharnier', 'Omkeerbaar'],
+      ['Overbrugging bij stroomuitval', '15 uur'],
+      ['Garantie', '2 jaar fabrieksgarantie']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/sharp-sjsc11cmxideu/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/sharp-sjsc11cmxideu/02-open.jpg', label: 'Open — indeling' }
+    ],
+    photoCredit: 'Productfoto: Sharp, via bol.com.',
+    expertUrl: 'https://www.bol.com/nl/nl/p/sharp-sjsc11cmxideu-kastmodel-vriezer-186cm-energie-label-d-no-frost-zilver/9300000176590485/'
+  },
+  {
+    id: 'samsung-rz70h32ketef',
+    brand: 'Samsung',
+    model: 'RZ70H32KETEF',
+    series: 'Smart Conversion',
+    kleur: 'Rvs',
+    group: 'vriezer',
+    accent: '#1428a0',
+    source: 'bol',
+    price: 700,
+    priceNote: 'prijs bol.com, 14 augustus 2026',
+    linkLabel: 'Bekijk op bol.com',
+    cheaper: null,
+    reviews: {
+      status: 'none',
+      checked: '14 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Merkbreed (Samsung koel-vriescombinaties en vriezers) — niet apart getest voor dit model',
+      drawers: 'Gebruikers van Samsung koel-vriescombinaties noemen de lades doorgaans van voldoende formaat en kwaliteit.',
+      shelves: 'Geen specifieke klachten gevonden over vakken of platen.',
+      plastic: 'Geen brede klachten gevonden over kunststof onderdelen bij Samsung-vriezers.',
+      note: 'Gebaseerd op reviews van Samsung koel-vriesapparatuur in het algemeen; voor dit specifieke model (geïntroduceerd april 2026) zijn nog geen gebruikersreviews gevonden.',
+      checked: '14 augustus 2026'
+    },
+    energy: 'E',
+    energyKwh: 263,
+    heightCm: 185,
+    widthCm: 59.5,
+    depthCm: 64.4,
+    noiseDb: 36,
+    capacityL: 323,
+    tagline: 'De grootste van de drie nieuwkomers: 323 liter, met 4-in-1 flexibele modi.',
+    highlights: [
+      '323 liter — grootste van de nieuwkomers',
+      '4 flexibele modi: Freezer, Soft Freeze, Cold en Fridge',
+      'Wifi/app-bediening (Android/iOS)',
+      '20 jaar garantie op de compressor'
+    ],
+    description:
+      'De Samsung RZ70H32KETEF is met 323 liter de ruimste van de drie nieuw toegevoegde modellen. De Smart Conversion-functie maakt het mogelijk om te schakelen tussen vier standen — Freezer, Soft Freeze, Cold en Fridge — zodat hij ook als extra koelkast kan dienen. No Frost voorkomt ijsvorming, en via de Samsung-app is de temperatuur op afstand te regelen. Bij stroomuitval blijft de inhoud volgens Samsung circa 10 uur op temperatuur. Geïntroduceerd in april 2026, dus nog zonder gebruikersreviews.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '323 liter'],
+      ['Afmetingen (h×b×d)', '185 × 59,5 × 64,4 cm'],
+      ['Energielabel', 'E — 263 kWh/jaar'],
+      ['Geluidsniveau', '36 dB(A)'],
+      ['Lades', '4'],
+      ['Bijzonderheid', '4-in-1 Smart Conversion (Freezer/Soft Freeze/Cold/Fridge)'],
+      ['Ontdooiing', 'NoFrost, automatisch'],
+      ['Deurscharnier', 'Links, omkeerbaar'],
+      ['Overbrugging bij stroomuitval', '10 uur'],
+      ['Garantie', '2 jaar fabrieksgarantie, 20 jaar op de compressor']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/02-open.jpg', label: 'Open — gevuld' }
+    ],
+    photoCredit: 'Productfoto: Samsung, via bol.com.',
+    expertUrl: 'https://www.bol.com/nl/nl/p/samsung-rz70h32ketef-1-deurs-vriezer-smart-conversion-323l-4-in-1/9300000344004482/'
   }
 ];
 

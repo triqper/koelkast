@@ -340,6 +340,16 @@
       label: 'expert.nl',
       cls: ' is-checked',
       title: 'Prijs van expert.nl, 9 augustus 2026'
+    },
+    'pro-witgoed': {
+      label: 'pro-witgoed.com',
+      cls: ' is-checked',
+      title: 'Prijs van pro-witgoed.com, 14 augustus 2026'
+    },
+    bol: {
+      label: 'bol.com',
+      cls: ' is-checked',
+      title: 'Prijs van bol.com, 14 augustus 2026'
     }
   };
 
@@ -349,7 +359,8 @@
       t.label + '</span>';
   }
 
-  /* Prijs bij een andere NL-webshop, als die goedkoper is dan Expert.nl.
+  /* Prijs bij een andere NL-webshop, als die goedkoper is dan de prijs
+     hierboven (meestal Expert.nl, bij drie modellen pro-witgoed.com/bol.com).
      `cls` bepaalt de plek: op de kaart of in het detailvenster. */
   function cheaperHtml(f, cls) {
     if (!f.cheaper) {
@@ -359,7 +370,7 @@
     return '<p class="' + cls + '">' +
       '<a href="' + c.url + '" target="_blank" rel="noopener noreferrer">' +
         c.shop + ': ' + euro.format(c.price) +
-      '</a> — ' + euro.format(c.savings) + ' goedkoper dan Expert.nl' +
+      '</a> — ' + euro.format(c.savings) + ' goedkoper dan hierboven' +
     '</p>';
   }
 
@@ -535,6 +546,7 @@
 
     const link = document.getElementById('modal-link');
     link.href = f.expertUrl;
+    link.textContent = (f.linkLabel || 'Bekijk op Expert.nl') + ' →';
 
     const photoLink = document.getElementById('modal-photo-link');
     if (f.photoUrl) {
