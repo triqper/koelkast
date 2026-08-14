@@ -916,7 +916,7 @@ const VRIEZERS = [
     depthCm: 61.8,
     noiseDb: 41,
     capacityL: 272,
-    tagline: 'Convertible: schakelt om tussen vriezer en koelkast, en het goedkoopst van de drie nieuwkomers.',
+    tagline: 'Convertible: schakelt om tussen vriezer en koelkast, en het goedkoopst van de vier nieuwkomers.',
     highlights: [
       'Convertible — ook te gebruiken als koelkast',
       '7 vrieslades met LED-display',
@@ -987,15 +987,15 @@ const VRIEZERS = [
     depthCm: 65,
     noiseDb: 39,
     capacityL: 280,
-    tagline: 'Beste energielabel van de nieuwkomers: D bij 199 kWh/jaar, en goedkoper te vinden bij Correct.nl.',
+    tagline: 'Energielabel D bij 199 kWh/jaar, en goedkoper te vinden bij Correct.nl.',
     highlights: [
-      'Zuinigste van de drie nieuwkomers: 199 kWh/jaar, label D',
+      'Energielabel D, 199 kWh/jaar',
       '5 lades + 2 vakken met klep',
       'Vingervlekvrij roestvrijstaal',
       'Omkeerbaar deurscharnier'
     ],
     description:
-      'De Sharp SJSC11CMXIDEU is een vrijstaande vrieskast van 280 liter in vingervlekvrij roestvrijstaal, met energielabel D en 199 kWh per jaar — het zuinigst van de drie nieuw toegevoegde modellen. No Frost-technologie met geavanceerde luchtcirculatie voorkomt ijsvorming, een digitaal display regelt de temperatuur, en een deuralarm waarschuwt als de deur openstaat. Bij stroomuitval blijft de inhoud volgens Sharp nog 15 uur op temperatuur.',
+      'De Sharp SJSC11CMXIDEU is een vrijstaande vrieskast van 280 liter in vingervlekvrij roestvrijstaal, met energielabel D en 199 kWh per jaar. No Frost-technologie met geavanceerde luchtcirculatie voorkomt ijsvorming, een digitaal display regelt de temperatuur, en een deuralarm waarschuwt als de deur openstaat. Bij stroomuitval blijft de inhoud volgens Sharp nog 15 uur op temperatuur.',
     specs: [
       ['Type', 'Vrijstaande vrieskast'],
       ['Netto inhoud', '280 liter'],
@@ -1048,15 +1048,15 @@ const VRIEZERS = [
     depthCm: 64.4,
     noiseDb: 36,
     capacityL: 323,
-    tagline: 'De grootste van de drie nieuwkomers: 323 liter, met 4-in-1 flexibele modi.',
+    tagline: 'De grootste van de vier nieuwkomers: 323 liter, met 4-in-1 flexibele modi.',
     highlights: [
-      '323 liter — grootste van de nieuwkomers',
+      '323 liter — grootste van de nieuwkomers, op twee na grootste van alle zestien',
       '4 flexibele modi: Freezer, Soft Freeze, Cold en Fridge',
       'Wifi/app-bediening (Android/iOS)',
       '20 jaar garantie op de compressor'
     ],
     description:
-      'De Samsung RZ70H32KETEF is met 323 liter de ruimste van de drie nieuw toegevoegde modellen. De Smart Conversion-functie maakt het mogelijk om te schakelen tussen vier standen — Freezer, Soft Freeze, Cold en Fridge — zodat hij ook als extra koelkast kan dienen. No Frost voorkomt ijsvorming, en via de Samsung-app is de temperatuur op afstand te regelen. Bij stroomuitval blijft de inhoud volgens Samsung circa 10 uur op temperatuur. Geïntroduceerd in april 2026, dus nog zonder gebruikersreviews.',
+      'De Samsung RZ70H32KETEF is met 323 liter de ruimste van de vier nieuw toegevoegde modellen — alleen de Beko RFNE448E35W (404 liter) is groter, van alle zestien op deze pagina. De Smart Conversion-functie maakt het mogelijk om te schakelen tussen vier standen — Freezer, Soft Freeze, Cold en Fridge — zodat hij ook als extra koelkast kan dienen. No Frost voorkomt ijsvorming, en via de Samsung-app is de temperatuur op afstand te regelen. Bij stroomuitval blijft de inhoud volgens Samsung circa 10 uur op temperatuur. Geïntroduceerd in april 2026, dus nog zonder gebruikersreviews.',
     specs: [
       ['Type', 'Vrijstaande vrieskast'],
       ['Netto inhoud', '323 liter'],
@@ -1071,11 +1071,79 @@ const VRIEZERS = [
       ['Garantie', '2 jaar fabrieksgarantie, 20 jaar op de compressor']
     ],
     photos: [
-      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/01-gesloten.jpg', label: 'Dicht' },
-      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/02-open.jpg', label: 'Open — gevuld' }
+      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/01-gesloten.png', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/samsung-rz70h32ketef/02-open.png', label: 'Open — gevuld' }
     ],
-    photoCredit: 'Productfoto: Samsung, via bol.com.',
+    photoCredit: 'Productfoto: Samsung, via Samsung.com/nl.',
+    photoUrl: 'https://www.samsung.com/nl/refrigerators/one-door/ri80h-24-rz70h32hdtef-323l-silver-rz70h32ketef/',
+    photoLabel: 'Foto’s op Samsung.com',
     expertUrl: 'https://www.bol.com/nl/nl/p/samsung-rz70h32ketef-1-deurs-vriezer-smart-conversion-323l-4-in-1/9300000344004482/'
+  },
+  {
+    id: 'etna-vv185nrvs',
+    brand: 'ETNA',
+    model: 'VV185NRVS',
+    series: 'MultiFlow 360 · ConnectLife',
+    kleur: 'Rvs',
+    group: 'vriezer',
+    accent: '#0f6e5c',
+    source: 'bol',
+    price: 849,
+    priceNote: 'prijs bol.com, 14 augustus 2026',
+    linkLabel: 'Bekijk op bol.com',
+    cheaper: null,
+    reviews: {
+      status: 'none',
+      checked: '14 augustus 2026'
+    },
+    buildQuality: {
+      scope: 'Combinatie van reviews voor de kleinere ETNA VV172NRVS hierboven en vergelijkbare Etna-vriezers — niet apart getest voor dit grotere model',
+      drawers: 'Reviewers van de verwante VV172NRVS beschrijven de telescopische lades als stevig en soepel lopend op kleine wieltjes/lagers; dit model heeft dezelfde ladenopbouw, alleen groter.',
+      shelves: 'Enkele gebruikers van vergelijkbare Etna-modellen hadden liever iets stevigere glasplaten gezien — de enige concrete kritiek die gevonden is.',
+      plastic: 'Materiaal maakt over het algemeen een stevige indruk, met een deur op zachte rubbers.',
+      note: 'Gebaseerd op reviews van de kleinere ETNA VV172NRVS en vergelijkbare Etna-modellen; niet apart bevestigd voor de VV185NRVS zelf.',
+      checked: '14 augustus 2026'
+    },
+    energy: 'C',
+    energyKwh: 166,
+    heightCm: 185.6,
+    widthCm: 59.5,
+    depthCm: 60,
+    noiseDb: 35,
+    capacityL: 312,
+    tagline: 'De grote broer van de ETNA VV172NRVS: 13,6 cm hoger en 72 liter meer inhoud — de op twee na ruimste van de zestien.',
+    highlights: [
+      '312 liter — op twee na grootste, na de Beko RFNE448E35W (404 l) en Samsung RZ70H32KETEF (323 l)',
+      '35 dB — een van de stillere modellen, net iets luider dan de Whirlpool 6312-serie en Beko B5RFNE315G (34 dB)',
+      'MultiFlow 360 + FastFreeze',
+      'ConnectLife-app en LED-touchbediening'
+    ],
+    description:
+      'De ETNA VV185NRVS is de grotere versie van de VV172NRVS die verderop in dit overzicht staat: dezelfde MultiFlow 360-luchtcirculatie, FastFreeze-functie en ConnectLife-connectiviteit, maar dan 13,6 cm hoger (185,6 cm) en met 312 liter in plaats van 240 liter netto inhoud — daarmee de op twee na ruimste vriezer van de zestien op deze pagina, na de Beko RFNE448E35W (404 liter) en de Samsung RZ70H32KETEF (323 liter). Het jaarverbruik ligt met 166 kWh in totaal hoger dan bij het kleinere model (150 kWh), maar per liter inhoud is dit juist zuiniger — vandaar dat beide toch energielabel C krijgen. Met 35 dB behoort hij tot de stillere modellen van de vergelijking, net iets luider dan de Whirlpool 6312-serie en de Beko B5RFNE315G (allebei 34 dB). De 7 vaksecties (3 legplanken + 4 lades) zijn verdeeld over een ruime kast tot -15°C omgevingstemperatuur, geschikt voor een schuur of garage.',
+    specs: [
+      ['Type', 'Vrijstaande vrieskast'],
+      ['Netto inhoud', '312 liter'],
+      ['Afmetingen (h×b×d)', '185,6 × 59,5 × 60 cm'],
+      ['Energielabel', 'C — 166 kWh/jaar'],
+      ['Geluidsniveau', '35 dB(A)'],
+      ['Vaksecties', '3 legplanken + 4 lades (7 in totaal)'],
+      ['Invriescapaciteit', '15 kg/24 uur'],
+      ['Luchtcirculatie', 'MultiFlow 360'],
+      ['Snelvriezen', 'FastFreeze'],
+      ['Connectiviteit', 'ConnectLife-app, LED-touchbediening'],
+      ['Omgevingstemperatuur', 'Tot -15°C'],
+      ['Ontdooiing', 'NoFrost'],
+      ['Deurscharnier', 'Rechts, omkeerbaar'],
+      ['Garantie', '2 jaar fabrieksgarantie (uit te breiden naar 5 jaar na registratie)']
+    ],
+    photos: [
+      { src: 'assets/photos-vriezer/etna-vv185nrvs/01-gesloten.jpg', label: 'Dicht' },
+      { src: 'assets/photos-vriezer/etna-vv185nrvs/02-open.jpg', label: 'Open — gevuld' }
+    ],
+    photoCredit: 'Productfoto: ETNA, via bol.com.',
+    photoUrl: 'https://etna.nl/keukenapparatuur/vv185nrvs/',
+    photoLabel: 'Foto’s op Etna.nl',
+    expertUrl: 'https://www.bol.com/nl/nl/p/etna-vv185nrvs-vrijstaande-vriezer-rvs-rvs-look-312-liter-energielabel-c-35-db-no-frost-fastfreeze/9300000267470420/'
   }
 ];
 
