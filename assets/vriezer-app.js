@@ -340,6 +340,11 @@
       label: 'expert.nl',
       cls: ' is-checked',
       title: 'Prijs van expert.nl, 9 augustus 2026'
+    },
+    web: {
+      label: 'indicatie',
+      cls: '',
+      title: 'Prijs van de webshop zelf (Pro-Witgoed.com of bol.com), niet bij Expert.nl gecontroleerd'
     }
   };
 
@@ -535,6 +540,7 @@
 
     const link = document.getElementById('modal-link');
     link.href = f.expertUrl;
+    link.textContent = (f.linkLabel || 'Bekijk op Expert.nl') + ' →';
 
     const photoLink = document.getElementById('modal-photo-link');
     if (f.photoUrl) {
@@ -720,7 +726,7 @@
       b.classList.toggle('is-on', on);
       b.setAttribute('aria-pressed', String(on));
     });
-    /* De vergelijktabel ('Alles op een rij') blijft alle twaalf modellen
+    /* De vergelijktabel ('Alles op een rij') blijft alle modellen
        tonen, ongeacht het kleurfilter — alleen de kaarten erboven filteren. */
     renderSections();
   });
